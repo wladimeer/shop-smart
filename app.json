@@ -1,6 +1,6 @@
 {
   "expo": {
-    "name": "shop-smart",
+    "name": "ShopSmart",
     "slug": "shop-smart",
     "version": "1.0.0",
     "orientation": "portrait",
@@ -25,6 +25,17 @@
     },
     "web": {
       "favicon": "./assets/favicon.png"
-    }
+    },
+    "plugins": [
+      [
+        "expo-font",
+        {
+          "fonts": [
+            "./fonts/SedanSC-Regular.ttf",
+            "./fonts/RedditSansCondensed-Regular.ttf"
+          ]
+        }
+      ]
+    ]
   }
 }

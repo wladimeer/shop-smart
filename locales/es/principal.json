@@ -1,0 +1,7 @@
+{
+  "title": "Principal",
+  "buttons": {
+    "newPurchase": "Nueva Compra",
+    "viewPurchases": "Ver Compras"
+  }
+}

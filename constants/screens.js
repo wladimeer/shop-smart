@@ -1,6 +1,6 @@
-const PRINCIPAL_SCREEN_KEY = 'PrincipalScreen'
-const NEW_PURCHASE_SCREEN_KEY = 'NewPurchaseScreen'
-const VIEW_PURCHASES_SCREEN_KEY = 'ViewPurchasesScreen'
+const PRINCIPAL_SCREEN_KEY = 'principalScreen'
+const NEW_PURCHASE_SCREEN_KEY = 'newPurchaseScreen'
+const VIEW_PURCHASES_SCREEN_KEY = 'viewPurchasesScreen'
 
 const SCREEN_KEYS = [
   PRINCIPAL_SCREEN_KEY,

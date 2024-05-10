@@ -1,0 +1,12 @@
+{
+  "title": "ShopSmart",
+  "screens": {
+    "titles": {
+      "newPurchaseScreen": "Nueva Compra",
+      "viewPurchasesScreen": "Ver Compras"
+    }
+  },
+  "buttons": {
+    "goBack": "Volver"
+  }
+}

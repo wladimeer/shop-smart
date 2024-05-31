@@ -1,6 +1,6 @@
 import { ImageBackground } from 'react-native'
 import { SafeAreaView } from 'react-native-safe-area-context'
-import background from '../assets/principal-background.png'
+import background from '../assets/principal-background.jpg'
 import { StyleSheet, View } from 'react-native'
 import { StatusBar } from 'expo-status-bar'
 

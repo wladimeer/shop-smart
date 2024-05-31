@@ -20,7 +20,8 @@ const styles = StyleSheet.create({
   },
   label: {
     color: '#FFFFFF',
-    fontFamily: 'RSC-Regular'
+    fontFamily: 'RSC-Regular',
+    fontSize: 32
   }
 })
 

@@ -33,7 +33,7 @@ const App = () => {
     'SSC-Regular': require('./fonts/SedanSC-Regular.ttf'),
     'RSC-Regular': require('./fonts/RedditSansCondensed-Regular.ttf')
   })
-  
+
   if (!fontsLoaded && !fontError) return null
 
   return (

@@ -3,9 +3,7 @@ import { Pressable, Text, StyleSheet } from 'react-native'
 const CustomButton = ({ text, handlePress }) => {
   return (
     <Pressable style={styles.container} onPress={handlePress}>
-      <Text style={styles.label}>
-        {text}
-      </Text>
+      <Text style={styles.label}>{text}</Text>
     </Pressable>
   )
 }

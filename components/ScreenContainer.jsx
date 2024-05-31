@@ -10,13 +10,11 @@ const ScreenContainer = ({ children, includeBackground = false }) => {
       <StatusBar style="auto" />
 
       <ImageBackground
-        resizeMode='cover'
+        resizeMode="cover"
         style={styles.background}
         source={includeBackground ? background : null}
       >
-        <SafeAreaView style={styles.content}>
-          {children}
-        </SafeAreaView>
+        <SafeAreaView style={styles.content}>{children}</SafeAreaView>
       </ImageBackground>
     </View>
   )

@@ -6,11 +6,7 @@ import { useTranslation } from 'react-i18next'
 const ViewPurchases = () => {
   const [translate] = useTranslation(VIEW_PURCHASES_SCREEN_KEY)
 
-  return (
-    <SafeAreaView>
-      <Text>{translate('title')}</Text>
-    </SafeAreaView>
-  )
+  return <SafeAreaView></SafeAreaView>
 }
 
 export default ViewPurchases

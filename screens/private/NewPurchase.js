@@ -1,10 +1,14 @@
-import { useEffect, useState } from 'react'
-import { Fontisto } from '@expo/vector-icons'
+import { formatToCLP } from '../../utils/purchase'
+import { Fontisto, AntDesign } from '@expo/vector-icons'
 import { TouchableOpacity, TextInput } from 'react-native'
+import background from '../../assets/principal-background.jpg'
 import { Text, View, ScrollView, StyleSheet } from 'react-native'
 import { setCartElements, getCartElements } from '../../services/purchase'
 import CustomHighlightButton from '../../components/CustomHighlightButton'
 import { NEW_PURCHASE_SCREEN_KEY } from '../../constants/screens'
+import ScreenContainer from '../../components/ScreenContainer'
+import { getTotal, convertItem } from '../../utils/purchase'
+import { useEffect, useRef, useState } from 'react'
 import { useTranslation } from 'react-i18next'
 import Spacer from '../../components/Spacer'
 import { Formik, FieldArray } from 'formik'
@@ -13,20 +17,18 @@ const NewPurchase = () => {
   const [translate] = useTranslation(NEW_PURCHASE_SCREEN_KEY)
   const [loading, setLoading] = useState(true)
   const [items, setItems] = useState([])
+  const scrollViewRef = useRef(null)
 
-  const convertItem = (item) => {
-    const keys = Object.keys(item)
-
-    keys.forEach((key) => {
-      item[key] = String(item[key])
-    })
-
-    return item
+  const scrollToEnd = () => {
+    if (scrollViewRef.current) {
+      scrollViewRef.current.scrollToEnd({ animated: true })
+    }
   }
 
-  const saveItems = async (items) => {
+  const saveItems = async (values) => {
     try {
-      await setCartElements(items)
+      const data = await setCartElements(values)
+      setItems(data)
     } catch (error) {
       console.log(error)
     }
@@ -64,6 +66,10 @@ const NewPurchase = () => {
         const handleNewItem = (insertItem) => {
           const item = { name: '', unit: 0, quantity: 0, total: 0 }
           insertItem(values.items.length + 1, item)
+
+          setTimeout(() => {
+            scrollToEnd()
+          }, 500)
         }
 
         const handleUpdateItem = (key, index, value) => {
@@ -116,106 +122,119 @@ const NewPurchase = () => {
         }
 
         return (
-          <ScrollView style={{ flex: 1 }}>
-            <FieldArray
-              name="items"
-              render={({ insert, remove }) => (
-                <View style={styles.container}>
-                  {values.items.length > 0 ? (
-                    values.items.map((item, index) => (
-                      <View key={index} style={styles.content}>
-                        <View style={styles.header}>
-                          <TextInput
-                            style={styles.text}
-                            onChangeText={(value) => handleUpdateItem('name', index, value)}
-                            placeholder={translate('placeholders.name')}
-                            value={item.name}
-                          />
+          <ScreenContainer includeBackground={true} withSafeArea={false} background={background}>
+            <ScrollView style={{ flex: 1 }} ref={scrollViewRef}>
+              <FieldArray
+                name="items"
+                render={({ insert, remove }) => (
+                  <View style={styles.container}>
+                    {values.items.length > 0 ? (
+                      values.items.map((item, index) => (
+                        <View key={index} style={styles.content}>
+                          <View style={styles.header}>
+                            <TextInput
+                              style={{ ...styles.text, width: 200 }}
+                              onChangeText={(value) => handleUpdateItem('name', index, value)}
+                              placeholder={translate('placeholders.name')}
+                              value={item.name}
+                            />
 
-                          <TouchableOpacity
-                            style={styles.headerButton}
-                            onPress={() => handleDeleteItem(index, remove)}
-                          >
-                            <Fontisto name="close-a" color="#EC4C4C" size={20} />
-                          </TouchableOpacity>
-                        </View>
+                            <TouchableOpacity
+                              style={styles.headerButton}
+                              onPress={() => handleDeleteItem(index, remove)}
+                            >
+                              <Fontisto name="close-a" color="#EC4C4C" size={20} />
+                            </TouchableOpacity>
+                          </View>
 
-                        <Spacer />
+                          <Spacer />
 
-                        <View style={styles.body}>
-                          <View style={{ gap: 10 }}>
-                            <View style={styles.data}>
-                              <Text style={{ ...styles.text, color: '#1B4F72' }}>
-                                {translate('fields.unit')}: $
-                              </Text>
+                          <View style={styles.body}>
+                            <View style={{ gap: 10 }}>
+                              <View style={styles.data}>
+                                <Text style={{ ...styles.text, color: '#1B4F72' }}>
+                                  {translate('fields.unit')}: $
+                                </Text>
 
-                              <TextInput
-                                style={{ ...styles.text, ...styles.label }}
-                                onChangeText={(value) => handleUpdateItem('unit', index, value)}
-                                placeholder={translate('placeholders.unit')}
-                                keyboardType="numeric"
-                                value={item.unit}
-                              />
+                                <TextInput
+                                  style={{ ...styles.text, ...styles.label }}
+                                  onChangeText={(value) => handleUpdateItem('unit', index, value)}
+                                  placeholder={translate('placeholders.unit')}
+                                  keyboardType="numeric"
+                                  value={item.unit}
+                                />
+                              </View>
+
+                              <View style={styles.data}>
+                                <Text style={{ ...styles.text, color: '#1B4F72' }}>
+                                  {translate('fields.quantity')}:
+                                </Text>
+
+                                <TextInput
+                                  style={{ ...styles.text, ...styles.label }}
+                                  onChangeText={(value) =>
+                                    handleUpdateItem('quantity', index, value)
+                                  }
+                                  placeholder={translate('placeholders.quantity')}
+                                  keyboardType="numeric"
+                                  value={item.quantity}
+                                />
+                              </View>
+
+                              <View style={styles.data}>
+                                <Text style={{ ...styles.text, color: '#1B4F72' }}>
+                                  {translate('fields.total')}:
+                                </Text>
+
+                                <Text style={{ ...styles.text, ...styles.label }}>
+                                  ${formatToCLP(item.total)}
+                                </Text>
+                              </View>
                             </View>
 
-                            <View style={styles.data}>
-                              <Text style={{ ...styles.text, color: '#1B4F72' }}>
-                                {translate('fields.quantity')}:
-                              </Text>
-
-                              <TextInput
-                                style={{ ...styles.text, ...styles.label }}
-                                onChangeText={(value) => handleUpdateItem('quantity', index, value)}
-                                placeholder={translate('placeholders.quantity')}
-                                keyboardType="numeric"
-                                value={item.quantity}
+                            <View style={styles.actions}>
+                              <CustomHighlightButton
+                                handlePress={() => handleIncreaseQuantity(index)}
+                                text={translate('buttons.increase')}
                               />
-                            </View>
 
-                            <View style={styles.data}>
-                              <Text style={{ ...styles.text, color: '#1B4F72' }}>
-                                {translate('fields.total')}: $
-                              </Text>
-
-                              <TextInput
-                                style={{ ...styles.text, ...styles.label }}
-                                placeholder={translate('placeholders.total')}
-                                keyboardType="numeric"
-                                value={item.total}
-                                readOnly
+                              <CustomHighlightButton
+                                handlePress={() => handleDecreaseQuantity(index, remove)}
+                                text={translate('buttons.decrease')}
                               />
                             </View>
                           </View>
-
-                          <View style={styles.actions}>
-                            <CustomHighlightButton
-                              handlePress={() => handleIncreaseQuantity(index)}
-                              text={translate('buttons.increase')}
-                            />
-
-                            <CustomHighlightButton
-                              handlePress={() => handleDecreaseQuantity(index, remove)}
-                              text={translate('buttons.decrease')}
-                            />
-                          </View>
                         </View>
+                      ))
+                    ) : (
+                      <View style={styles.messageContent}>
+                        <Text style={styles.message}>{translate('noData')}</Text>
                       </View>
-                    ))
-                  ) : (
-                    <Text style={{ ...styles.container, ...styles.text }}>
-                      {translate('noData')}
-                    </Text>
-                  )}
+                    )}
 
-                  <CustomHighlightButton
-                    customStyle={{ ...styles.button }}
-                    handlePress={() => handleNewItem(insert)}
-                    text="Agregar icono"
-                  />
-                </View>
-              )}
-            />
-          </ScrollView>
+                    <CustomHighlightButton
+                      customStyle={{ ...styles.button }}
+                      handlePress={() => handleNewItem(insert)}
+                    >
+                      <AntDesign name="plus" size={24} color="#FFFFFF" />
+                    </CustomHighlightButton>
+                  </View>
+                )}
+              />
+            </ScrollView>
+
+            <View style={styles.footer}>
+              <View style={styles.footerLeft}>
+                <Text style={{ ...styles.text, ...styles.footerText }}>
+                  {translate('fields.total')}:
+                </Text>
+
+                <Text style={{ ...styles.text, color: '#FFFFFF', fontSize: 32 }}>
+                  $ {formatToCLP(getTotal(values.items))}
+                </Text>
+              </View>
+            </View>
+          </ScreenContainer>
         )
       }}
     </Formik>
@@ -255,6 +274,25 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     marginHorizontal: 10
   },
+  footer: {
+    width: '100%',
+    display: 'flex',
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    backgroundColor: '#154360',
+    alignItems: 'center',
+    padding: 16,
+    height: 76
+  },
+  footerLeft: {
+    display: 'flex',
+    flexDirection: 'row',
+    gap: 10
+  },
+  footerText: {
+    color: '#FFFFFF',
+    fontSize: 32
+  },
   data: {
     display: 'flex',
     flexDirection: 'row',
@@ -270,17 +308,29 @@ const styles = StyleSheet.create({
   text: {
     fontSize: 20,
     fontFamily: 'RSC-Regular',
-    textAlign: 'center'
+    textAlign: 'left'
   },
   label: {
     color: '#1B4F72',
     textAlign: 'left',
-    width: 100
+    width: 200
   },
   button: {
     width: '100%',
     borderRadius: 3,
     height: 50
+  },
+  messageContent: {
+    width: '100%',
+    backgroundColor: '#D6EAF8',
+    borderRadius: 3,
+    padding: 20
+  },
+  message: {
+    color: '#1B4F72',
+    fontFamily: 'RSC-Regular',
+    textAlign: 'center',
+    fontSize: 20
   }
 })
 

@@ -1,10 +1,14 @@
 import { TouchableHighlight, Text } from 'react-native'
 import { StyleSheet } from 'react-native'
 
-const CustomHighlightButton = ({ text, handlePress, customStyle = {} }) => {
+const CustomHighlightButton = ({ children, text, handlePress, customStyle = {} }) => {
   return (
-    <TouchableHighlight style={{ ...styles.container, ...customStyle }} onPress={handlePress}>
-      <Text style={styles.label}>{text}</Text>
+    <TouchableHighlight
+      style={{ ...styles.container, ...customStyle }}
+      underlayColor={'#2F80B5'}
+      onPress={handlePress}
+    >
+      {children ? children : <Text style={styles.label}>{text}</Text>}
     </TouchableHighlight>
   )
 }
@@ -15,7 +19,7 @@ const styles = StyleSheet.create({
     display: 'flex',
     justifyContent: 'center',
     backgroundColor: '#2874A6',
-    alignContent: 'center',
+    alignItems: 'center',
     borderRadius: 12,
     height: 35
   },

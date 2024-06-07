@@ -1,21 +1,35 @@
-import { ImageBackground } from 'react-native'
+import { StyleSheet, View, Animated } from 'react-native'
 import { SafeAreaView } from 'react-native-safe-area-context'
-import background from '../assets/principal-background.jpg'
-import { StyleSheet, View } from 'react-native'
 import { StatusBar } from 'expo-status-bar'
 
-const ScreenContainer = ({ children, includeBackground = false }) => {
+const ScreenContainer = ({ children, background = null, withSafeArea = true }) => {
+  const fadeAnimation = new Animated.Value(0)
+
+  const handleLoadImage = () => {
+    const config = {
+      toValue: 1,
+      useNativeDriver: true,
+      duration: 500
+    }
+
+    Animated.timing(fadeAnimation, config).start()
+  }
+
   return (
     <View style={styles.container}>
-      <StatusBar style="auto" />
+      <StatusBar style="light" />
 
-      <ImageBackground
+      <View style={styles.background} />
+
+      <Animated.Image
+        source={background && background}
+        style={{ ...styles.background, opacity: fadeAnimation }}
+        onLoad={handleLoadImage}
         resizeMode="cover"
-        style={styles.background}
-        source={includeBackground ? background : null}
-      >
-        <SafeAreaView style={styles.content}>{children}</SafeAreaView>
-      </ImageBackground>
+        blurRadius={3}
+      />
+
+      {withSafeArea ? <SafeAreaView style={styles.content}>{children}</SafeAreaView> : children}
     </View>
   )
 }
@@ -25,7 +39,10 @@ const styles = StyleSheet.create({
     flex: 1
   },
   background: {
-    flex: 1
+    width: '100%',
+    ...StyleSheet.absoluteFillObject,
+    backgroundColor: '#000000',
+    height: '100%'
   },
   content: {
     width: '100%',

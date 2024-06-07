@@ -3,6 +3,7 @@ import { PRINCIPAL_SCREEN_KEY } from '../../constants/screens'
 import { VIEW_PURCHASES_SCREEN_KEY } from '../../constants/screens'
 import { NEW_PURCHASE_SCREEN_KEY } from '../../constants/screens'
 import ScreenContainer from '../../components/ScreenContainer'
+import background from '../../assets/principal-background.jpg'
 import CustomButton from '../../components/CustomButton'
 import { useTranslation } from 'react-i18next'
 
@@ -18,7 +19,7 @@ const Principal = ({ navigation }) => {
   }
 
   return (
-    <ScreenContainer includeBackground={true}>
+    <ScreenContainer includeBackground={true} background={background}>
       <ElementGroup>
         <CustomButton text={translate('buttons.newPurchase')} handlePress={handleNewPurchase} />
         <CustomButton text={translate('buttons.viewPurchases')} handlePress={handleViewPurchases} />

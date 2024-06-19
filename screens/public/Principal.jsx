@@ -19,7 +19,7 @@ const Principal = ({ navigation }) => {
   }
 
   return (
-    <ScreenContainer includeBackground={true} background={background}>
+    <ScreenContainer background={background}>
       <ElementGroup>
         <CustomButton text={translate('buttons.newPurchase')} handlePress={handleNewPurchase} />
         <CustomButton text={translate('buttons.viewPurchases')} handlePress={handleViewPurchases} />

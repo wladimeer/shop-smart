@@ -9,6 +9,7 @@ import { NEW_PURCHASE_SCREEN_KEY } from '../../constants/screens'
 import ScreenContainer from '../../components/ScreenContainer'
 import { getTotal, convertItem } from '../../utils/purchase'
 import { useEffect, useRef, useState } from 'react'
+import { useTheme } from '@react-navigation/native'
 import { useTranslation } from 'react-i18next'
 import Spacer from '../../components/Spacer'
 import { Formik, FieldArray } from 'formik'
@@ -18,6 +19,9 @@ const NewPurchase = () => {
   const [loading, setLoading] = useState(true)
   const [items, setItems] = useState([])
   const scrollViewRef = useRef(null)
+  const { colors } = useTheme()
+
+  const styles = allStyles({ colors })
 
   const scrollToEnd = () => {
     if (scrollViewRef.current) {
@@ -122,7 +126,7 @@ const NewPurchase = () => {
         }
 
         return (
-          <ScreenContainer includeBackground={true} withSafeArea={false} background={background}>
+          <ScreenContainer background={background} withSafeArea={false}>
             <ScrollView style={{ flex: 1 }} ref={scrollViewRef}>
               <FieldArray
                 name="items"
@@ -133,9 +137,10 @@ const NewPurchase = () => {
                         <View key={index} style={styles.content}>
                           <View style={styles.header}>
                             <TextInput
-                              style={{ ...styles.text, width: 200 }}
+                              style={{ ...styles.text, width: 300 }}
                               onChangeText={(value) => handleUpdateItem('name', index, value)}
                               placeholder={translate('placeholders.name')}
+                              placeholderTextColor={colors.placeholder}
                               value={item.name}
                             />
 
@@ -152,7 +157,7 @@ const NewPurchase = () => {
                           <View style={styles.body}>
                             <View style={{ gap: 10 }}>
                               <View style={styles.data}>
-                                <Text style={{ ...styles.text, color: '#1B4F72' }}>
+                                <Text style={{ ...styles.text, color: colors.text }}>
                                   {translate('fields.unit')}: $
                                 </Text>
 
@@ -160,13 +165,14 @@ const NewPurchase = () => {
                                   style={{ ...styles.text, ...styles.label }}
                                   onChangeText={(value) => handleUpdateItem('unit', index, value)}
                                   placeholder={translate('placeholders.unit')}
+                                  placeholderTextColor={colors.placeholder}
                                   keyboardType="numeric"
                                   value={item.unit}
                                 />
                               </View>
 
                               <View style={styles.data}>
-                                <Text style={{ ...styles.text, color: '#1B4F72' }}>
+                                <Text style={{ ...styles.text, color: colors.text }}>
                                   {translate('fields.quantity')}:
                                 </Text>
 
@@ -176,13 +182,14 @@ const NewPurchase = () => {
                                     handleUpdateItem('quantity', index, value)
                                   }
                                   placeholder={translate('placeholders.quantity')}
+                                  placeholderTextColor={colors.placeholder}
                                   keyboardType="numeric"
                                   value={item.quantity}
                                 />
                               </View>
 
                               <View style={styles.data}>
-                                <Text style={{ ...styles.text, color: '#1B4F72' }}>
+                                <Text style={{ ...styles.text, color: colors.text }}>
                                   {translate('fields.total')}:
                                 </Text>
 
@@ -216,7 +223,7 @@ const NewPurchase = () => {
                       customStyle={{ ...styles.button }}
                       handlePress={() => handleNewItem(insert)}
                     >
-                      <AntDesign name="plus" size={24} color="#FFFFFF" />
+                      <AntDesign name="plus" size={24} color={colors.secondary} />
                     </CustomHighlightButton>
                   </View>
                 )}
@@ -229,7 +236,7 @@ const NewPurchase = () => {
                   {translate('fields.total')}:
                 </Text>
 
-                <Text style={{ ...styles.text, color: '#FFFFFF', fontSize: 32 }}>
+                <Text style={{ ...styles.text, color: colors.secondary, fontSize: 32 }}>
                   $ {formatToCLP(getTotal(values.items))}
                 </Text>
               </View>
@@ -241,97 +248,101 @@ const NewPurchase = () => {
   )
 }
 
-const styles = StyleSheet.create({
-  container: {
-    display: 'flex',
-    alignItems: 'center',
-    justifyContent: 'center',
-    marginHorizontal: 5,
-    marginVertical: 10,
-    gap: 10
-  },
-  content: {
-    width: '100%',
-    backgroundColor: '#D6EAF8',
-    borderRadius: 3,
-    height: 170
-  },
-  header: {
-    padding: 10,
-    flexDirection: 'row',
-    justifyContent: 'space-between',
-    alignItems: 'center',
-    display: 'flex'
-  },
-  headerButton: {
-    backgroundColor: 'transparent',
-    padding: 5
-  },
-  body: {
-    flex: 1,
-    flexDirection: 'row',
-    justifyContent: 'space-between',
-    alignItems: 'center',
-    marginHorizontal: 10
-  },
-  footer: {
-    width: '100%',
-    display: 'flex',
-    flexDirection: 'row',
-    justifyContent: 'space-between',
-    backgroundColor: '#154360',
-    alignItems: 'center',
-    padding: 16,
-    height: 76
-  },
-  footerLeft: {
-    display: 'flex',
-    flexDirection: 'row',
-    gap: 10
-  },
-  footerText: {
-    color: '#FFFFFF',
-    fontSize: 32
-  },
-  data: {
-    display: 'flex',
-    flexDirection: 'row',
-    gap: 10
-  },
-  actions: {
-    display: 'flex',
-    justifyContent: 'center',
-    alignItems: 'center',
-    height: '100%',
-    gap: 8
-  },
-  text: {
-    fontSize: 20,
-    fontFamily: 'RSC-Regular',
-    textAlign: 'left'
-  },
-  label: {
-    color: '#1B4F72',
-    textAlign: 'left',
-    width: 200
-  },
-  button: {
-    width: '100%',
-    borderRadius: 3,
-    height: 50
-  },
-  messageContent: {
-    width: '100%',
-    backgroundColor: '#D6EAF8',
-    borderRadius: 3,
-    padding: 20
-  },
-  message: {
-    color: '#1B4F72',
-    fontFamily: 'RSC-Regular',
-    textAlign: 'center',
-    fontSize: 20
-  }
-})
+const allStyles = ({ colors }) => {
+  const styles = StyleSheet.create({
+    container: {
+      display: 'flex',
+      alignItems: 'center',
+      justifyContent: 'center',
+      marginHorizontal: 5,
+      marginVertical: 10,
+      gap: 10
+    },
+    content: {
+      width: '100%',
+      backgroundColor: colors.background,
+      borderRadius: 3,
+      height: 170
+    },
+    header: {
+      padding: 10,
+      flexDirection: 'row',
+      justifyContent: 'space-between',
+      alignItems: 'center',
+      display: 'flex'
+    },
+    headerButton: {
+      backgroundColor: colors.primary,
+      padding: 5
+    },
+    body: {
+      flex: 1,
+      flexDirection: 'row',
+      justifyContent: 'space-between',
+      alignItems: 'center',
+      marginHorizontal: 10
+    },
+    footer: {
+      width: '100%',
+      display: 'flex',
+      flexDirection: 'row',
+      justifyContent: 'space-between',
+      backgroundColor: colors.tertiary,
+      alignItems: 'center',
+      padding: 16,
+      height: 76
+    },
+    footerLeft: {
+      display: 'flex',
+      flexDirection: 'row',
+      gap: 10
+    },
+    footerText: {
+      color: colors.secondary,
+      fontSize: 32
+    },
+    data: {
+      display: 'flex',
+      flexDirection: 'row',
+      gap: 10
+    },
+    actions: {
+      display: 'flex',
+      justifyContent: 'center',
+      alignItems: 'center',
+      height: '100%',
+      gap: 8
+    },
+    text: {
+      fontSize: 20,
+      fontFamily: 'RSC-Regular',
+      textAlign: 'left'
+    },
+    label: {
+      color: colors.text,
+      textAlign: 'left',
+      width: 200
+    },
+    button: {
+      width: '100%',
+      borderRadius: 3,
+      height: 50
+    },
+    messageContent: {
+      width: '100%',
+      backgroundColor: colors.background,
+      borderRadius: 3,
+      padding: 20
+    },
+    message: {
+      color: colors.text,
+      fontFamily: 'RSC-Regular',
+      textAlign: 'center',
+      fontSize: 20
+    }
+  })
+
+  return styles
+}
 
 export default NewPurchase

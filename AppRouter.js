@@ -7,6 +7,7 @@ import { NavigationContainer } from '@react-navigation/native'
 import { PRINCIPAL_SCREEN_KEY } from './constants/screens'
 import Principal from './screens/public/Principal'
 import { useTranslation } from 'react-i18next'
+import originalTheme from './themes/original'
 
 const Stack = createNativeStackNavigator()
 
@@ -14,9 +15,9 @@ const AppRouter = () => {
   const [translate] = useTranslation(SCREENS_HEADER_KEY)
 
   const options = {
-    headerTintColor: '#FFFFFF',
+    headerTintColor: originalTheme.colors.secondary,
     headerStyle: {
-      backgroundColor: '#154360'
+      backgroundColor: originalTheme.colors.tertiary
     },
     headerBackTitle: translate('buttons.goBack'),
     headerBackTitleStyle: {
@@ -40,7 +41,7 @@ const AppRouter = () => {
   }
 
   return (
-    <NavigationContainer>
+    <NavigationContainer theme={originalTheme}>
       <Stack.Navigator>
         <Stack.Screen
           name={PRINCIPAL_SCREEN_KEY}

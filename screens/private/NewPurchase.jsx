@@ -68,7 +68,7 @@ const NewPurchase = () => {
         }, [values])
 
         const handleNewItem = (insertItem) => {
-          const item = { name: '', unit: 0, quantity: 0, total: 0 }
+          const item = { name: '', unit: 0, quantity: '1', total: 0 }
           insertItem(values.items.length + 1, item)
 
           setTimeout(() => {
@@ -111,17 +111,15 @@ const NewPurchase = () => {
           saveItems(values.items)
         }
 
-        const handleDecreaseQuantity = (index, removeItem) => {
+        const handleDecreaseQuantity = (index) => {
           const item = values.items[index]
 
-          if (item.quantity > 0) {
+          if (item.quantity > 1) {
             item.quantity--
             item.total = item.quantity * item.unit
 
             setFieldValue(`items[${index}]`, convertItem(item))
             saveItems(values.items)
-          } else {
-            removeItem(index)
           }
         }
 
@@ -206,7 +204,7 @@ const NewPurchase = () => {
                               />
 
                               <CustomHighlightButton
-                                handlePress={() => handleDecreaseQuantity(index, remove)}
+                                handlePress={() => handleDecreaseQuantity(index)}
                                 text={translate('buttons.decrease')}
                               />
                             </View>
@@ -254,7 +252,7 @@ const allStyles = ({ colors }) => {
       display: 'flex',
       alignItems: 'center',
       justifyContent: 'center',
-      marginHorizontal: 5,
+      marginHorizontal: 8,
       marginVertical: 10,
       gap: 10
     },

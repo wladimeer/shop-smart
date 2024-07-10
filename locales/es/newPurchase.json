@@ -2,16 +2,16 @@
   "title": "Nueva Compra",
   "fields": {
     "name": "Nombre",
-    "unit": "Unidad",
-    "quantity": "Cantidad",
-    "total": "Total"
+    "unit": "Precio Unitario",
+    "quantity": "Unidad(es)",
+    "total": "Total Producto"
   },
   "buttons": {
     "increase": "Más",
     "decrease": "Menos"
   },
   "placeholders": {
-    "name": "harina",
+    "name": "Ingresa el nombre del producto",
     "unit": "0",
     "quantity": "0",
     "total": "0"

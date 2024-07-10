@@ -5,6 +5,7 @@ import background from '../../assets/principal-background.jpg'
 import { Text, View, ScrollView, StyleSheet } from 'react-native'
 import { setCartElements, getCartElements } from '../../services/purchase'
 import CustomHighlightButton from '../../components/CustomHighlightButton'
+import { UNIT_LIMIT, QUANTITY_TIMIT } from '../../constants/datas'
 import { NEW_PURCHASE_SCREEN_KEY } from '../../constants/screens'
 import ScreenContainer from '../../components/ScreenContainer'
 import { getTotal, convertItem } from '../../utils/purchase'
@@ -83,12 +84,12 @@ const NewPurchase = () => {
             item[key] = value
           }
 
-          if (key === 'unit') {
+          if (key === 'unit' && value <= UNIT_LIMIT) {
             item[key] = value
             item.total = item.quantity * item.unit
           }
 
-          if (key === 'quantity') {
+          if (key === 'quantity' && value <= QUANTITY_TIMIT) {
             item[key] = value
             item.total = item.quantity * item.unit
           }
@@ -104,11 +105,13 @@ const NewPurchase = () => {
         const handleIncreaseQuantity = (index) => {
           const item = values.items[index]
 
-          item.quantity++
-          item.total = item.quantity * item.unit
+          if (item.quantity < QUANTITY_TIMIT) {
+            item.quantity++
+            item.total = item.quantity * item.unit
 
-          setFieldValue(`items[${index}]`, convertItem(item))
-          saveItems(values.items)
+            setFieldValue(`items[${index}]`, convertItem(item))
+            saveItems(values.items)
+          }
         }
 
         const handleDecreaseQuantity = (index) => {
@@ -125,7 +128,7 @@ const NewPurchase = () => {
 
         return (
           <ScreenContainer background={background} withSafeArea={false}>
-            <ScrollView style={{ flex: 1 }} ref={scrollViewRef}>
+            <ScrollView style={styles.scrollView} ref={scrollViewRef}>
               <FieldArray
                 name="items"
                 render={({ insert, remove }) => (
@@ -135,7 +138,7 @@ const NewPurchase = () => {
                         <View key={index} style={styles.content}>
                           <View style={styles.header}>
                             <TextInput
-                              style={{ ...styles.text, width: 300 }}
+                              style={{ ...styles.text, flex: 1 }}
                               onChangeText={(value) => handleUpdateItem('name', index, value)}
                               placeholder={translate('placeholders.name')}
                               placeholderTextColor={colors.placeholder}
@@ -146,17 +149,17 @@ const NewPurchase = () => {
                               style={styles.headerButton}
                               onPress={() => handleDeleteItem(index, remove)}
                             >
-                              <Fontisto name="close-a" color="#EC4C4C" size={20} />
+                              <Fontisto name="close-a" color="#EC4C4C" size={18} />
                             </TouchableOpacity>
                           </View>
 
                           <Spacer />
 
                           <View style={styles.body}>
-                            <View style={{ gap: 10 }}>
+                            <View style={styles.values}>
                               <View style={styles.data}>
                                 <Text style={{ ...styles.text, color: colors.text }}>
-                                  {translate('fields.unit')}: $
+                                  {translate('fields.unit')}:
                                 </Text>
 
                                 <TextInput
@@ -192,7 +195,7 @@ const NewPurchase = () => {
                                 </Text>
 
                                 <Text style={{ ...styles.text, ...styles.label }}>
-                                  ${formatToCLP(item.total)}
+                                  {formatToCLP(item.total)}
                                 </Text>
                               </View>
                             </View>
@@ -235,7 +238,7 @@ const NewPurchase = () => {
                 </Text>
 
                 <Text style={{ ...styles.text, color: colors.secondary, fontSize: 32 }}>
-                  $ {formatToCLP(getTotal(values.items))}
+                  {formatToCLP(getTotal(values.items))}
                 </Text>
               </View>
             </View>
@@ -248,6 +251,9 @@ const NewPurchase = () => {
 
 const allStyles = ({ colors }) => {
   const styles = StyleSheet.create({
+    scrollView: {
+      flex: 1
+    },
     container: {
       display: 'flex',
       alignItems: 'center',
@@ -259,10 +265,10 @@ const allStyles = ({ colors }) => {
     content: {
       width: '100%',
       backgroundColor: colors.background,
-      borderRadius: 3,
-      height: 170
+      borderRadius: 3
     },
     header: {
+      gap: 10,
       padding: 10,
       flexDirection: 'row',
       justifyContent: 'space-between',
@@ -275,10 +281,11 @@ const allStyles = ({ colors }) => {
     },
     body: {
       flex: 1,
+      margin: 10,
       flexDirection: 'row',
       justifyContent: 'space-between',
       alignItems: 'center',
-      marginHorizontal: 10
+      gap: 10
     },
     footer: {
       width: '100%',
@@ -287,8 +294,7 @@ const allStyles = ({ colors }) => {
       justifyContent: 'space-between',
       backgroundColor: colors.tertiary,
       alignItems: 'center',
-      padding: 16,
-      height: 76
+      padding: 16
     },
     footerLeft: {
       display: 'flex',
@@ -300,14 +306,18 @@ const allStyles = ({ colors }) => {
       fontSize: 32
     },
     data: {
-      display: 'flex',
+      flex: 1,
       flexDirection: 'row',
       gap: 10
     },
+    values: {
+      flex: 4,
+      gap: 10
+    },
     actions: {
-      display: 'flex',
-      justifyContent: 'center',
+      flex: 1,
       alignItems: 'center',
+      justifyContent: 'center',
       height: '100%',
       gap: 8
     },

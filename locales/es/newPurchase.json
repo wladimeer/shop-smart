@@ -16,5 +16,8 @@
     "quantity": "0",
     "total": "0"
   },
-  "noData": "No hay datos, registra algunos productos :)"
+  "indicators": {
+    "total": "Total",
+    "noData": "No hay datos, registra algunos productos :)"
+  }
 }

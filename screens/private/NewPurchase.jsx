@@ -199,30 +199,38 @@ const NewPurchase = () => {
                                 </Text>
                               </View>
                             </View>
+                          </View>
 
-                            <View style={styles.actions}>
-                              <CustomHighlightButton
-                                handlePress={() => handleIncreaseQuantity(index)}
-                                text={translate('buttons.increase')}
-                              />
+                          <View style={styles.actions}>
+                            <CustomHighlightButton
+                              backgroundColor="#633974"
+                              hoverBackgroundColor="#76448A"
+                              handlePress={() => handleDecreaseQuantity(index)}
+                              customStyle={{ flex: 1 }}
+                            >
+                              <AntDesign name="minus" size={24} color={colors.secondary} />
+                            </CustomHighlightButton>
 
-                              <CustomHighlightButton
-                                handlePress={() => handleDecreaseQuantity(index)}
-                                text={translate('buttons.decrease')}
-                              />
-                            </View>
+                            <CustomHighlightButton
+                              backgroundColor="#1A5276"
+                              hoverBackgroundColor="#1F618D"
+                              handlePress={() => handleIncreaseQuantity(index)}
+                              customStyle={{ flex: 1 }}
+                            >
+                              <AntDesign name="plus" size={24} color={colors.secondary} />
+                            </CustomHighlightButton>
                           </View>
                         </View>
                       ))
                     ) : (
                       <View style={styles.messageContent}>
-                        <Text style={styles.message}>{translate('noData')}</Text>
+                        <Text style={styles.message}>{translate('indicators.noData')}</Text>
                       </View>
                     )}
 
                     <CustomHighlightButton
-                      customStyle={{ ...styles.button }}
                       handlePress={() => handleNewItem(insert)}
+                      customStyle={{ ...styles.button }}
                     >
                       <AntDesign name="plus" size={24} color={colors.secondary} />
                     </CustomHighlightButton>
@@ -234,7 +242,7 @@ const NewPurchase = () => {
             <View style={styles.footer}>
               <View style={styles.footerLeft}>
                 <Text style={{ ...styles.text, ...styles.footerText }}>
-                  {translate('fields.total')}:
+                  {translate('indicators.total')}:
                 </Text>
 
                 <Text style={{ ...styles.text, color: colors.secondary, fontSize: 32 }}>
@@ -281,8 +289,9 @@ const allStyles = ({ colors }) => {
     },
     body: {
       flex: 1,
-      margin: 10,
+      paddingTop: 10,
       flexDirection: 'row',
+      paddingHorizontal: 10,
       justifyContent: 'space-between',
       alignItems: 'center',
       gap: 10
@@ -316,9 +325,12 @@ const allStyles = ({ colors }) => {
     },
     actions: {
       flex: 1,
+      paddingTop: 15,
       alignItems: 'center',
       justifyContent: 'center',
-      height: '100%',
+      paddingHorizontal: 10,
+      flexDirection: 'row',
+      paddingBottom: 10,
       gap: 8
     },
     text: {
@@ -329,11 +341,10 @@ const allStyles = ({ colors }) => {
     label: {
       color: colors.text,
       textAlign: 'left',
-      width: 200
+      flex: 1
     },
     button: {
       width: '100%',
-      borderRadius: 3,
       height: 50
     },
     messageContent: {

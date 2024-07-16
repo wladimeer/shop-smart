@@ -3,14 +3,27 @@
     "version": ">= 9.2.0"
   },
   "build": {
+    "free": {
+      "developmentClient": false,
+      "distribution": "internal",
+      "env": {
+        "EXPO_PUBLIC_APP_VARIANT": "free"
+      }
+    },
     "development": {
       "developmentClient": true,
-      "distribution": "internal"
+      "distribution": "internal",
+      "env": {
+        "EXPO_PUBLIC_APP_VARIANT": "development"
+      }
     },
-    "preview": {
-      "distribution": "internal"
-    },
-    "production": {}
+    "paid": {
+      "developmentClient": false,
+      "distribution": "internal",
+      "env": {
+        "EXPO_PUBLIC_APP_VARIANT": "paid"
+      }
+    }
   },
   "submit": {
     "production": {}

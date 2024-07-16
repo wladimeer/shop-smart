@@ -7,8 +7,10 @@
     "android": "expo start --android",
     "ios": "expo start --ios",
     "web": "expo start --web",
-    "build-android": "eas build -p android --profile preview",
-    "build-ios": "eas build -p ios --profile preview"
+    "build-android": "eas build -p android --profile development",
+    "build-ios": "eas build -p ios --profile development",
+    "build-android-free": "eas build -p android --profile free",
+    "build-android-paid": "eas build -p android --profile paid"
   },
   "dependencies": {
     "@expo/vector-icons": "^14.0.2",
@@ -17,8 +19,10 @@
     "@react-navigation/native": "^6.1.17",
     "@react-navigation/native-stack": "^6.9.26",
     "expo": "^51.0.9",
+    "expo-constants": "^16.0.2",
     "expo-splash-screen": "^0.27.4",
     "expo-status-bar": "~1.12.1",
+    "expo-updates": "^0.25.19",
     "formik": "^2.4.6",
     "i18next": "^23.11.3",
     "react": "18.2.0",

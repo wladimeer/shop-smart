@@ -1,0 +1,8 @@
+const APP_VARIANT = process.env.EXPO_PUBLIC_APP_VARIANT
+
+const FREE_VARIANT = 'free'
+const PAID_VARIANT = 'paid'
+
+const ALL_VARIANTS = [FREE_VARIANT, PAID_VARIANT]
+
+module.exports = { APP_VARIANT, FREE_VARIANT, PAID_VARIANT, ALL_VARIANTS }

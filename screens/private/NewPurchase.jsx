@@ -9,13 +9,16 @@ import { UNIT_LIMIT, QUANTITY_TIMIT } from '../../constants/datas'
 import { NEW_PURCHASE_SCREEN_KEY } from '../../constants/screens'
 import ScreenContainer from '../../components/ScreenContainer'
 import { getTotal, convertItem } from '../../utils/purchase'
+import { PAID_VARIANT } from '../../constants/config'
 import { useEffect, useRef, useState } from 'react'
 import { useTheme } from '@react-navigation/native'
 import { useTranslation } from 'react-i18next'
 import Spacer from '../../components/Spacer'
 import { Formik, FieldArray } from 'formik'
+import Constants from 'expo-constants'
 
 const NewPurchase = () => {
+  const { appVariant } = Constants.expoConfig.extra
   const [translate] = useTranslation(NEW_PURCHASE_SCREEN_KEY)
   const [loading, setLoading] = useState(true)
   const [items, setItems] = useState([])
@@ -53,6 +56,7 @@ const NewPurchase = () => {
     loadItems()
   }, [])
 
+  const isPaidVariant = appVariant === PAID_VARIANT
   const initialValues = { items }
 
   return (
@@ -127,7 +131,7 @@ const NewPurchase = () => {
         }
 
         return (
-          <ScreenContainer background={background} withSafeArea={false}>
+          <ScreenContainer background={background} colorSafeArea={colors.tertiary}>
             <ScrollView style={styles.scrollView} ref={scrollViewRef}>
               <FieldArray
                 name="items"
@@ -260,10 +264,11 @@ const NewPurchase = () => {
 const allStyles = ({ colors }) => {
   const styles = StyleSheet.create({
     scrollView: {
-      flex: 1
+      flex: 1,
+      width: '100%'
     },
     container: {
-      display: 'flex',
+      flex: 1,
       alignItems: 'center',
       justifyContent: 'center',
       marginHorizontal: 8,
@@ -271,9 +276,10 @@ const allStyles = ({ colors }) => {
       gap: 10
     },
     content: {
-      width: '100%',
+      flex: 1,
       backgroundColor: colors.background,
-      borderRadius: 3
+      borderRadius: 3,
+      width: '100%'
     },
     header: {
       gap: 10,
@@ -303,7 +309,7 @@ const allStyles = ({ colors }) => {
       justifyContent: 'space-between',
       backgroundColor: colors.tertiary,
       alignItems: 'center',
-      padding: 16
+      padding: 12
     },
     footerLeft: {
       display: 'flex',

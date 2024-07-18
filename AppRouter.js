@@ -30,6 +30,9 @@ const AppRouter = () => {
   }
 
   const screenOptions = {
+    [PRINCIPAL_SCREEN_KEY]: {
+      headerShown: false
+    },
     [NEW_PURCHASE_SCREEN_KEY]: {
       title: translate(`screens.titles.${NEW_PURCHASE_SCREEN_KEY}`),
       ...options
@@ -45,7 +48,7 @@ const AppRouter = () => {
       <Stack.Navigator>
         <Stack.Screen
           name={PRINCIPAL_SCREEN_KEY}
-          options={{ headerShown: false }}
+          options={screenOptions[PRINCIPAL_SCREEN_KEY]}
           component={Principal}
         />
         <Stack.Screen

@@ -1,13 +1,14 @@
 import { StyleSheet, View, Animated } from 'react-native'
-import { SafeAreaView } from 'react-native-safe-area-context'
+import { useSafeAreaInsets } from 'react-native-safe-area-context'
 import { useTheme } from '@react-navigation/native'
 import { StatusBar } from 'expo-status-bar'
 
-const ScreenContainer = ({ children, background = null, withSafeArea = true }) => {
+const ScreenContainer = ({ children, background = null, colorSafeArea = 'transparent' }) => {
+  const insets = useSafeAreaInsets()
   const fadeAnimation = new Animated.Value(0)
   const { colors } = useTheme()
 
-  const styles = allStyles({ colors })
+  const styles = allStyles({ colors, insets })
 
   const handleLoadImage = () => {
     const config = {
@@ -33,28 +34,30 @@ const ScreenContainer = ({ children, background = null, withSafeArea = true }) =
         blurRadius={3}
       />
 
-      {withSafeArea ? <SafeAreaView style={styles.content}>{children}</SafeAreaView> : children}
+      <View style={styles.content}>{children}</View>
+
+      <View style={{ ...styles.safeAreaBottom, backgroundColor: colorSafeArea }} />
     </View>
   )
 }
 
-const allStyles = ({ colors }) => {
+const allStyles = ({ colors, insets }) => {
   const styles = StyleSheet.create({
     container: {
       flex: 1
     },
     background: {
-      width: '100%',
+      flex: 1,
       ...StyleSheet.absoluteFillObject,
-      backgroundColor: colors.quaternary,
-      height: '100%'
+      backgroundColor: colors.quaternary
     },
     content: {
-      width: '100%',
-      display: 'flex',
+      flex: 1,
       justifyContent: 'center',
-      alignItems: 'center',
-      height: '100%'
+      alignItems: 'center'
+    },
+    safeAreaBottom: {
+      paddingBottom: insets.bottom
     }
   })
 

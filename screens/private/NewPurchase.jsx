@@ -1,14 +1,19 @@
 import { formatToCLP } from '../../utils/purchase'
+import CustomText from '../../components/CustomText'
 import { Fontisto, AntDesign } from '@expo/vector-icons'
 import { TouchableOpacity, TextInput } from 'react-native'
+import { View, ScrollView, StyleSheet } from 'react-native'
 import background from '../../assets/principal-background.jpg'
-import { Text, View, ScrollView, StyleSheet } from 'react-native'
 import { setCartElements, getCartElements } from '../../services/purchase'
 import CustomHighlightButton from '../../components/CustomHighlightButton'
+import { VIEW_PURCHASES_SCREEN_KEY } from '../../constants/screens'
 import { UNIT_LIMIT, QUANTITY_TIMIT } from '../../constants/datas'
 import { NEW_PURCHASE_SCREEN_KEY } from '../../constants/screens'
 import ScreenContainer from '../../components/ScreenContainer'
 import { getTotal, convertItem } from '../../utils/purchase'
+import { setElementsList } from '../../services/purchase'
+import useActionModal from '../../hooks/useActionModal'
+import ActionModal from '../../components/ActionModal'
 import { PAID_VARIANT } from '../../constants/config'
 import { useEffect, useRef, useState } from 'react'
 import { useTheme } from '@react-navigation/native'
@@ -17,9 +22,10 @@ import Spacer from '../../components/Spacer'
 import { Formik, FieldArray } from 'formik'
 import Constants from 'expo-constants'
 
-const NewPurchase = () => {
+const NewPurchase = ({ navigation }) => {
   const { appVariant } = Constants.expoConfig.extra
   const [translate] = useTranslation(NEW_PURCHASE_SCREEN_KEY)
+  const { actionModal, setActionModal, resetActionModal } = useActionModal()
   const [loading, setLoading] = useState(true)
   const [items, setItems] = useState([])
   const scrollViewRef = useRef(null)
@@ -30,6 +36,31 @@ const NewPurchase = () => {
   const scrollToEnd = () => {
     if (scrollViewRef.current) {
       scrollViewRef.current.scrollToEnd({ animated: true })
+    }
+  }
+
+  const handleActionModal = () => {
+    setActionModal({
+      visible: true,
+      title: translate('modals.saveList.title'),
+      message: translate('modals.saveList.message'),
+      action: saveList,
+      confirm: translate('modals.saveList.buttons.confirm'),
+      cancel: translate('modals.saveList.buttons.cancel')
+    })
+  }
+
+  const saveList = async () => {
+    try {
+      const response = await setElementsList(items)
+
+      if (response) {
+        resetActionModal()
+        saveItems([])
+        navigation.navigate(VIEW_PURCHASES_SCREEN_KEY)
+      }
+    } catch (error) {
+      console.log(error)
     }
   }
 
@@ -132,6 +163,8 @@ const NewPurchase = () => {
 
         return (
           <ScreenContainer background={background} colorSafeArea={colors.tertiary}>
+            <ActionModal {...{ actionModal, resetActionModal }} />
+
             <ScrollView style={styles.scrollView} ref={scrollViewRef}>
               <FieldArray
                 name="items"
@@ -142,7 +175,7 @@ const NewPurchase = () => {
                         <View key={index} style={styles.content}>
                           <View style={styles.header}>
                             <TextInput
-                              style={{ ...styles.text, flex: 1 }}
+                              style={styles.text}
                               onChangeText={(value) => handleUpdateItem('name', index, value)}
                               placeholder={translate('placeholders.name')}
                               placeholderTextColor={colors.placeholder}
@@ -153,7 +186,7 @@ const NewPurchase = () => {
                               style={styles.headerButton}
                               onPress={() => handleDeleteItem(index, remove)}
                             >
-                              <Fontisto name="close-a" color="#EC4C4C" size={18} />
+                              <Fontisto name="close-a" color={colors.septenary} size={18} />
                             </TouchableOpacity>
                           </View>
 
@@ -162,12 +195,14 @@ const NewPurchase = () => {
                           <View style={styles.body}>
                             <View style={styles.values}>
                               <View style={styles.data}>
-                                <Text style={{ ...styles.text, color: colors.text }}>
-                                  {translate('fields.unit')}:
-                                </Text>
+                                <CustomText
+                                  text={`${translate('fields.unit')}:`}
+                                  color={colors.text}
+                                  align="left"
+                                />
 
                                 <TextInput
-                                  style={{ ...styles.text, ...styles.label }}
+                                  style={styles.text}
                                   onChangeText={(value) => handleUpdateItem('unit', index, value)}
                                   placeholder={translate('placeholders.unit')}
                                   placeholderTextColor={colors.placeholder}
@@ -177,12 +212,14 @@ const NewPurchase = () => {
                               </View>
 
                               <View style={styles.data}>
-                                <Text style={{ ...styles.text, color: colors.text }}>
-                                  {translate('fields.quantity')}:
-                                </Text>
+                                <CustomText
+                                  text={`${translate('fields.quantity')}:`}
+                                  color={colors.text}
+                                  align="left"
+                                />
 
                                 <TextInput
-                                  style={{ ...styles.text, ...styles.label }}
+                                  style={styles.text}
                                   onChangeText={(value) =>
                                     handleUpdateItem('quantity', index, value)
                                   }
@@ -194,21 +231,20 @@ const NewPurchase = () => {
                               </View>
 
                               <View style={styles.data}>
-                                <Text style={{ ...styles.text, color: colors.text }}>
-                                  {translate('fields.total')}:
-                                </Text>
+                                <CustomText
+                                  text={`${translate('fields.total')}:`}
+                                  color={colors.text}
+                                  align="left"
+                                />
 
-                                <Text style={{ ...styles.text, ...styles.label }}>
-                                  {formatToCLP(item.total)}
-                                </Text>
+                                <CustomText text={formatToCLP(item.total)} color={colors.text} />
                               </View>
                             </View>
                           </View>
 
                           <View style={styles.actions}>
                             <CustomHighlightButton
-                              backgroundColor="#633974"
-                              hoverBackgroundColor="#76448A"
+                              backgroundColor={colors.senary}
                               handlePress={() => handleDecreaseQuantity(index)}
                               customStyle={{ flex: 1 }}
                             >
@@ -216,8 +252,7 @@ const NewPurchase = () => {
                             </CustomHighlightButton>
 
                             <CustomHighlightButton
-                              backgroundColor="#1A5276"
-                              hoverBackgroundColor="#1F618D"
+                              backgroundColor={colors.quinary}
                               handlePress={() => handleIncreaseQuantity(index)}
                               customStyle={{ flex: 1 }}
                             >
@@ -228,13 +263,13 @@ const NewPurchase = () => {
                       ))
                     ) : (
                       <View style={styles.messageContent}>
-                        <Text style={styles.message}>{translate('indicators.noData')}</Text>
+                        <CustomText text={translate('indicators.noData')} color={colors.text} />
                       </View>
                     )}
 
                     <CustomHighlightButton
                       handlePress={() => handleNewItem(insert)}
-                      customStyle={{ ...styles.button }}
+                      customStyle={styles.button}
                     >
                       <AntDesign name="plus" size={24} color={colors.secondary} />
                     </CustomHighlightButton>
@@ -245,14 +280,28 @@ const NewPurchase = () => {
 
             <View style={styles.footer}>
               <View style={styles.footerLeft}>
-                <Text style={{ ...styles.text, ...styles.footerText }}>
-                  {translate('indicators.total')}:
-                </Text>
+                <CustomText
+                  text={`${translate('indicators.total')}:`}
+                  color={colors.secondary}
+                  align="left"
+                  size={32}
+                />
 
-                <Text style={{ ...styles.text, color: colors.secondary, fontSize: 32 }}>
-                  {formatToCLP(getTotal(values.items))}
-                </Text>
+                <CustomText
+                  text={formatToCLP(getTotal(values.items))}
+                  color={colors.secondary}
+                  align="left"
+                  size={32}
+                />
               </View>
+
+              <CustomHighlightButton
+                backgroundColor={colors.quinary}
+                handlePress={handleActionModal}
+                customStyle={styles.footerButtom}
+              >
+                <AntDesign name="save" size={24} color={colors.secondary} />
+              </CustomHighlightButton>
             </View>
           </ScreenContainer>
         )
@@ -316,9 +365,9 @@ const allStyles = ({ colors }) => {
       flexDirection: 'row',
       gap: 10
     },
-    footerText: {
-      color: colors.secondary,
-      fontSize: 32
+    footerButtom: {
+      width: 100,
+      height: 45
     },
     data: {
       flex: 1,
@@ -341,11 +390,8 @@ const allStyles = ({ colors }) => {
     },
     text: {
       fontSize: 20,
-      fontFamily: 'RSC-Regular',
-      textAlign: 'left'
-    },
-    label: {
       color: colors.text,
+      fontFamily: 'RSC-Regular',
       textAlign: 'left',
       flex: 1
     },
@@ -358,12 +404,6 @@ const allStyles = ({ colors }) => {
       backgroundColor: colors.background,
       borderRadius: 3,
       padding: 20
-    },
-    message: {
-      color: colors.text,
-      fontFamily: 'RSC-Regular',
-      textAlign: 'center',
-      fontSize: 20
     }
   })
 

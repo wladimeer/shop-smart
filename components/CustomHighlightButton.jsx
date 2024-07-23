@@ -1,45 +1,44 @@
-import { TouchableHighlight, Text } from 'react-native'
-import { StyleSheet } from 'react-native'
+import { lightenColor } from '../utils/color'
+import { StyleSheet, TouchableHighlight } from 'react-native'
+import CustomText from './CustomText'
 
 const CustomHighlightButton = ({
   children,
   text,
   handlePress,
   backgroundColor = '#2874A6',
-  hoverBackgroundColor = '#2F80B5',
   radius = 3,
+  variant = 'solid',
   customStyle = {}
 }) => {
   const values = { backgroundColor, radius }
-  const styles = allStyles({ values })
+  const styles = allStyles({ variant, values })
+
+  const underlayColor = lightenColor(backgroundColor, 0.1)
 
   return (
     <TouchableHighlight
       style={{ ...styles.container, ...customStyle }}
-      underlayColor={hoverBackgroundColor}
+      underlayColor={variant === 'solid' ? underlayColor : backgroundColor}
       onPress={handlePress}
     >
-      {children ? children : <Text style={styles.label}>{text}</Text>}
+      {children ? children : <CustomText text={text} />}
     </TouchableHighlight>
   )
 }
 
-const allStyles = ({ values }) => {
+const allStyles = ({ variant, values }) => {
   const styles = StyleSheet.create({
     container: {
       width: 72,
       display: 'flex',
       justifyContent: 'center',
-      backgroundColor: values.backgroundColor,
+      borderColor: variant === 'bordered' && values.backgroundColor,
+      backgroundColor: variant === 'solid' && values.backgroundColor,
+      borderWidth: variant === 'bordered' && 2,
       borderRadius: values.radius,
       alignItems: 'center',
-      height: 35
-    },
-    label: {
-      color: '#FFFFFF',
-      fontFamily: 'RSC-Regular',
-      textAlign: 'center',
-      fontSize: 20
+      height: 38
     }
   })
 

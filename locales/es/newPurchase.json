@@ -16,6 +16,16 @@
     "quantity": "0",
     "total": "0"
   },
+  "modals": {
+    "saveList": {
+      "title": "Atención",
+      "message": "¿Quieres guardar este listado de productos? Podrás ver el listado en \"Ver Compras\"",
+      "buttons": {
+        "confirm": "Sí, claro",
+        "cancel": "No"
+      }
+    }
+  },
   "indicators": {
     "total": "Total",
     "noData": "No hay datos, registra algunos productos :)"

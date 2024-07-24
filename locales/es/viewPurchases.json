@@ -1,3 +1,13 @@
 {
-  "title": "Ver Compras"
+  "title": "Ver Compras",
+  "fields": {
+    "name": "Nombre",
+    "unit": "Precio Unitario",
+    "quantity": "Unidad(es)",
+    "total": "Total Producto"
+  },
+  "indicators": {
+    "total": "Total",
+    "noData": "No hay datos. Ve a \"Nueva Compra\" y registra algunos productos :)"
+  }
 }

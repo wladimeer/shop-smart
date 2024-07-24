@@ -1,7 +1,7 @@
 import 'react-native-get-random-values'
 import AsyncStorage from '@react-native-async-storage/async-storage'
+import { getCurrentDatetime, isBeforeDatetime, isAfterDatetime } from '../utils/time'
 import { CART_ELEMENTS_KEY, ELEMENTS_LIST_KEY } from '../constants/storage'
-import { getCurrentDatetime } from '../utils/time'
 import { v4 as randomId } from 'uuid'
 
 const setCartElements = (elements) => {
@@ -42,10 +42,10 @@ const setElementsList = (elements) => {
         elements
       }
 
-      const elementsList = [...response, elementList]
+      const elementLists = [...response, elementList]
 
-      await AsyncStorage.setItem(ELEMENTS_LIST_KEY, JSON.stringify(elementsList))
-      resolve(elementsList)
+      await AsyncStorage.setItem(ELEMENTS_LIST_KEY, JSON.stringify(elementLists))
+      resolve(elementLists)
     } catch (error) {
       reject(error)
     }
@@ -55,11 +55,19 @@ const setElementsList = (elements) => {
 const getElementsList = () => {
   return new Promise(async (resolve, reject) => {
     try {
-      let elementsList = []
+      let elementLists = []
       const savedElements = await AsyncStorage.getItem(ELEMENTS_LIST_KEY)
 
-      if (savedElements !== null) elementsList = JSON.parse(savedElements)
-      resolve(elementsList)
+      if (savedElements !== null) elementLists = [...JSON.parse(savedElements)]
+
+      elementLists.sort((a, b) => {
+        const isAfter = isAfterDatetime(a.createdAt, b.createdAt)
+        const isBefore = isBeforeDatetime(a.createdAt, b.createdAt)
+
+        return isAfter ? -1 : isBefore ? 1 : 0
+      })
+
+      resolve(elementLists)
     } catch (error) {
       reject(error)
     }

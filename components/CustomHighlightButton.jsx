@@ -9,6 +9,7 @@ const CustomHighlightButton = ({
   backgroundColor = '#2874A6',
   radius = 3,
   variant = 'solid',
+  disabled = false,
   customStyle = {}
 }) => {
   const values = { backgroundColor, radius }
@@ -18,9 +19,10 @@ const CustomHighlightButton = ({
 
   return (
     <TouchableHighlight
-      style={{ ...styles.container, ...customStyle }}
-      underlayColor={variant === 'solid' ? underlayColor : backgroundColor}
       onPress={handlePress}
+      style={[styles.container, customStyle, disabled && { backgroundColor: underlayColor }]}
+      underlayColor={variant === 'solid' ? underlayColor : backgroundColor}
+      disabled={disabled}
     >
       {children ? children : <CustomText text={text} />}
     </TouchableHighlight>

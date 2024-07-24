@@ -32,14 +32,17 @@ const getCartElements = () => {
 const setElementsList = (elements) => {
   return new Promise(async (resolve, reject) => {
     try {
+      const response = await getElementsList()
       const currentDatetime = getCurrentDatetime()
 
-      const elementsList = {
+      const elementList = {
         id: randomId(),
         createdAt: currentDatetime,
         updatedAt: currentDatetime,
         elements
       }
+
+      const elementsList = [...response, elementList]
 
       await AsyncStorage.setItem(ELEMENTS_LIST_KEY, JSON.stringify(elementsList))
       resolve(elementsList)
@@ -52,7 +55,7 @@ const setElementsList = (elements) => {
 const getElementsList = () => {
   return new Promise(async (resolve, reject) => {
     try {
-      let elementsList = {}
+      let elementsList = []
       const savedElements = await AsyncStorage.getItem(ELEMENTS_LIST_KEY)
 
       if (savedElements !== null) elementsList = JSON.parse(savedElements)

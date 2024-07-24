@@ -299,6 +299,7 @@ const NewPurchase = ({ navigation }) => {
                 backgroundColor={colors.quinary}
                 handlePress={handleActionModal}
                 customStyle={styles.footerButtom}
+                disabled={items.length === 0}
               >
                 <AntDesign name="save" size={24} color={colors.secondary} />
               </CustomHighlightButton>

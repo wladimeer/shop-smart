@@ -6,19 +6,35 @@ import { useEffect } from 'react'
 
 const ActionModal = ({ actionModal, resetActionModal }) => {
   const { colors } = useTheme()
+
+  const scaleWidth = new Animated.Value(0)
   const fadeAnimation = new Animated.Value(0)
-  const animations = { fadeAnimation }
+  const scaleHeight = new Animated.Value(0)
+
+  const animations = { scaleWidth, fadeAnimation, scaleHeight }
 
   const styles = allStyles({ colors, animations })
 
   const handleVisibilityChange = () => {
-    const config = {
-      toValue: actionModal.visible ? 1 : 0,
+    const toValue = actionModal.visible ? 1 : 0
+
+    const configFade = {
+      toValue: toValue,
       useNativeDriver: true,
-      duration: 300
+      duration: Boolean(toValue) ? 500 : 1000
     }
 
-    Animated.timing(fadeAnimation, config).start()
+    Animated.timing(fadeAnimation, configFade).start()
+
+    const configScale = {
+      toValue: toValue,
+      useNativeDriver: true,
+      bounciness: 5,
+      speed: Boolean(toValue) ? 35 : 100
+    }
+
+    Animated.spring(scaleWidth, configScale).start()
+    Animated.spring(scaleHeight, configScale).start()
   }
 
   const handleClose = () => {
@@ -71,7 +87,7 @@ const allStyles = ({ colors, animations }) => {
       flex: 1,
       ...StyleSheet.absoluteFillObject,
       backgroundColor: colors.quaternary,
-      opacity: 0.8
+      opacity: 0.9
     },
     container: {
       flex: 1,
@@ -80,7 +96,8 @@ const allStyles = ({ colors, animations }) => {
       opacity: animations.fadeAnimation.interpolate({
         inputRange: [0.5, 1],
         outputRange: [0.5, 1]
-      })
+      }),
+      transform: [{ scaleX: animations.scaleWidth }, { scaleY: animations.scaleHeight }]
     },
     content: {
       maxWidth: 320,

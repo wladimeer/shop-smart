@@ -34,12 +34,14 @@ const setElementsList = (elements) => {
     try {
       const response = await getElementsList()
       const currentDatetime = getCurrentDatetime()
+      const total = elements.reduce((acc, { total }) => acc + Number(total), 0)
 
       const elementList = {
         id: randomId(),
         createdAt: currentDatetime,
         updatedAt: currentDatetime,
-        elements
+        elements,
+        total
       }
 
       const elementLists = [...response, elementList]

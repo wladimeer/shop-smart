@@ -14,16 +14,14 @@ import { getTotal, convertItem } from '../../utils/purchase'
 import { setElementsList } from '../../services/purchase'
 import useActionModal from '../../hooks/useActionModal'
 import ActionModal from '../../components/ActionModal'
-import { PAID_VARIANT } from '../../constants/config'
 import { useEffect, useRef, useState } from 'react'
 import { useTheme } from '@react-navigation/native'
 import { useTranslation } from 'react-i18next'
 import Spacer from '../../components/Spacer'
 import { Formik, FieldArray } from 'formik'
-import Constants from 'expo-constants'
+import * as Yup from 'yup'
 
 const NewPurchase = ({ navigation }) => {
-  const { appVariant } = Constants.expoConfig.extra
   const [translate] = useTranslation(NEW_PURCHASE_SCREEN_KEY)
   const { actionModal, setActionModal, resetActionModal } = useActionModal()
   const [loading, setLoading] = useState(true)
@@ -33,24 +31,32 @@ const NewPurchase = ({ navigation }) => {
 
   const styles = allStyles({ colors })
 
+  const validationSchema = Yup.object().shape({
+    items: Yup.array().of(
+      Yup.object().shape({
+        name: Yup.string().required(translate('form.required.name')),
+        unit: Yup.number().required(translate('form.required.unit')),
+        quantity: Yup.number().required(translate('form.required.quantity'))
+      })
+    )
+  })
+
   const scrollToEnd = () => {
     if (scrollViewRef.current) {
       scrollViewRef.current.scrollToEnd({ animated: true })
     }
   }
 
-  const handleActionModal = () => {
+  const showError = () => {
     setActionModal({
       visible: true,
-      title: translate('modals.saveList.title'),
-      message: translate('modals.saveList.message'),
-      action: saveList,
-      confirm: translate('modals.saveList.buttons.confirm'),
-      cancel: translate('modals.saveList.buttons.cancel')
+      title: translate('modals.verifyForm.title'),
+      message: translate('modals.verifyForm.message'),
+      cancel: translate('modals.verifyForm.buttons.cancel')
     })
   }
 
-  const saveList = async () => {
+  const saveList = async ({ items }) => {
     try {
       const response = await setElementsList(items)
 
@@ -87,21 +93,27 @@ const NewPurchase = ({ navigation }) => {
     loadItems()
   }, [])
 
-  const isPaidVariant = appVariant === PAID_VARIANT
   const initialValues = { items }
 
   return (
     <Formik
+      onSubmit={saveList}
+      validationSchema={validationSchema}
       initialValues={initialValues}
-      onSubmit={(values) => console.log(values)}
       enableReinitialize
     >
-      {({ handleSubmit, setFieldValue, values }) => {
+      {({ handleSubmit, setFieldValue, values, errors, isSubmitting }) => {
         useEffect(() => {
           if (!loading) {
             saveItems(values.items)
           }
         }, [values])
+
+        useEffect(() => {
+          if (errors.items !== undefined) {
+            showError()
+          }
+        }, [isSubmitting])
 
         const handleNewItem = (insertItem) => {
           const item = { name: '', unit: 0, quantity: '1', total: 0 }
@@ -159,6 +171,17 @@ const NewPurchase = ({ navigation }) => {
             setFieldValue(`items[${index}]`, convertItem(item))
             saveItems(values.items)
           }
+        }
+
+        const handleActionModal = () => {
+          setActionModal({
+            visible: true,
+            title: translate('modals.saveList.title'),
+            message: translate('modals.saveList.message'),
+            action: handleSubmit,
+            confirm: translate('modals.saveList.buttons.confirm'),
+            cancel: translate('modals.saveList.buttons.cancel')
+          })
         }
 
         return (

@@ -18,12 +18,26 @@
   },
   "modals": {
     "saveList": {
-      "title": "Atención",
+      "title": "¿Qué dices?",
       "message": "¿Quieres guardar este listado de productos? Podrás ver el listado en \"Ver Compras\"",
       "buttons": {
         "confirm": "Sí, claro",
-        "cancel": "No"
+        "cancel": "No, gracias"
       }
+    },
+    "verifyForm": {
+      "title": "Importante",
+      "message": "Verifica que todos los productos tienen los valores correspondientes ingresados",
+      "buttons": {
+        "cancel": "Lo entiendo"
+      }
+    }
+  },
+  "form": {
+    "required": {
+      "name": "El nombre es requerido",
+      "unit": "El precio unitario es requerido",
+      "quantity": "La cantidad es requerida"
     }
   },
   "indicators": {

@@ -100,7 +100,7 @@ const allStyles = ({ colors, animations }) => {
       transform: [{ scaleX: animations.scaleWidth }, { scaleY: animations.scaleHeight }]
     },
     content: {
-      maxWidth: 320,
+      maxWidth: 350,
       display: 'flex',
       alignItems: 'center',
       backgroundColor: colors.modal,

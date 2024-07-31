@@ -1,9 +1,10 @@
 import { formatToCLP } from '../../utils/purchase'
 import CustomText from '../../components/CustomText'
 import { Fontisto, AntDesign } from '@expo/vector-icons'
-import { TouchableOpacity, TextInput } from 'react-native'
 import { View, ScrollView, StyleSheet } from 'react-native'
 import background from '../../assets/principal-background.jpg'
+import { TouchableOpacity, TextInput, Platform } from 'react-native'
+import { ActivityIndicator, KeyboardAvoidingView } from 'react-native'
 import { setCartElements, getCartElements } from '../../services/purchase'
 import CustomHighlightButton from '../../components/CustomHighlightButton'
 import { VIEW_PURCHASES_SCREEN_KEY } from '../../constants/screens'
@@ -52,7 +53,8 @@ const NewPurchase = ({ navigation }) => {
       visible: true,
       title: translate('modals.verifyForm.title'),
       message: translate('modals.verifyForm.message'),
-      cancel: translate('modals.verifyForm.buttons.cancel')
+      action: resetActionModal,
+      confirm: translate('modals.verifyForm.buttons.confirm')
     })
   }
 
@@ -188,145 +190,165 @@ const NewPurchase = ({ navigation }) => {
           <ScreenContainer background={background} colorSafeArea={colors.tertiary}>
             <ActionModal {...{ actionModal, resetActionModal }} />
 
-            <ScrollView style={styles.scrollView} ref={scrollViewRef}>
-              <FieldArray
-                name="items"
-                render={({ insert, remove }) => (
-                  <View style={styles.container}>
-                    {values.items.length > 0 ? (
-                      values.items.map((item, index) => (
-                        <View key={index} style={styles.content}>
-                          <View style={styles.header}>
-                            <TextInput
-                              style={styles.text}
-                              onChangeText={(value) => handleUpdateItem('name', index, value)}
-                              placeholder={translate('placeholders.name')}
-                              placeholderTextColor={colors.placeholder}
-                              value={item.name}
-                            />
+            {loading ? (
+              <ActivityIndicator size="large" />
+            ) : (
+              <>
+                <KeyboardAvoidingView
+                  style={styles.container}
+                  keyboardVerticalOffset={Platform.OS === 'ios' ? 98 : 0}
+                  behavior="padding"
+                >
+                  <ScrollView style={styles.container} ref={scrollViewRef}>
+                    <FieldArray
+                      name="items"
+                      render={({ insert, remove }) => (
+                        <View style={styles.itemsContainer}>
+                          {values.items.length > 0 ? (
+                            values.items.map((item, index) => (
+                              <View key={index} style={styles.content}>
+                                <View style={styles.header}>
+                                  <TextInput
+                                    style={styles.text}
+                                    onChangeText={(value) => handleUpdateItem('name', index, value)}
+                                    placeholder={translate('placeholders.name')}
+                                    placeholderTextColor={colors.placeholder}
+                                    value={item.name}
+                                  />
 
-                            <TouchableOpacity
-                              style={styles.headerButton}
-                              onPress={() => handleDeleteItem(index, remove)}
-                            >
-                              <Fontisto name="close-a" color={colors.septenary} size={18} />
-                            </TouchableOpacity>
-                          </View>
+                                  <TouchableOpacity
+                                    style={styles.headerButton}
+                                    onPress={() => handleDeleteItem(index, remove)}
+                                  >
+                                    <Fontisto name="close-a" color={colors.septenary} size={18} />
+                                  </TouchableOpacity>
+                                </View>
 
-                          <Spacer />
+                                <Spacer />
 
-                          <View style={styles.body}>
-                            <View style={styles.values}>
-                              <View style={styles.data}>
-                                <CustomText
-                                  text={`${translate('fields.unit')}:`}
-                                  color={colors.text}
-                                  align="left"
-                                />
+                                <View style={styles.body}>
+                                  <View style={styles.values}>
+                                    <View style={styles.data}>
+                                      <CustomText
+                                        text={`${translate('fields.unit')}:`}
+                                        color={colors.text}
+                                        align="left"
+                                      />
 
-                                <TextInput
-                                  style={styles.text}
-                                  onChangeText={(value) => handleUpdateItem('unit', index, value)}
-                                  placeholder={translate('placeholders.unit')}
-                                  placeholderTextColor={colors.placeholder}
-                                  keyboardType="numeric"
-                                  value={item.unit}
-                                />
+                                      <TextInput
+                                        style={styles.text}
+                                        onChangeText={(value) =>
+                                          handleUpdateItem('unit', index, value)
+                                        }
+                                        placeholder={translate('placeholders.unit')}
+                                        placeholderTextColor={colors.placeholder}
+                                        keyboardType="numeric"
+                                        value={item.unit}
+                                      />
+                                    </View>
+
+                                    <View style={styles.data}>
+                                      <CustomText
+                                        text={`${translate('fields.quantity')}:`}
+                                        color={colors.text}
+                                        align="left"
+                                      />
+
+                                      <TextInput
+                                        style={styles.text}
+                                        onChangeText={(value) =>
+                                          handleUpdateItem('quantity', index, value)
+                                        }
+                                        placeholder={translate('placeholders.quantity')}
+                                        placeholderTextColor={colors.placeholder}
+                                        keyboardType="numeric"
+                                        value={item.quantity}
+                                      />
+                                    </View>
+
+                                    <View style={styles.data}>
+                                      <CustomText
+                                        text={`${translate('fields.total')}:`}
+                                        color={colors.text}
+                                        align="left"
+                                      />
+
+                                      <CustomText
+                                        text={formatToCLP(item.total)}
+                                        color={colors.text}
+                                      />
+                                    </View>
+                                  </View>
+                                </View>
+
+                                <View style={styles.actions}>
+                                  <CustomHighlightButton
+                                    backgroundColor={colors.senary}
+                                    handlePress={() => handleDecreaseQuantity(index)}
+                                    customStyle={{ flex: 1 }}
+                                  >
+                                    <AntDesign name="minus" size={24} color={colors.secondary} />
+                                  </CustomHighlightButton>
+
+                                  <CustomHighlightButton
+                                    backgroundColor={colors.quinary}
+                                    handlePress={() => handleIncreaseQuantity(index)}
+                                    customStyle={{ flex: 1 }}
+                                  >
+                                    <AntDesign name="plus" size={24} color={colors.secondary} />
+                                  </CustomHighlightButton>
+                                </View>
                               </View>
-
-                              <View style={styles.data}>
-                                <CustomText
-                                  text={`${translate('fields.quantity')}:`}
-                                  color={colors.text}
-                                  align="left"
-                                />
-
-                                <TextInput
-                                  style={styles.text}
-                                  onChangeText={(value) =>
-                                    handleUpdateItem('quantity', index, value)
-                                  }
-                                  placeholder={translate('placeholders.quantity')}
-                                  placeholderTextColor={colors.placeholder}
-                                  keyboardType="numeric"
-                                  value={item.quantity}
-                                />
-                              </View>
-
-                              <View style={styles.data}>
-                                <CustomText
-                                  text={`${translate('fields.total')}:`}
-                                  color={colors.text}
-                                  align="left"
-                                />
-
-                                <CustomText text={formatToCLP(item.total)} color={colors.text} />
-                              </View>
+                            ))
+                          ) : (
+                            <View style={styles.messageContent}>
+                              <CustomText
+                                text={translate('indicators.noData')}
+                                color={colors.text}
+                              />
                             </View>
-                          </View>
+                          )}
 
-                          <View style={styles.actions}>
-                            <CustomHighlightButton
-                              backgroundColor={colors.senary}
-                              handlePress={() => handleDecreaseQuantity(index)}
-                              customStyle={{ flex: 1 }}
-                            >
-                              <AntDesign name="minus" size={24} color={colors.secondary} />
-                            </CustomHighlightButton>
-
-                            <CustomHighlightButton
-                              backgroundColor={colors.quinary}
-                              handlePress={() => handleIncreaseQuantity(index)}
-                              customStyle={{ flex: 1 }}
-                            >
-                              <AntDesign name="plus" size={24} color={colors.secondary} />
-                            </CustomHighlightButton>
-                          </View>
+                          <CustomHighlightButton
+                            handlePress={() => handleNewItem(insert)}
+                            customStyle={styles.button}
+                          >
+                            <AntDesign name="plus" size={24} color={colors.secondary} />
+                          </CustomHighlightButton>
                         </View>
-                      ))
-                    ) : (
-                      <View style={styles.messageContent}>
-                        <CustomText text={translate('indicators.noData')} color={colors.text} />
-                      </View>
-                    )}
+                      )}
+                    />
+                  </ScrollView>
+                </KeyboardAvoidingView>
 
-                    <CustomHighlightButton
-                      handlePress={() => handleNewItem(insert)}
-                      customStyle={styles.button}
-                    >
-                      <AntDesign name="plus" size={24} color={colors.secondary} />
-                    </CustomHighlightButton>
+                <View style={styles.footer}>
+                  <View style={styles.footerLeft}>
+                    <CustomText
+                      text={`${translate('indicators.total')}:`}
+                      color={colors.secondary}
+                      align="left"
+                      size={32}
+                    />
+
+                    <CustomText
+                      text={formatToCLP(getTotal(values.items))}
+                      color={colors.secondary}
+                      align="left"
+                      size={32}
+                    />
                   </View>
-                )}
-              />
-            </ScrollView>
 
-            <View style={styles.footer}>
-              <View style={styles.footerLeft}>
-                <CustomText
-                  text={`${translate('indicators.total')}:`}
-                  color={colors.secondary}
-                  align="left"
-                  size={32}
-                />
-
-                <CustomText
-                  text={formatToCLP(getTotal(values.items))}
-                  color={colors.secondary}
-                  align="left"
-                  size={32}
-                />
-              </View>
-
-              <CustomHighlightButton
-                backgroundColor={colors.quinary}
-                handlePress={handleActionModal}
-                customStyle={styles.footerButtom}
-                disabled={items.length === 0}
-              >
-                <AntDesign name="save" size={24} color={colors.secondary} />
-              </CustomHighlightButton>
-            </View>
+                  <CustomHighlightButton
+                    backgroundColor={colors.quinary}
+                    handlePress={handleActionModal}
+                    customStyle={styles.footerButtom}
+                    disabled={items.length === 0}
+                  >
+                    <AntDesign name="save" size={24} color={colors.secondary} />
+                  </CustomHighlightButton>
+                </View>
+              </>
+            )}
           </ScreenContainer>
         )
       }}
@@ -336,11 +358,11 @@ const NewPurchase = ({ navigation }) => {
 
 const allStyles = ({ colors }) => {
   const styles = StyleSheet.create({
-    scrollView: {
+    container: {
       flex: 1,
       width: '100%'
     },
-    container: {
+    itemsContainer: {
       flex: 1,
       alignItems: 'center',
       justifyContent: 'center',

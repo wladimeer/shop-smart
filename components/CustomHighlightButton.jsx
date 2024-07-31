@@ -35,9 +35,9 @@ const allStyles = ({ variant, values }) => {
       width: 72,
       display: 'flex',
       justifyContent: 'center',
-      borderColor: variant === 'bordered' && values.backgroundColor,
-      backgroundColor: variant === 'solid' && values.backgroundColor,
-      borderWidth: variant === 'bordered' && 2,
+      borderColor: variant === 'bordered' ? values.backgroundColor : null,
+      backgroundColor: variant === 'solid' ? values.backgroundColor : null,
+      borderWidth: variant === 'bordered' ? 2 : 0,
       borderRadius: values.radius,
       alignItems: 'center',
       height: 38

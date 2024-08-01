@@ -8,6 +8,7 @@ import { DEFAULT_LANGUAGE_CODE, VALID_LANGUAGE_CODES } from './constants/locales
 import { VIEW_PURCHASES_SCREEN_KEY, NEW_PURCHASE_SCREEN_KEY } from './constants/screens'
 import { PRINCIPAL_SCREEN_KEY } from './constants/screens'
 import newPurchaseES from './locales/es/newPurchase.json'
+import { LanguageProvider } from './contexts/Language'
 import { I18nextProvider } from 'react-i18next'
 import { useFonts } from 'expo-font'
 import AppRouter from './AppRouter'
@@ -38,7 +39,9 @@ const App = () => {
 
   return (
     <I18nextProvider i18n={i18n}>
-      <AppRouter />
+      <LanguageProvider>
+        <AppRouter />
+      </LanguageProvider>
     </I18nextProvider>
   )
 }

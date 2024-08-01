@@ -1,9 +1,13 @@
 import moment from 'moment'
 import { DATE_FORMAT, DATE_TEXT_FORMAT, DATETIME_FORMAT } from '../constants/datas'
+import { DEFAULT_LANGUAGE_CODE } from '../constants/locales'
+import 'moment/min/locales'
+import i18n from 'i18next'
+
+moment.locale(i18n.language ?? DEFAULT_LANGUAGE_CODE)
 
 const getCurrentDatetime = () => {
-  const currentDatetime = moment().format(DATETIME_FORMAT)
-  return currentDatetime.toString()
+  return moment().format(DATETIME_FORMAT)
 }
 
 const isSameDatetime = (first, second) => {
@@ -28,7 +32,7 @@ const isAfterDatetime = (first, second) => {
 }
 
 const formatToDate = (datetime) => {
-  return moment(datetime).format(DATE_FORMAT)
+  return moment(datetime, DATETIME_FORMAT).format(DATE_FORMAT)
 }
 
 const formatToText = (datetime) => {
@@ -36,7 +40,7 @@ const formatToText = (datetime) => {
 }
 
 const fromUntilNow = (datetime) => {
-  return moment(datetime).fromNow()
+  return moment(datetime, DATETIME_FORMAT).fromNow()
 }
 
 export {

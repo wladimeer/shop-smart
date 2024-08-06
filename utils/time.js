@@ -43,6 +43,10 @@ const fromUntilNow = (datetime) => {
   return moment(datetime, DATETIME_FORMAT).fromNow()
 }
 
+const isTodayDatetime = (datetime) => {
+  return moment(datetime, DATETIME_FORMAT).isSame(moment(), 'day')
+}
+
 export {
   getCurrentDatetime,
   isSameDatetime,
@@ -50,5 +54,6 @@ export {
   isAfterDatetime,
   formatToDate,
   formatToText,
-  fromUntilNow
+  fromUntilNow,
+  isTodayDatetime
 }

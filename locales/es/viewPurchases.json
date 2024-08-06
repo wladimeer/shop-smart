@@ -8,6 +8,9 @@
   },
   "indicators": {
     "total": "Total",
+    "time": {
+      "today": "hoy"
+    },
     "noData": "No hay datos. Ve a \"Nueva Compra\" y registra algunos productos :)"
   }
 }

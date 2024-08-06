@@ -3,13 +3,14 @@ import { useTranslation } from 'react-i18next'
 import { formatToCLP } from '../../utils/purchase'
 import background from '../../assets/principal-background.jpg'
 import CustomHighlightButton from '../../components/CustomHighlightButton'
-import { FlatList, View, StyleSheet, ActivityIndicator } from 'react-native'
+import { SectionList, View, StyleSheet, ActivityIndicator } from 'react-native'
+import { formatToText, formatToDate, fromUntilNow } from '../../utils/time'
 import { VIEW_PURCHASES_SCREEN_KEY } from '../../constants/screens'
 import ScreenContainer from '../../components/ScreenContainer'
 import { getElementsList } from '../../services/purchase'
 import CustomText from '../../components/CustomText'
 import { useTheme } from '@react-navigation/native'
-import { formatToText } from '../../utils/time'
+import { isTodayDatetime } from '../../utils/time'
 import { Feather } from '@expo/vector-icons'
 import Spacer from '../../components/Spacer'
 import { Animated } from 'react-native'
@@ -49,7 +50,24 @@ const ViewPurchases = () => {
   const loadElementsList = async () => {
     try {
       const data = await getElementsList()
-      setElementsList(data)
+      const groupedData = {}
+
+      data.forEach((item) => {
+        const sectionId = formatToDate(item.createdAt)
+
+        let title = translate('indicators.time.today')
+
+        if (!isTodayDatetime(item.createdAt)) {
+          title = fromUntilNow(item.createdAt)
+        }
+
+        groupedData[sectionId] ??= {}
+        groupedData[sectionId].title ??= title
+        groupedData[sectionId].data ??= []
+        groupedData[sectionId].data.push(item)
+      })
+
+      setElementsList(Object.values(groupedData))
       setLoading(false)
     } catch (error) {
       console.log(error)
@@ -67,12 +85,26 @@ const ViewPurchases = () => {
       {loading ? (
         <ActivityIndicator size="large" />
       ) : (
-        <FlatList
-          data={elementsList}
-          style={styles.container}
-          contentContainerStyle={styles.itemsContainer}
+        <SectionList
+          sections={elementsList}
+          stickyHeaderHiddenOnScroll={true}
+          stickySectionHeadersEnabled={true}
+          SectionSeparatorComponent={({ trailingSection, leadingItem, trailingItem }) => (
+            <>
+              <Spacer color="transparent" size={leadingItem && trailingSection ? 25 : 0} />
+              <Spacer color="transparent" size={trailingItem ? 10 : 0} />
+            </>
+          )}
+          renderSectionHeader={({ section }) => (
+            <View style={styles.headerSection}>
+              <CustomText text={section.title} color={colors.secondary} />
+            </View>
+          )}
+          ItemSeparatorComponent={({ trailingItem }) => (
+            <Spacer color="transparent" size={trailingItem ? 10 : 0} />
+          )}
           renderItem={({ item }) => (
-            <View style={styles.container}>
+            <>
               <Animated.View style={styles.box}>
                 <View style={styles.boxContent}>
                   <View style={styles.leftSideItem}>
@@ -133,14 +165,16 @@ const ViewPurchases = () => {
                     </View>
                   </Animated.View>
                 ))}
-            </View>
+            </>
           )}
           ListEmptyComponent={
             <View style={styles.messageContent}>
               <CustomText text={translate('indicators.noData')} color={colors.text} />
             </View>
           }
+          contentContainerStyle={styles.itemsContainer}
           keyExtractor={(item) => item.id}
+          style={styles.container}
         />
       )}
     </ScreenContainer>
@@ -153,10 +187,17 @@ const allStyles = ({ colors, animations }) => {
       flex: 1,
       width: '100%'
     },
+    headerSection: {
+      marginTop: 5,
+      alignSelf: 'center',
+      backgroundColor: '#353131',
+      paddingHorizontal: 10,
+      borderRadius: 3
+    },
     itemsContainer: {
+      paddingBottom: 10,
       paddingHorizontal: 8,
-      paddingVertical: 10,
-      gap: 10
+      paddingTop: 5
     },
     box: {
       flex: 1,

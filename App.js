@@ -6,6 +6,7 @@ import { SPANISH_LANGUAGE_CODE } from './constants/locales'
 import viewPurchasesES from './locales/es/viewPurchases.json'
 import { DEFAULT_LANGUAGE_CODE, VALID_LANGUAGE_CODES } from './constants/locales'
 import { VIEW_PURCHASES_SCREEN_KEY, NEW_PURCHASE_SCREEN_KEY } from './constants/screens'
+import { GestureHandlerRootView } from 'react-native-gesture-handler'
 import { PRINCIPAL_SCREEN_KEY } from './constants/screens'
 import newPurchaseES from './locales/es/newPurchase.json'
 import { LanguageProvider } from './contexts/Language'
@@ -40,7 +41,9 @@ const App = () => {
   return (
     <I18nextProvider i18n={i18n}>
       <LanguageProvider>
-        <AppRouter />
+        <GestureHandlerRootView>
+          <AppRouter />
+        </GestureHandlerRootView>
       </LanguageProvider>
     </I18nextProvider>
   )

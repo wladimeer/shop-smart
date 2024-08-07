@@ -1,17 +1,18 @@
 import { useEffect, useState } from 'react'
 import { useTranslation } from 'react-i18next'
 import { formatToCLP } from '../../utils/purchase'
+import { Swipeable } from 'react-native-gesture-handler'
 import background from '../../assets/principal-background.jpg'
 import CustomHighlightButton from '../../components/CustomHighlightButton'
 import { SectionList, View, StyleSheet, ActivityIndicator } from 'react-native'
+import { getElementsList, removeElementList } from '../../services/purchase'
 import { formatToText, formatToDate, fromUntilNow } from '../../utils/time'
+import { MaterialCommunityIcons, Feather } from '@expo/vector-icons'
 import { VIEW_PURCHASES_SCREEN_KEY } from '../../constants/screens'
 import ScreenContainer from '../../components/ScreenContainer'
-import { getElementsList } from '../../services/purchase'
 import CustomText from '../../components/CustomText'
 import { useTheme } from '@react-navigation/native'
 import { isTodayDatetime } from '../../utils/time'
-import { Feather } from '@expo/vector-icons'
 import Spacer from '../../components/Spacer'
 import { Animated } from 'react-native'
 
@@ -104,7 +105,22 @@ const ViewPurchases = () => {
             <Spacer color="transparent" size={trailingItem ? 10 : 0} />
           )}
           renderItem={({ item }) => (
-            <>
+            <Swipeable
+              renderRightActions={() =>
+                selectedId !== item.id && (
+                  <CustomHighlightButton
+                    handlePress={async () => {
+                      await removeElementList(item.id)
+                      loadElementsList()
+                    }}
+                    customStyle={{ marginLeft: 10, height: '100%' }}
+                    backgroundColor={colors.septenary}
+                  >
+                    <MaterialCommunityIcons name="cart-remove" size={24} color={colors.secondary} />
+                  </CustomHighlightButton>
+                )
+              }
+            >
               <Animated.View style={styles.box}>
                 <View style={styles.boxContent}>
                   <View style={styles.leftSideItem}>
@@ -165,7 +181,7 @@ const ViewPurchases = () => {
                     </View>
                   </Animated.View>
                 ))}
-            </>
+            </Swipeable>
           )}
           ListEmptyComponent={
             <View style={styles.messageContent}>
@@ -188,7 +204,7 @@ const allStyles = ({ colors, animations }) => {
       width: '100%'
     },
     headerSection: {
-      marginTop: 5,
+      marginVertical: 5,
       alignSelf: 'center',
       backgroundColor: '#353131',
       paddingHorizontal: 10,

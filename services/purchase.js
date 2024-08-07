@@ -76,4 +76,21 @@ const getElementsList = () => {
   })
 }
 
-export { setCartElements, getCartElements, setElementsList, getElementsList }
+const removeElementList = (elementListId = null) => {
+  return new Promise(async (resolve, reject) => {
+    try {
+      const response = await getElementsList()
+      const itemIndexes = {}
+
+      response.forEach(({ id }, index) => (itemIndexes[id] = index))
+      response.splice(itemIndexes[elementListId], 1)
+
+      await AsyncStorage.setItem(ELEMENTS_LIST_KEY, JSON.stringify(response))
+      resolve(response)
+    } catch (error) {
+      reject(error)
+    }
+  })
+}
+
+export { setCartElements, getCartElements, setElementsList, getElementsList, removeElementList }

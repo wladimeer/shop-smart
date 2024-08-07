@@ -22,7 +22,8 @@ import Spacer from '../../components/Spacer'
 import { Formik, FieldArray } from 'formik'
 import * as Yup from 'yup'
 
-const NewPurchase = ({ navigation }) => {
+const NewPurchase = ({ navigation, route: { params = {} } }) => {
+  const { elementsList = [] } = params
   const [translate] = useTranslation(NEW_PURCHASE_SCREEN_KEY)
   const { actionModal, setActionModal, resetActionModal } = useActionModal()
   const [loading, setLoading] = useState(true)
@@ -83,7 +84,14 @@ const NewPurchase = ({ navigation }) => {
 
   const loadItems = async () => {
     try {
-      const data = await getCartElements()
+      let data = []
+
+      if (elementsList.length === 0) {
+        data = await getCartElements()
+      } else {
+        data = elementsList
+      }
+
       setItems(data)
       setLoading(false)
     } catch (error) {

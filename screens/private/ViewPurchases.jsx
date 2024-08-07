@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react'
 import { useTranslation } from 'react-i18next'
 import { formatToCLP } from '../../utils/purchase'
+import { PAID_VARIANT } from '../../constants/config'
 import { Swipeable } from 'react-native-gesture-handler'
 import background from '../../assets/principal-background.jpg'
 import CustomHighlightButton from '../../components/CustomHighlightButton'
@@ -9,19 +10,24 @@ import { getElementsList, removeElementList } from '../../services/purchase'
 import { formatToText, formatToDate, fromUntilNow } from '../../utils/time'
 import { MaterialCommunityIcons, Feather } from '@expo/vector-icons'
 import { VIEW_PURCHASES_SCREEN_KEY } from '../../constants/screens'
+import { NEW_PURCHASE_SCREEN_KEY } from '../../constants/screens'
 import ScreenContainer from '../../components/ScreenContainer'
 import CustomText from '../../components/CustomText'
 import { useTheme } from '@react-navigation/native'
 import { isTodayDatetime } from '../../utils/time'
 import Spacer from '../../components/Spacer'
 import { Animated } from 'react-native'
+import Constants from 'expo-constants'
 
-const ViewPurchases = () => {
+const ViewPurchases = ({ navigation }) => {
+  const { appVariant } = Constants.expoConfig.extra
   const [translate] = useTranslation(VIEW_PURCHASES_SCREEN_KEY)
   const [elementsList, setElementsList] = useState([])
   const [selectedId, setSelectedId] = useState(null)
   const [loading, setLoading] = useState(true)
   const { colors } = useTheme()
+
+  const isPaidVariant = appVariant === PAID_VARIANT
 
   const fadeAnimation = new Animated.Value(0)
   const expandHeight = new Animated.Value(0)
@@ -108,16 +114,40 @@ const ViewPurchases = () => {
             <Swipeable
               renderRightActions={() =>
                 selectedId !== item.id && (
-                  <CustomHighlightButton
-                    handlePress={async () => {
-                      await removeElementList(item.id)
-                      loadElementsList()
-                    }}
-                    customStyle={{ marginLeft: 10, height: '100%' }}
-                    backgroundColor={colors.septenary}
-                  >
-                    <MaterialCommunityIcons name="cart-remove" size={24} color={colors.secondary} />
-                  </CustomHighlightButton>
+                  <>
+                    {isPaidVariant && (
+                      <CustomHighlightButton
+                        handlePress={() => {
+                          navigation.navigate(NEW_PURCHASE_SCREEN_KEY, {
+                            elementsList: item.elements
+                          })
+                        }}
+                        customStyle={styles.rightContent}
+                        backgroundColor={colors.nonary}
+                      >
+                        <MaterialCommunityIcons
+                          name="cart-arrow-up"
+                          color={colors.secondary}
+                          size={24}
+                        />
+                      </CustomHighlightButton>
+                    )}
+
+                    <CustomHighlightButton
+                      handlePress={async () => {
+                        await removeElementList(item.id)
+                        loadElementsList()
+                      }}
+                      customStyle={styles.rightContent}
+                      backgroundColor={colors.septenary}
+                    >
+                      <MaterialCommunityIcons
+                        name="cart-remove"
+                        color={colors.secondary}
+                        size={24}
+                      />
+                    </CustomHighlightButton>
+                  </>
                 )
               }
             >
@@ -214,6 +244,10 @@ const allStyles = ({ colors, animations }) => {
       paddingBottom: 10,
       paddingHorizontal: 8,
       paddingTop: 5
+    },
+    rightContent: {
+      marginLeft: 10,
+      height: '100%'
     },
     box: {
       flex: 1,

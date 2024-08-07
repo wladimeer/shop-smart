@@ -9,7 +9,7 @@ const original = {
     senary: '#633974',
     septenary: '#EC4C4C',
     octonary: '#D3D3D3',
-    nonary: 'transparent',
+    nonary: '#20922D',
     denary: 'transparent',
     undenary: 'transparent',
     card: 'transparent',

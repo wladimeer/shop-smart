@@ -10,13 +10,16 @@ const config = {
   userInterfaceStyle: 'dark',
   splash: {
     image: './assets/splash.png',
-    resizeMode: 'contain',
+    resizeMode: 'cover',
     backgroundColor: '#000000'
   },
   assetBundlePatterns: ['**/*'],
   ios: {
     supportsTablet: true,
     bundleIdentifier: 'io.expo.client'
+  },
+  androidStatusBar: {
+    translucent: true
   },
   android: {
     adaptiveIcon: {

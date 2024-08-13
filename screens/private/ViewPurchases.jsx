@@ -97,7 +97,7 @@ const ViewPurchases = ({ navigation }) => {
   }, [])
 
   return (
-    <ScreenContainer background={background} colorSafeArea={colors.tertiary}>
+    <ScreenContainer background={background} colorSafeArea={colors.primary}>
       <ActionModal {...{ actionModal, resetActionModal }} />
 
       {loading ? (

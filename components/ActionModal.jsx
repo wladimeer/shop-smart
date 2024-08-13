@@ -1,4 +1,5 @@
 import CustomPressable from './CustomPressable'
+import { impactAsync, ImpactFeedbackStyle } from 'expo-haptics'
 import { Modal, View, StyleSheet, Animated } from 'react-native'
 import { useTheme } from '@react-navigation/native'
 import CustomText from './CustomText'
@@ -16,7 +17,10 @@ const ActionModal = ({ actionModal, resetActionModal }) => {
   const styles = allStyles({ colors, animations })
 
   const handleVisibilityChange = () => {
-    const toValue = actionModal.visible ? 1 : 0
+    const { visible } = actionModal
+    const toValue = visible ? 1 : 0
+
+    if (visible) impactAsync(ImpactFeedbackStyle.Soft)
 
     const configFade = {
       toValue: toValue,

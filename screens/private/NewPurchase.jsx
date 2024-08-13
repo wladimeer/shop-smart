@@ -59,13 +59,13 @@ const NewPurchase = ({ navigation, route: { params = {} } }) => {
     })
   }
 
-  const saveList = async ({ items }) => {
+  const handleSaveList = async ({ items }) => {
     try {
       const response = await setElementsList(items)
 
       if (response) {
         resetActionModal()
-        saveItems([])
+        handleSaveItems([])
         navigation.navigate(VIEW_PURCHASES_SCREEN_KEY)
       }
     } catch (error) {
@@ -73,7 +73,7 @@ const NewPurchase = ({ navigation, route: { params = {} } }) => {
     }
   }
 
-  const saveItems = async (values) => {
+  const handleSaveItems = async (values) => {
     try {
       const data = await setCartElements(values)
       setItems(data)
@@ -82,7 +82,7 @@ const NewPurchase = ({ navigation, route: { params = {} } }) => {
     }
   }
 
-  const loadItems = async () => {
+  const handleLoadItems = async () => {
     try {
       let data = []
 
@@ -100,14 +100,14 @@ const NewPurchase = ({ navigation, route: { params = {} } }) => {
   }
 
   useEffect(() => {
-    loadItems()
+    handleLoadItems()
   }, [])
 
   const initialValues = { items }
 
   return (
     <Formik
-      onSubmit={saveList}
+      onSubmit={handleSaveList}
       validationSchema={validationSchema}
       initialValues={initialValues}
       enableReinitialize
@@ -115,7 +115,7 @@ const NewPurchase = ({ navigation, route: { params = {} } }) => {
       {({ handleSubmit, setFieldValue, values, errors, isSubmitting }) => {
         useEffect(() => {
           if (!loading) {
-            saveItems(values.items)
+            handleSaveItems(values.items)
           }
         }, [values])
 
@@ -152,7 +152,7 @@ const NewPurchase = ({ navigation, route: { params = {} } }) => {
           }
 
           setFieldValue(`items[${index}]`, convertItem(item))
-          saveItems(values.items)
+          handleSaveItems(values.items)
         }
 
         const handleDeleteItem = (index, removeItem) => {
@@ -167,7 +167,7 @@ const NewPurchase = ({ navigation, route: { params = {} } }) => {
             item.total = item.quantity * item.unit
 
             setFieldValue(`items[${index}]`, convertItem(item))
-            saveItems(values.items)
+            handleSaveItems(values.items)
           }
         }
 
@@ -179,7 +179,7 @@ const NewPurchase = ({ navigation, route: { params = {} } }) => {
             item.total = item.quantity * item.unit
 
             setFieldValue(`items[${index}]`, convertItem(item))
-            saveItems(values.items)
+            handleSaveItems(values.items)
           }
         }
 

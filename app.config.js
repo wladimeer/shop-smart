@@ -1,7 +1,7 @@
-import { APP_VARIANT, FREE_VARIANT } from './constants/config'
+import { APP_VARIANT } from './constants/config'
 
 const config = {
-  name: APP_VARIANT === FREE_VARIANT ? 'ShopSmart' : 'ShopSmartPro',
+  name: 'ShopSmart',
   slug: 'shop-smart',
   version: '1.0.0',
   orientation: 'portrait',

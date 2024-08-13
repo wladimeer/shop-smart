@@ -1,5 +1,4 @@
 import 'react-native-gesture-handler'
-import { useEffect, useState } from 'react'
 import headerES from './locales/es/header.json'
 import principalES from './locales/es/principal.json'
 import { SCREENS_HEADER_KEY } from './constants/headers'
@@ -17,9 +16,9 @@ import newPurchaseES from './locales/es/newPurchase.json'
 import { LanguageProvider } from './contexts/Language'
 import * as SplashScreen from 'expo-splash-screen'
 import { I18nextProvider } from 'react-i18next'
-import { StatusBar } from 'expo-status-bar'
 import { useFonts } from 'expo-font'
 import AppRouter from './AppRouter'
+import { useEffect } from 'react'
 import i18n from 'i18next'
 
 SplashScreen.preventAutoHideAsync()
@@ -40,7 +39,6 @@ i18n.init({
 })
 
 const App = () => {
-  const [loading, setLoading] = useState(false)
   const opacity = useSharedValue(0.2)
 
   const [fontsLoaded, fontError] = useFonts({
@@ -57,7 +55,6 @@ const App = () => {
       const config = { duration: 800 }
       await SplashScreen.hideAsync()
       opacity.value = withTiming(1, config)
-      setLoading(true)
     }
 
     setTimeout(prepare, 1500)
@@ -66,18 +63,15 @@ const App = () => {
   if (!fontsLoaded && !fontError) return null
 
   return (
-    <>
-      <StatusBar hidden={loading} />
-      <I18nextProvider i18n={i18n}>
-        <LanguageProvider>
-          <GestureHandlerRootView>
-            <Animated.View style={[{ flex: 1 }, animatedStyle]}>
-              <AppRouter />
-            </Animated.View>
-          </GestureHandlerRootView>
-        </LanguageProvider>
-      </I18nextProvider>
-    </>
+    <I18nextProvider i18n={i18n}>
+      <LanguageProvider>
+        <GestureHandlerRootView>
+          <Animated.View style={[{ flex: 1 }, animatedStyle]}>
+            <AppRouter />
+          </Animated.View>
+        </GestureHandlerRootView>
+      </LanguageProvider>
+    </I18nextProvider>
   )
 }
 

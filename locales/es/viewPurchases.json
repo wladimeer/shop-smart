@@ -6,6 +6,16 @@
     "quantity": "Unidad(es)",
     "total": "Total Producto"
   },
+  "modals": {
+    "removeList": {
+      "title": "¿Estás seguro?",
+      "message": "¿Quieres eliminar este listado de productos? No podrás ver el listado ni reutilizarlo",
+      "buttons": {
+        "confirm": "Sí, estoy seguro",
+        "cancel": "No lo sé"
+      }
+    }
+  },
   "indicators": {
     "total": "Total",
     "time": {

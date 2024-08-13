@@ -12,6 +12,8 @@ import { MaterialCommunityIcons, Feather } from '@expo/vector-icons'
 import { VIEW_PURCHASES_SCREEN_KEY } from '../../constants/screens'
 import { NEW_PURCHASE_SCREEN_KEY } from '../../constants/screens'
 import ScreenContainer from '../../components/ScreenContainer'
+import useActionModal from '../../hooks/useActionModal'
+import ActionModal from '../../components/ActionModal'
 import CustomText from '../../components/CustomText'
 import { useTheme } from '@react-navigation/native'
 import { isTodayDatetime } from '../../utils/time'
@@ -22,6 +24,7 @@ import Constants from 'expo-constants'
 const ViewPurchases = ({ navigation }) => {
   const { appVariant } = Constants.expoConfig.extra
   const [translate] = useTranslation(VIEW_PURCHASES_SCREEN_KEY)
+  const { actionModal, setActionModal, resetActionModal } = useActionModal()
   const [elementsList, setElementsList] = useState([])
   const [selectedId, setSelectedId] = useState(null)
   const [loading, setLoading] = useState(true)
@@ -54,7 +57,13 @@ const ViewPurchases = ({ navigation }) => {
     Animated.spring(expandHeight, configExpand).start()
   }
 
-  const loadElementsList = async () => {
+  const handleRemoveElementList = async (elementListId) => {
+    resetActionModal()
+    await removeElementList(elementListId)
+    handleLoadElementsList()
+  }
+
+  const handleLoadElementsList = async () => {
     try {
       const data = await getElementsList()
       const groupedData = {}
@@ -84,11 +93,13 @@ const ViewPurchases = ({ navigation }) => {
   useEffect(toggleExpand, [selectedId])
 
   useEffect(() => {
-    loadElementsList()
+    handleLoadElementsList()
   }, [])
 
   return (
     <ScreenContainer background={background} colorSafeArea={colors.tertiary}>
+      <ActionModal {...{ actionModal, resetActionModal }} />
+
       {loading ? (
         <ActivityIndicator size="large" />
       ) : (
@@ -134,9 +145,15 @@ const ViewPurchases = ({ navigation }) => {
                     )}
 
                     <CustomHighlightButton
-                      handlePress={async () => {
-                        await removeElementList(item.id)
-                        loadElementsList()
+                      handlePress={() => {
+                        setActionModal({
+                          visible: true,
+                          title: translate('modals.removeList.title'),
+                          message: translate('modals.removeList.message'),
+                          action: () => handleRemoveElementList(item.id),
+                          confirm: translate('modals.removeList.buttons.confirm'),
+                          cancel: translate('modals.removeList.buttons.cancel')
+                        })
                       }}
                       customStyle={styles.rightContent}
                       backgroundColor={colors.septenary}
@@ -316,6 +333,7 @@ const allStyles = ({ colors, animations }) => {
     messageContent: {
       width: '100%',
       backgroundColor: colors.background,
+      marginVertical: 5,
       borderRadius: 3,
       padding: 20
     }

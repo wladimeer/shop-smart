@@ -1,5 +1,6 @@
 import ElementGroup from '../../components/ElementGroup'
 import { PRINCIPAL_SCREEN_KEY } from '../../constants/screens'
+import VersionIndicator from '../../components/VersionIndicator'
 import { VIEW_PURCHASES_SCREEN_KEY } from '../../constants/screens'
 import { NEW_PURCHASE_SCREEN_KEY } from '../../constants/screens'
 import ScreenContainer from '../../components/ScreenContainer'
@@ -19,12 +20,19 @@ const Principal = ({ navigation }) => {
   }
 
   return (
-    <ScreenContainer background={background}>
-      <ElementGroup>
-        <CustomButton text={translate('buttons.newPurchase')} handlePress={handleNewPurchase} />
-        <CustomButton text={translate('buttons.viewPurchases')} handlePress={handleViewPurchases} />
-      </ElementGroup>
-    </ScreenContainer>
+    <>
+      <ScreenContainer background={background}>
+        <ElementGroup>
+          <CustomButton text={translate('buttons.newPurchase')} handlePress={handleNewPurchase} />
+          <CustomButton
+            text={translate('buttons.viewPurchases')}
+            handlePress={handleViewPurchases}
+          />
+        </ElementGroup>
+      </ScreenContainer>
+
+      <VersionIndicator />
+    </>
   )
 }
 

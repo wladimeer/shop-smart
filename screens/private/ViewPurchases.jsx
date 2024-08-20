@@ -126,23 +126,21 @@ const ViewPurchases = ({ navigation }) => {
               renderRightActions={() =>
                 selectedId !== item.id && (
                   <>
-                    {isPaidVariant && (
-                      <CustomHighlightButton
-                        handlePress={() => {
-                          navigation.navigate(NEW_PURCHASE_SCREEN_KEY, {
-                            elementsList: item.elements
-                          })
-                        }}
-                        customStyle={styles.rightContent}
-                        backgroundColor={colors.nonary}
-                      >
-                        <MaterialCommunityIcons
-                          name="cart-arrow-up"
-                          color={colors.secondary}
-                          size={24}
-                        />
-                      </CustomHighlightButton>
-                    )}
+                    <CustomHighlightButton
+                      handlePress={() => {
+                        navigation.navigate(NEW_PURCHASE_SCREEN_KEY, {
+                          elementsList: item.elements
+                        })
+                      }}
+                      customStyle={styles.rightContent}
+                      backgroundColor={colors.nonary}
+                    >
+                      <MaterialCommunityIcons
+                        name="cart-arrow-up"
+                        color={colors.secondary}
+                        size={24}
+                      />
+                    </CustomHighlightButton>
 
                     <CustomHighlightButton
                       handlePress={() => {

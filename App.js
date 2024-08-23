@@ -8,7 +8,9 @@ import viewPurchasesES from './locales/es/viewPurchases.json'
 import { useSharedValue, withTiming } from 'react-native-reanimated'
 import { GestureHandlerRootView } from 'react-native-gesture-handler'
 import Animated, { useAnimatedStyle } from 'react-native-reanimated'
+import variantFeaturesES from './locales/es/variantFeatures.json'
 import { VIEW_PURCHASES_SCREEN_KEY } from './constants/screens'
+import { VARIANT_FEATURES_MODAL_KEY } from './constants/modals'
 import { NEW_PURCHASE_SCREEN_KEY } from './constants/screens'
 import { DEFAULT_LANGUAGE_CODE } from './constants/locales'
 import { PRINCIPAL_SCREEN_KEY } from './constants/screens'
@@ -31,6 +33,7 @@ i18n.init({
       [PRINCIPAL_SCREEN_KEY]: principalES,
       [NEW_PURCHASE_SCREEN_KEY]: newPurchaseES,
       [VIEW_PURCHASES_SCREEN_KEY]: viewPurchasesES,
+      [VARIANT_FEATURES_MODAL_KEY]: variantFeaturesES,
       [SCREENS_HEADER_KEY]: headerES
     }
   },

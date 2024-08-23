@@ -1,0 +1,49 @@
+{
+  "title": "¿Qué incluye esta versión?",
+  "free": {
+    "newPurchase": {
+      "title": "Registro de Productos en una Compra:",
+      "features": {
+        "feature_1": "Esta versión incluye la capacidad de añadir productos a una lista de compra ingresando el nombre del producto, la cantidad y el precio unitario",
+        "feature_2": "Ahora, el sistema calcula y muestra automáticamente el total por producto (cantidad * precio unitario)",
+        "feature_3": "El total acumulado de todos los productos añadidos se muestra en la parte inferior de la pantalla"
+      }
+    },
+    "viewPurchases": {
+      "title": "Gestión de Listas de Compras:",
+      "features": {
+        "feature_1": "Esta versión permite guardar la lista de productos de una compra",
+        "feature_2": "Ahora puedes visualizar las compras guardadas en una pantalla de historial, mostrando la fecha y el total de cada compra",
+        "feature_3": "Cada entrada en el historial incluye un botón para visualizar el detalle completo de la compra (lista de productos)",
+        "feature_4": "Ahora puedes eliminar listas de compras desde el historial deslizando hacia la izquierda y seleccionando la opción de eliminar",
+        "feature_5": "Esta versión permite reutilizar una lista de compras guardada, cargando todos los productos de esa lista en una nueva compra",
+        "feature_6": "Al reutilizar una lista, ahora puedes modificar los precios y cantidades antes de guardar la nueva compra"
+      }
+    }
+  },
+  "paid": {
+    "newPurchase": {
+      "title": "Registro de Productos en una Compra:",
+      "features": {
+        "feature_1": "Esta versión incluye la capacidad de añadir productos a una lista de compra ingresando el nombre del producto, la cantidad y el precio unitario",
+        "feature_2": "Ahora, el sistema calcula y muestra automáticamente el total por producto (cantidad * precio unitario)",
+        "feature_3": "El total acumulado de todos los productos añadidos se muestra en la parte inferior de la pantalla",
+        "feature_4": "Permite añadir productos a través de código de barras para mayor rapidez",
+        "feature_5": "Ofrece recomendaciones automáticas basadas en compras anteriores"
+      }
+    },
+    "viewPurchases": {
+      "title": "Gestión de Listas de Compras:",
+      "features": {
+        "feature_1": "Esta versión permite guardar la lista de productos de una compra",
+        "feature_2": "Ahora puedes visualizar las compras guardadas en una pantalla de historial, mostrando la fecha y el total de cada compra",
+        "feature_3": "Cada entrada en el historial incluye un botón para visualizar el detalle completo de la compra (lista de productos)",
+        "feature_4": "Ahora puedes eliminar listas de compras desde el historial deslizando hacia la izquierda y seleccionando la opción de eliminar",
+        "feature_5": "Esta versión permite reutilizar una lista de compras guardada, cargando todos los productos de esa lista en una nueva compra",
+        "feature_6": "Al reutilizar una lista, ahora puedes modificar los precios y cantidades antes de guardar la nueva compra",
+        "feature_7": "Permite exportar las listas de compras a formatos PDF y Excel",
+        "feature_8": "Incluye la posibilidad de compartir listas de compras con otros usuarios de la aplicación"
+      }
+    }
+  }
+}

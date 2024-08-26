@@ -67,7 +67,7 @@ const InformationModal = ({ informationModal, resetInformationModal }) => {
         {items && (
           <FlatList
             data={items}
-            renderItem={({ item: { title, features } }) => (
+            renderItem={({ item: { title, features }, index }) => (
               <>
                 <View style={styles.sectionContent}>
                   <Text style={styles.sectionTitle}>{title}</Text>
@@ -83,6 +83,10 @@ const InformationModal = ({ informationModal, resetInformationModal }) => {
                     </View>
                   ))}
                 </View>
+
+                {index === items.length - 1 && (
+                  <Spacer color={colors.primary} size={insets.bottom} />
+                )}
               </>
             )}
             contentContainerStyle={styles.sectionContainer}
@@ -103,15 +107,15 @@ const allStyles = ({ colors, insets, animations }) => {
     },
     container: {
       padding: 15,
-      maxHeight: '80%',
+      maxHeight: '85%',
       position: 'absolute',
-      paddingBottom: insets.bottom,
       opacity: animations.fadeAnimation.interpolate({
         inputRange: [0.5, 1],
         outputRange: [0.5, 1]
       }),
       transform: [{ scaleY: animations.scaleHeight }],
       backgroundColor: colors.tertiary,
+      paddingBottom: 0,
       bottom: 0,
       right: 0,
       left: 0
@@ -130,7 +134,7 @@ const allStyles = ({ colors, insets, animations }) => {
     },
     sectionContainer: {
       flex: 1,
-      paddingVertical: 12,
+      paddingTop: 12,
       width: '100%',
       gap: 25
     },

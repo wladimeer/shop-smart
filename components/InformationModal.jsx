@@ -106,22 +106,18 @@ const allStyles = ({ colors, insets, animations }) => {
       opacity: 0.6
     },
     container: {
+      flex: 1,
       padding: 15,
-      maxHeight: '85%',
-      position: 'absolute',
+      paddingTop: insets.top,
       opacity: animations.fadeAnimation.interpolate({
         inputRange: [0.5, 1],
         outputRange: [0.5, 1]
       }),
       transform: [{ scaleY: animations.scaleHeight }],
       backgroundColor: colors.tertiary,
-      paddingBottom: 0,
-      bottom: 0,
-      right: 0,
-      left: 0
+      paddingBottom: 0
     },
     header: {
-      flex: 1,
       flexDirection: 'row',
       justifyContent: 'space-between',
       alignItems: 'center',
@@ -133,13 +129,12 @@ const allStyles = ({ colors, insets, animations }) => {
       color: colors.secondary
     },
     sectionContainer: {
-      flex: 1,
+      flexGrow: 1,
       paddingTop: 12,
       width: '100%',
       gap: 25
     },
     sectionContent: {
-      display: 'flex',
       flexDirection: 'row',
       justifyContent: 'flex-start',
       alignItems: 'center',
@@ -155,7 +150,6 @@ const allStyles = ({ colors, insets, animations }) => {
       gap: 8
     },
     content: {
-      flex: 1,
       flexDirection: 'row',
       justifyContent: 'flex-start',
       alignItems: 'flex-start',

@@ -6,7 +6,8 @@
       "features": {
         "feature_1": "Esta versión incluye la capacidad de añadir productos a una lista de compra ingresando el nombre del producto, la cantidad y el precio unitario",
         "feature_2": "Ahora, el sistema calcula y muestra automáticamente el total por producto (cantidad * precio unitario)",
-        "feature_3": "El total acumulado de todos los productos añadidos se muestra en la parte inferior de la pantalla"
+        "feature_3": "El total acumulado de todos los productos añadidos se muestra en la parte inferior de la pantalla",
+        "feature_4": "Permite autocompletar el nombre del producto al escribir, mostrando un listado de nombres que coincidan con las primeras letras"
       }
     },
     "viewPurchases": {
@@ -29,7 +30,8 @@
         "feature_2": "Ahora, el sistema calcula y muestra automáticamente el total por producto (cantidad * precio unitario)",
         "feature_3": "El total acumulado de todos los productos añadidos se muestra en la parte inferior de la pantalla",
         "feature_4": "Permite añadir productos a través de código de barras para mayor rapidez",
-        "feature_5": "Ofrece recomendaciones automáticas basadas en compras anteriores"
+        "feature_5": "Ofrece recomendaciones automáticas basadas en compras anteriores",
+        "feature_6": "Permite autocompletar el nombre del producto al escribir, mostrando un listado de nombres que coincidan con las primeras letras"
       }
     },
     "viewPurchases": {

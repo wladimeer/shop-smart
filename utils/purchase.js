@@ -23,4 +23,8 @@ const getTotal = (items) => {
   return items.reduce((acc, { total }) => acc + Number(total), 0)
 }
 
-export { convertItem, formatToCLP, getTotal }
+const removeDiacritics = (text) => {
+  return text.normalize('NFD').replace(/[\u0300-\u036f]/g, '')
+}
+
+export { convertItem, formatToCLP, getTotal, removeDiacritics }

@@ -13,6 +13,8 @@ import { NEW_PURCHASE_SCREEN_KEY } from '../../constants/screens'
 import ScreenContainer from '../../components/ScreenContainer'
 import { getTotal, convertItem } from '../../utils/purchase'
 import { setElementsList } from '../../services/purchase'
+import { PRODUCTS_LIST_KEY } from '../../constants/datas'
+import { removeDiacritics } from '../../utils/purchase'
 import useActionModal from '../../hooks/useActionModal'
 import ActionModal from '../../components/ActionModal'
 import { useEffect, useRef, useState } from 'react'
@@ -20,18 +22,27 @@ import { useTheme } from '@react-navigation/native'
 import { useTranslation } from 'react-i18next'
 import Spacer from '../../components/Spacer'
 import { Formik, FieldArray } from 'formik'
+import { Animated } from 'react-native'
 import * as Yup from 'yup'
 
 const NewPurchase = ({ navigation, route: { params = {} } }) => {
   const { elementsList = [] } = params
   const [translate] = useTranslation(NEW_PURCHASE_SCREEN_KEY)
+  const [productsListTranslate] = useTranslation(PRODUCTS_LIST_KEY)
   const { actionModal, setActionModal, resetActionModal } = useActionModal()
+  const [focusedItemIndex, setFocusedItemIndex] = useState(null)
+  const [filteredOptions, setFilteredOptions] = useState([])
   const [loading, setLoading] = useState(true)
+  const [options, setOptions] = useState([])
   const [items, setItems] = useState([])
   const scrollViewRef = useRef(null)
   const { colors } = useTheme()
 
-  const styles = allStyles({ colors })
+  const heightAnimation = useRef(new Animated.Value(166)).current
+
+  const animations = { heightAnimation }
+
+  const styles = allStyles({ colors, animations })
 
   const validationSchema = Yup.object().shape({
     items: Yup.array().of(
@@ -99,8 +110,28 @@ const NewPurchase = ({ navigation, route: { params = {} } }) => {
     }
   }
 
+  const handleLoadOptions = () => {
+    const list = productsListTranslate('list', { returnObjects: true })
+    setOptions(list)
+  }
+
+  const handleOnLayout = ({ nativeEvent: { layout } }) => {
+    const { height } = layout
+
+    if (height !== heightAnimation._value) {
+      const configAnimation = {
+        toValue: height,
+        useNativeDriver: false,
+        duration: 150
+      }
+
+      Animated.timing(heightAnimation, configAnimation).start()
+    }
+  }
+
   useEffect(() => {
     handleLoadItems()
+    handleLoadOptions()
   }, [])
 
   const initialValues = { items }
@@ -139,6 +170,23 @@ const NewPurchase = ({ navigation, route: { params = {} } }) => {
 
           if (key === 'name') {
             item[key] = value
+
+            if (value.length > 0) {
+              const filtered = options.filter((option) => {
+                const { name } = option
+
+                const newName = removeDiacritics(name.toLowerCase())
+                const newValue = removeDiacritics(value.toLowerCase())
+
+                if (newName.startsWith(newValue)) return option
+              })
+
+              if (filtered.length > 5) filtered.splice(5)
+
+              setFilteredOptions(filtered)
+            } else {
+              setFilteredOptions([])
+            }
           }
 
           if (key === 'unit' && value <= UNIT_LIMIT) {
@@ -183,7 +231,25 @@ const NewPurchase = ({ navigation, route: { params = {} } }) => {
           }
         }
 
+        const handleOnFocusName = (index) => {
+          setFocusedItemIndex(index)
+          setFilteredOptions([])
+        }
+
+        const handleOptionPress = (index, value) => {
+          const item = values.items[index]
+
+          item['name'] = value
+
+          setFieldValue(`items[${index}]`, convertItem(item))
+          handleSaveItems(values.items)
+          setFilteredOptions([])
+        }
+
         const handleActionModal = () => {
+          if (focusedItemIndex !== null) setFocusedItemIndex(null)
+          if (filteredOptions.length > 0) setFilteredOptions([])
+
           setActionModal({
             visible: true,
             title: translate('modals.saveList.title'),
@@ -213,101 +279,141 @@ const NewPurchase = ({ navigation, route: { params = {} } }) => {
                       render={({ insert, remove }) => (
                         <View style={styles.itemsContainer}>
                           {values.items.length > 0 ? (
-                            values.items.map((item, index) => (
-                              <View key={index} style={styles.content}>
-                                <View style={styles.header}>
-                                  <TextInput
-                                    style={styles.text}
-                                    onChangeText={(value) => handleUpdateItem('name', index, value)}
-                                    placeholder={translate('placeholders.name')}
-                                    placeholderTextColor={colors.placeholder}
-                                    value={item.name}
-                                  />
+                            values.items.map((item, index) => {
+                              const isFiltered = filteredOptions.length > 0
+                              const isFocused = focusedItemIndex === index
+                              const showOptions = isFocused && isFiltered
 
-                                  <TouchableOpacity
-                                    style={styles.headerButton}
-                                    onPress={() => handleDeleteItem(index, remove)}
-                                  >
-                                    <Fontisto name="close-a" color={colors.septenary} size={18} />
-                                  </TouchableOpacity>
-                                </View>
+                              return (
+                                <View key={index} style={styles.content}>
+                                  <View style={styles.header}>
+                                    <TextInput
+                                      style={styles.text}
+                                      onChangeText={(value) =>
+                                        handleUpdateItem('name', index, value)
+                                      }
+                                      placeholder={translate('placeholders.name')}
+                                      onFocus={() => handleOnFocusName(index)}
+                                      placeholderTextColor={colors.placeholder}
+                                      value={item.name}
+                                    />
 
-                                <Spacer />
-
-                                <View style={styles.body}>
-                                  <View style={styles.values}>
-                                    <View style={styles.data}>
-                                      <CustomText
-                                        text={`${translate('fields.unit')}:`}
-                                        color={colors.text}
-                                        align="left"
-                                      />
-
-                                      <TextInput
-                                        style={styles.text}
-                                        onChangeText={(value) =>
-                                          handleUpdateItem('unit', index, value)
-                                        }
-                                        placeholder={translate('placeholders.unit')}
-                                        placeholderTextColor={colors.placeholder}
-                                        keyboardType="numeric"
-                                        value={item.unit}
-                                      />
-                                    </View>
-
-                                    <View style={styles.data}>
-                                      <CustomText
-                                        text={`${translate('fields.quantity')}:`}
-                                        color={colors.text}
-                                        align="left"
-                                      />
-
-                                      <TextInput
-                                        style={styles.text}
-                                        onChangeText={(value) =>
-                                          handleUpdateItem('quantity', index, value)
-                                        }
-                                        placeholder={translate('placeholders.quantity')}
-                                        placeholderTextColor={colors.placeholder}
-                                        keyboardType="numeric"
-                                        value={item.quantity}
-                                      />
-                                    </View>
-
-                                    <View style={styles.data}>
-                                      <CustomText
-                                        text={`${translate('fields.total')}:`}
-                                        color={colors.text}
-                                        align="left"
-                                      />
-
-                                      <CustomText
-                                        text={formatToCLP(item.total)}
-                                        color={colors.text}
-                                      />
-                                    </View>
+                                    <TouchableOpacity
+                                      style={styles.headerButton}
+                                      onPress={() => handleDeleteItem(index, remove)}
+                                    >
+                                      <Fontisto name="close-a" color={colors.septenary} size={18} />
+                                    </TouchableOpacity>
                                   </View>
-                                </View>
 
-                                <View style={styles.actions}>
-                                  <CustomHighlightButton
-                                    backgroundColor={colors.senary}
-                                    handlePress={() => handleDecreaseQuantity(index)}
-                                    customStyle={{ flex: 1 }}
-                                  >
-                                    <AntDesign name="minus" size={24} color={colors.secondary} />
-                                  </CustomHighlightButton>
+                                  <Spacer />
 
-                                  <CustomHighlightButton
-                                    backgroundColor={colors.quinary}
-                                    handlePress={() => handleIncreaseQuantity(index)}
-                                    customStyle={{ flex: 1 }}
-                                  >
-                                    <AntDesign name="plus" size={24} color={colors.secondary} />
-                                  </CustomHighlightButton>
+                                  {showOptions ? (
+                                    <Animated.View style={styles.dynamicContent}>
+                                      <View
+                                        style={styles.optionsContainer}
+                                        onLayout={isFocused && handleOnLayout}
+                                      >
+                                        {filteredOptions.map(({ name }, filteredIndex) => (
+                                          <TouchableOpacity
+                                            onPress={() => handleOptionPress(index, name)}
+                                            style={styles.option}
+                                            key={filteredIndex}
+                                          >
+                                            <CustomText
+                                              text={name}
+                                              color={colors.text}
+                                              align="left"
+                                            />
+                                          </TouchableOpacity>
+                                        ))}
+                                      </View>
+                                    </Animated.View>
+                                  ) : (
+                                    <View style={styles.bodyContainer}>
+                                      <View style={styles.body}>
+                                        <View style={styles.data}>
+                                          <CustomText
+                                            text={`${translate('fields.unit')}:`}
+                                            color={colors.text}
+                                            align="left"
+                                          />
+
+                                          <TextInput
+                                            style={styles.text}
+                                            onChangeText={(value) =>
+                                              handleUpdateItem('unit', index, value)
+                                            }
+                                            placeholder={translate('placeholders.unit')}
+                                            placeholderTextColor={colors.placeholder}
+                                            keyboardType="numeric"
+                                            value={item.unit}
+                                          />
+                                        </View>
+
+                                        <View style={styles.data}>
+                                          <CustomText
+                                            text={`${translate('fields.quantity')}:`}
+                                            color={colors.text}
+                                            align="left"
+                                          />
+
+                                          <TextInput
+                                            style={styles.text}
+                                            onChangeText={(value) =>
+                                              handleUpdateItem('quantity', index, value)
+                                            }
+                                            placeholder={translate('placeholders.quantity')}
+                                            placeholderTextColor={colors.placeholder}
+                                            keyboardType="numeric"
+                                            value={item.quantity}
+                                          />
+                                        </View>
+
+                                        <View style={styles.data}>
+                                          <CustomText
+                                            text={`${translate('fields.total')}:`}
+                                            color={colors.text}
+                                            align="left"
+                                          />
+
+                                          <CustomText
+                                            text={formatToCLP(item.total)}
+                                            color={colors.text}
+                                          />
+                                        </View>
+                                      </View>
+
+                                      <View style={styles.actions}>
+                                        <CustomHighlightButton
+                                          backgroundColor={colors.senary}
+                                          handlePress={() => handleDecreaseQuantity(index)}
+                                          customStyle={{ flex: 1 }}
+                                        >
+                                          <AntDesign
+                                            name="minus"
+                                            size={24}
+                                            color={colors.secondary}
+                                          />
+                                        </CustomHighlightButton>
+
+                                        <CustomHighlightButton
+                                          backgroundColor={colors.quinary}
+                                          handlePress={() => handleIncreaseQuantity(index)}
+                                          customStyle={{ flex: 1 }}
+                                        >
+                                          <AntDesign
+                                            name="plus"
+                                            size={24}
+                                            color={colors.secondary}
+                                          />
+                                        </CustomHighlightButton>
+                                      </View>
+                                    </View>
+                                  )}
                                 </View>
-                              </View>
-                            ))
+                              )
+                            })
                           ) : (
                             <View style={styles.messageContent}>
                               <CustomText
@@ -364,14 +470,13 @@ const NewPurchase = ({ navigation, route: { params = {} } }) => {
   )
 }
 
-const allStyles = ({ colors }) => {
+const allStyles = ({ colors, animations }) => {
   const styles = StyleSheet.create({
     container: {
       flex: 1,
       width: '100%'
     },
     itemsContainer: {
-      flex: 1,
       alignItems: 'center',
       justifyContent: 'center',
       marginHorizontal: 8,
@@ -389,25 +494,35 @@ const allStyles = ({ colors }) => {
       padding: 10,
       flexDirection: 'row',
       justifyContent: 'space-between',
-      alignItems: 'center',
-      display: 'flex'
+      alignItems: 'center'
     },
     headerButton: {
       backgroundColor: colors.primary,
       padding: 5
     },
+    dynamicContent: {
+      height: animations.heightAnimation
+    },
+    optionsContainer: {
+      padding: 5,
+      gap: 5
+    },
+    option: {
+      borderRadius: 3,
+      backgroundColor: colors.secondary,
+      padding: 8
+    },
+    bodyContainer: {
+      padding: 10,
+      gap: 10
+    },
     body: {
-      flex: 1,
-      paddingTop: 10,
-      flexDirection: 'row',
-      paddingHorizontal: 10,
+      alignItems: 'flex-start',
       justifyContent: 'space-between',
-      alignItems: 'center',
       gap: 10
     },
     footer: {
       width: '100%',
-      display: 'flex',
       flexDirection: 'row',
       justifyContent: 'space-between',
       backgroundColor: colors.tertiary,
@@ -415,7 +530,6 @@ const allStyles = ({ colors }) => {
       padding: 12
     },
     footerLeft: {
-      display: 'flex',
       flexDirection: 'row',
       gap: 10
     },
@@ -426,20 +540,18 @@ const allStyles = ({ colors }) => {
     data: {
       flex: 1,
       flexDirection: 'row',
+      alignItems: 'center',
       gap: 10
     },
     values: {
-      flex: 4,
+      alignItems: 'flex-start',
       gap: 10
     },
     actions: {
-      flex: 1,
-      paddingTop: 15,
+      display: 'flex',
       alignItems: 'center',
       justifyContent: 'center',
-      paddingHorizontal: 10,
       flexDirection: 'row',
-      paddingBottom: 10,
       gap: 8
     },
     text: {

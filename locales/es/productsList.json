@@ -1,0 +1,264 @@
+{
+  "list": [
+    {
+      "name": "Harina",
+      "units": {
+        "1": {
+          "full": "Kilogramos",
+          "abbr": "kg"
+        },
+        "0.5": {
+          "full": "Gramos",
+          "abbr": "g"
+        }
+      }
+    },
+    {
+      "name": "Arroz",
+      "units": {
+        "1": {
+          "full": "Kilogramos",
+          "abbr": "kg"
+        },
+        "0.5": {
+          "full": "Gramos",
+          "abbr": "g"
+        }
+      }
+    },
+    {
+      "name": "Azúcar",
+      "units": {
+        "1": {
+          "full": "Kilogramos",
+          "abbr": "kg"
+        },
+        "0.5": {
+          "full": "Gramos",
+          "abbr": "g"
+        }
+      }
+    },
+    {
+      "name": "Aceite de oliva",
+      "units": {
+        "1": {
+          "full": "Litros",
+          "abbr": "l"
+        },
+        "0.5": {
+          "full": "Mililitros",
+          "abbr": "ml"
+        }
+      }
+    },
+    {
+      "name": "Leche",
+      "units": {
+        "1": {
+          "full": "Litros",
+          "abbr": "l"
+        },
+        "0.5": {
+          "full": "Mililitros",
+          "abbr": "ml"
+        }
+      }
+    },
+    {
+      "name": "Pan",
+      "units": {
+        "1": {
+          "full": "Unidades",
+          "abbr": "u"
+        },
+        "0.5": {
+          "full": "Unidades",
+          "abbr": "u"
+        }
+      }
+    },
+    {
+      "name": "Huevos",
+      "units": {
+        "12": {
+          "full": "Unidades",
+          "abbr": "u"
+        },
+        "6": {
+          "full": "Unidades",
+          "abbr": "u"
+        }
+      }
+    },
+    {
+      "name": "Pollo",
+      "units": {
+        "1": {
+          "full": "Kilogramos",
+          "abbr": "kg"
+        },
+        "0.5": {
+          "full": "Gramos",
+          "abbr": "g"
+        }
+      }
+    },
+    {
+      "name": "Carne de res",
+      "units": {
+        "1": {
+          "full": "Kilogramos",
+          "abbr": "kg"
+        },
+        "0.5": {
+          "full": "Gramos",
+          "abbr": "g"
+        }
+      }
+    },
+    {
+      "name": "Queso",
+      "units": {
+        "1": {
+          "full": "Kilogramos",
+          "abbr": "kg"
+        },
+        "0.5": {
+          "full": "Gramos",
+          "abbr": "g"
+        }
+      }
+    },
+    {
+      "name": "Tomate",
+      "units": {
+        "1": {
+          "full": "Kilogramos",
+          "abbr": "kg"
+        },
+        "0.5": {
+          "full": "Gramos",
+          "abbr": "g"
+        }
+      }
+    },
+    {
+      "name": "Cebolla",
+      "units": {
+        "1": {
+          "full": "Kilogramos",
+          "abbr": "kg"
+        },
+        "0.5": {
+          "full": "Gramos",
+          "abbr": "g"
+        }
+      }
+    },
+    {
+      "name": "Lechuga",
+      "units": {
+        "1": {
+          "full": "Unidades",
+          "abbr": "u"
+        },
+        "0.5": {
+          "full": "Unidades",
+          "abbr": "u"
+        }
+      }
+    },
+    {
+      "name": "Manzana",
+      "units": {
+        "1": {
+          "full": "Kilogramos",
+          "abbr": "kg"
+        },
+        "0.5": {
+          "full": "Gramos",
+          "abbr": "g"
+        }
+      }
+    },
+    {
+      "name": "Plátano",
+      "units": {
+        "1": {
+          "full": "Kilogramos",
+          "abbr": "kg"
+        },
+        "0.5": {
+          "full": "Gramos",
+          "abbr": "g"
+        }
+      }
+    },
+    {
+      "name": "Pasta",
+      "units": {
+        "1": {
+          "full": "Kilogramos",
+          "abbr": "kg"
+        },
+        "0.5": {
+          "full": "Gramos",
+          "abbr": "g"
+        }
+      }
+    },
+    {
+      "name": "Cereal",
+      "units": {
+        "1": {
+          "full": "Kilogramos",
+          "abbr": "kg"
+        },
+        "0.5": {
+          "full": "Gramos",
+          "abbr": "g"
+        }
+      }
+    },
+    {
+      "name": "Yogur",
+      "units": {
+        "1": {
+          "full": "Litros",
+          "abbr": "l"
+        },
+        "0.5": {
+          "full": "Mililitros",
+          "abbr": "ml"
+        }
+      }
+    },
+    {
+      "name": "Zumo de naranja",
+      "units": {
+        "1": {
+          "full": "Litros",
+          "abbr": "l"
+        },
+        "0.5": {
+          "full": "Mililitros",
+          "abbr": "ml"
+        }
+      }
+    },
+    {
+      "name": "Galletas",
+      "units": {
+        "1": {
+          "full": "Paquetes",
+          "abbr": "p"
+        },
+        "0.5": {
+          "full": "Paquetes",
+          "abbr": "p"
+        }
+      }
+    }
+  ]
+}

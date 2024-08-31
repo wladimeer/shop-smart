@@ -63,7 +63,7 @@ const allStyles = () => {
       right: 25
     },
     content: {
-      borderRadius: '100%',
+      borderRadius: 20,
       padding: 2
     }
   })

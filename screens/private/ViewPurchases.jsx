@@ -170,11 +170,10 @@ const ViewPurchases = ({ navigation }) => {
                 <View style={styles.boxContent}>
                   <View style={styles.leftSideItem}>
                     <CustomText
-                      text={`${translate('indicators.total')}:`}
+                      text={`${translate('indicators.total')}: ${formatToCLP(item.total)}`}
                       color={colors.text}
                       size={22}
                     />
-                    <CustomText text={formatToCLP(item.total)} color={colors.text} size={22} />
                   </View>
 
                   <CustomHighlightButton
@@ -278,7 +277,8 @@ const allStyles = ({ colors, animations }) => {
     boxContent: {
       flex: 1,
       flexDirection: 'row',
-      alignItems: 'center'
+      alignItems: 'center',
+      gap: 5
     },
     leftSideItem: {
       flex: 3,

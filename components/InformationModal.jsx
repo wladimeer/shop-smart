@@ -65,33 +65,31 @@ const InformationModal = ({ informationModal, resetInformationModal }) => {
         <Spacer color={colors.octonary} />
 
         {items && (
-          <FlatList
-            data={items}
-            renderItem={({ item: { title, features }, index }) => (
-              <>
-                <View style={styles.sectionContent}>
-                  <Text style={styles.sectionTitle}>{title}</Text>
-                </View>
+          <>
+            <FlatList
+              data={items}
+              renderItem={({ item: { title, features } }) => (
+                <>
+                  <View style={styles.sectionContent}>
+                    <Text style={styles.sectionTitle}>{title}</Text>
+                  </View>
 
-                <View style={styles.contentContainer}>
-                  {features.map((feature, featureIndex) => (
-                    <View key={featureIndex} style={styles.content}>
-                      <Octicons name="dot-fill" size={20} color={colors.secondary} />
-                      <Text key={featureIndex} style={styles.contentItem}>
-                        {feature}
-                      </Text>
-                    </View>
-                  ))}
-                </View>
+                  <View style={styles.contentContainer}>
+                    {features.map((feature, featureIndex) => (
+                      <View key={featureIndex} style={styles.content}>
+                        <Octicons name="dot-fill" size={20} color={colors.secondary} />
+                        <Text style={styles.contentItem}>{feature}</Text>
+                      </View>
+                    ))}
+                  </View>
+                </>
+              )}
+              contentContainerStyle={styles.sectionContainer}
+              keyExtractor={(_, itemIndex) => itemIndex}
+            />
 
-                {index === items.length - 1 && (
-                  <Spacer color={colors.primary} size={insets.bottom} />
-                )}
-              </>
-            )}
-            contentContainerStyle={styles.sectionContainer}
-            keyExtractor={(_, itemIndex) => itemIndex}
-          />
+            <Spacer color={colors.primary} size={insets.bottom || 12} />
+          </>
         )}
       </Animated.View>
     </Modal>

@@ -1,6 +1,6 @@
-import { useEffect, useState } from 'react'
 import { useTranslation } from 'react-i18next'
 import { formatToCLP } from '../../utils/purchase'
+import { useEffect, useRef, useState } from 'react'
 import { PAID_VARIANT } from '../../constants/config'
 import { Swipeable } from 'react-native-gesture-handler'
 import background from '../../assets/principal-background.jpg'
@@ -28,6 +28,7 @@ const ViewPurchases = ({ navigation }) => {
   const [elementsList, setElementsList] = useState([])
   const [selectedId, setSelectedId] = useState(null)
   const [loading, setLoading] = useState(true)
+  const swipeablesRef = useRef([])
   const { colors } = useTheme()
 
   const isPaidVariant = appVariant === PAID_VARIANT
@@ -55,6 +56,18 @@ const ViewPurchases = ({ navigation }) => {
     }
 
     Animated.spring(expandHeight, configExpand).start()
+  }
+
+  const handleReuseElementList = (item) => {
+    swipeablesRef.current.forEach((ref) => {
+      if (ref) ref.close()
+    })
+
+    resetActionModal()
+
+    navigation.push(NEW_PURCHASE_SCREEN_KEY, {
+      elementsList: item.elements
+    })
   }
 
   const handleRemoveElementList = async (elementListId) => {
@@ -121,15 +134,21 @@ const ViewPurchases = ({ navigation }) => {
           ItemSeparatorComponent={({ trailingItem }) => (
             <Spacer color="transparent" size={trailingItem ? 10 : 0} />
           )}
-          renderItem={({ item }) => (
+          renderItem={({ item, index }) => (
             <Swipeable
+              ref={(ref) => (swipeablesRef.current[index] = ref)}
               renderRightActions={() =>
                 selectedId !== item.id && (
                   <>
                     <CustomHighlightButton
                       handlePress={() => {
-                        navigation.navigate(NEW_PURCHASE_SCREEN_KEY, {
-                          elementsList: item.elements
+                        setActionModal({
+                          visible: true,
+                          title: translate('modals.reuseList.title'),
+                          message: translate('modals.reuseList.message'),
+                          action: () => handleReuseElementList(item),
+                          confirm: translate('modals.reuseList.buttons.confirm'),
+                          cancel: translate('modals.reuseList.buttons.cancel')
                         })
                       }}
                       customStyle={styles.rightContent}

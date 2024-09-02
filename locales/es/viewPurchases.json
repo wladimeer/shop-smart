@@ -7,6 +7,14 @@
     "total": "Total Producto"
   },
   "modals": {
+    "reuseList": {
+      "title": "¿Estás seguro?",
+      "message": "¿Quieres reutilizar este listado de productos? Podrás modificar los valores de cada producto en \"Nueva Compra\"",
+      "buttons": {
+        "confirm": "Sí, claro",
+        "cancel": "No, por ahora"
+      }
+    },
     "removeList": {
       "title": "¿Estás seguro?",
       "message": "¿Quieres eliminar este listado de productos? No podrás ver el listado ni reutilizarlo",

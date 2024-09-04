@@ -1,14 +1,20 @@
 import { StyleSheet, View, Animated } from 'react-native'
 import { useSafeAreaInsets } from 'react-native-safe-area-context'
+import { DEFAULT_BOTTOM_INSET } from '../constants/config'
 import { useTheme } from '@react-navigation/native'
 import { StatusBar } from 'expo-status-bar'
 
-const ScreenContainer = ({ children, background = null, colorSafeArea = 'transparent' }) => {
+const ScreenContainer = ({
+  children,
+  background = null,
+  colorSafeArea = null,
+  noSafeArea = false
+}) => {
   const insets = useSafeAreaInsets()
   const fadeAnimation = new Animated.Value(0)
   const { colors } = useTheme()
 
-  const styles = allStyles({ colors, insets })
+  const styles = allStyles({ colors, insets, colorSafeArea })
 
   const handleLoadImage = () => {
     const config = {
@@ -36,12 +42,12 @@ const ScreenContainer = ({ children, background = null, colorSafeArea = 'transpa
 
       <View style={styles.content}>{children}</View>
 
-      <View style={{ ...styles.safeAreaBottom, backgroundColor: colorSafeArea }} />
+      {!noSafeArea && <View style={styles.safeAreaBottom} />}
     </View>
   )
 }
 
-const allStyles = ({ colors, insets }) => {
+const allStyles = ({ colors, insets, colorSafeArea }) => {
   const styles = StyleSheet.create({
     container: {
       flex: 1
@@ -57,7 +63,8 @@ const allStyles = ({ colors, insets }) => {
       alignItems: 'center'
     },
     safeAreaBottom: {
-      paddingBottom: insets.bottom
+      paddingBottom: insets.bottom || DEFAULT_BOTTOM_INSET,
+      backgroundColor: colorSafeArea ?? 'transparent'
     }
   })
 

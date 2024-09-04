@@ -4,6 +4,7 @@ import { useEffect, useRef, useState } from 'react'
 import { PAID_VARIANT } from '../../constants/config'
 import { Swipeable } from 'react-native-gesture-handler'
 import background from '../../assets/principal-background.jpg'
+import { useSafeAreaInsets } from 'react-native-safe-area-context'
 import CustomHighlightButton from '../../components/CustomHighlightButton'
 import { SectionList, View, StyleSheet, ActivityIndicator } from 'react-native'
 import { getElementsList, removeElementList } from '../../services/purchase'
@@ -12,6 +13,7 @@ import { MaterialCommunityIcons, Feather } from '@expo/vector-icons'
 import { VIEW_PURCHASES_SCREEN_KEY } from '../../constants/screens'
 import { NEW_PURCHASE_SCREEN_KEY } from '../../constants/screens'
 import ScreenContainer from '../../components/ScreenContainer'
+import { DEFAULT_BOTTOM_INSET } from '../../constants/config'
 import useActionModal from '../../hooks/useActionModal'
 import ActionModal from '../../components/ActionModal'
 import CustomText from '../../components/CustomText'
@@ -22,6 +24,7 @@ import { Animated } from 'react-native'
 import Constants from 'expo-constants'
 
 const ViewPurchases = ({ navigation }) => {
+  const insets = useSafeAreaInsets()
   const { appVariant } = Constants.expoConfig.extra
   const [translate] = useTranslation(VIEW_PURCHASES_SCREEN_KEY)
   const { actionModal, setActionModal, resetActionModal } = useActionModal()
@@ -110,7 +113,7 @@ const ViewPurchases = ({ navigation }) => {
   }, [])
 
   return (
-    <ScreenContainer background={background} colorSafeArea={colors.primary}>
+    <ScreenContainer background={background} noSafeArea={true}>
       <ActionModal {...{ actionModal, resetActionModal }} />
 
       {loading ? (
@@ -134,118 +137,136 @@ const ViewPurchases = ({ navigation }) => {
           ItemSeparatorComponent={({ trailingItem }) => (
             <Spacer color="transparent" size={trailingItem ? 10 : 0} />
           )}
-          renderItem={({ item, index }) => (
-            <Swipeable
-              ref={(ref) => (swipeablesRef.current[index] = ref)}
-              renderRightActions={() =>
-                selectedId !== item.id && (
-                  <>
-                    <CustomHighlightButton
-                      handlePress={() => {
-                        setActionModal({
-                          visible: true,
-                          title: translate('modals.reuseList.title'),
-                          message: translate('modals.reuseList.message'),
-                          action: () => handleReuseElementList(item),
-                          confirm: translate('modals.reuseList.buttons.confirm'),
-                          cancel: translate('modals.reuseList.buttons.cancel')
-                        })
-                      }}
-                      customStyle={styles.rightContent}
-                      backgroundColor={colors.nonary}
-                    >
-                      <MaterialCommunityIcons
-                        name="cart-arrow-up"
-                        color={colors.secondary}
-                        size={24}
-                      />
-                    </CustomHighlightButton>
+          renderItem={({ item, index, section }) => {
+            const isLastSection = section === elementsList.at(-1)
+            const isLastItemInSection = index === section.data.length - 1
+            const isLastItemInList = isLastSection && isLastItemInSection
 
-                    <CustomHighlightButton
-                      handlePress={() => {
-                        setActionModal({
-                          visible: true,
-                          title: translate('modals.removeList.title'),
-                          message: translate('modals.removeList.message'),
-                          action: () => handleRemoveElementList(item.id),
-                          confirm: translate('modals.removeList.buttons.confirm'),
-                          cancel: translate('modals.removeList.buttons.cancel')
-                        })
-                      }}
-                      customStyle={styles.rightContent}
-                      backgroundColor={colors.septenary}
-                    >
-                      <MaterialCommunityIcons
-                        name="cart-remove"
-                        color={colors.secondary}
-                        size={24}
-                      />
-                    </CustomHighlightButton>
-                  </>
-                )
-              }
-            >
-              <Animated.View style={styles.box}>
-                <View style={styles.boxContent}>
-                  <View style={styles.leftSideItem}>
-                    <CustomText
-                      text={`${translate('indicators.total')}: ${formatToCLP(item.total)}`}
-                      color={colors.text}
-                      size={22}
-                    />
-                  </View>
+            return (
+              <>
+                <Swipeable
+                  ref={(ref) => (swipeablesRef.current[index] = ref)}
+                  renderRightActions={() =>
+                    selectedId !== item.id && (
+                      <>
+                        <CustomHighlightButton
+                          handlePress={() => {
+                            setActionModal({
+                              visible: true,
+                              title: translate('modals.reuseList.title'),
+                              message: translate('modals.reuseList.message'),
+                              action: () => handleReuseElementList(item),
+                              confirm: translate('modals.reuseList.buttons.confirm'),
+                              cancel: translate('modals.reuseList.buttons.cancel')
+                            })
+                          }}
+                          customStyle={styles.rightContent}
+                          backgroundColor={colors.nonary}
+                        >
+                          <MaterialCommunityIcons
+                            name="cart-arrow-up"
+                            color={colors.secondary}
+                            size={24}
+                          />
+                        </CustomHighlightButton>
 
-                  <CustomHighlightButton
-                    handlePress={() => setSelectedId(selectedId === item.id ? null : item.id)}
-                    backgroundColor={colors.quinary}
-                  >
-                    {selectedId === item.id ? (
-                      <Feather name="eye" size={24} color={colors.secondary} />
-                    ) : (
-                      <Feather name="eye-off" size={24} color={colors.octonary} />
-                    )}
-                  </CustomHighlightButton>
-                </View>
+                        <CustomHighlightButton
+                          handlePress={() => {
+                            setActionModal({
+                              visible: true,
+                              title: translate('modals.removeList.title'),
+                              message: translate('modals.removeList.message'),
+                              action: () => handleRemoveElementList(item.id),
+                              confirm: translate('modals.removeList.buttons.confirm'),
+                              cancel: translate('modals.removeList.buttons.cancel')
+                            })
+                          }}
+                          customStyle={styles.rightContent}
+                          backgroundColor={colors.septenary}
+                        >
+                          <MaterialCommunityIcons
+                            name="cart-remove"
+                            color={colors.secondary}
+                            size={24}
+                          />
+                        </CustomHighlightButton>
+                      </>
+                    )
+                  }
+                >
+                  <Animated.View style={styles.box}>
+                    <View style={styles.boxContent}>
+                      <View style={styles.leftSideItem}>
+                        <CustomText
+                          text={`${translate('indicators.total')}: ${formatToCLP(item.total)}`}
+                          color={colors.text}
+                          size={22}
+                        />
+                      </View>
 
-                <View style={styles.boxContent}>
-                  <CustomText text={formatToText(item.createdAt)} color={colors.text} />
-                </View>
-              </Animated.View>
-
-              {selectedId === item.id &&
-                item.elements.map((item, index) => (
-                  <Animated.View key={index} style={styles.content}>
-                    <View style={styles.header}>
-                      <CustomText text={item.name} color={colors.text} />
+                      <CustomHighlightButton
+                        handlePress={() => setSelectedId(selectedId === item.id ? null : item.id)}
+                        backgroundColor={colors.quinary}
+                      >
+                        {selectedId === item.id ? (
+                          <Feather name="eye" size={24} color={colors.secondary} />
+                        ) : (
+                          <Feather name="eye-off" size={24} color={colors.octonary} />
+                        )}
+                      </CustomHighlightButton>
                     </View>
 
-                    <Spacer />
-
-                    <View style={styles.body}>
-                      <View style={styles.values}>
-                        <View style={styles.data}>
-                          <CustomText text={`${translate('fields.unit')}:`} color={colors.text} />
-                          <CustomText text={item.unit} color={colors.text} />
-                        </View>
-
-                        <View style={styles.data}>
-                          <CustomText
-                            text={`${translate('fields.quantity')}:`}
-                            color={colors.text}
-                          />
-                          <CustomText text={item.quantity} color={colors.text} />
-                        </View>
-
-                        <View style={styles.data}>
-                          <CustomText text={`${translate('fields.total')}:`} color={colors.text} />
-                          <CustomText text={item.total} color={colors.text} />
-                        </View>
-                      </View>
+                    <View style={styles.boxContent}>
+                      <CustomText text={formatToText(item.createdAt)} color={colors.text} />
                     </View>
                   </Animated.View>
-                ))}
-            </Swipeable>
-          )}
+
+                  {selectedId === item.id &&
+                    item.elements.map((item, index) => (
+                      <Animated.View key={index} style={styles.content}>
+                        <View style={styles.header}>
+                          <CustomText text={item.name} color={colors.text} />
+                        </View>
+
+                        <Spacer />
+
+                        <View style={styles.body}>
+                          <View style={styles.values}>
+                            <View style={styles.data}>
+                              <CustomText
+                                text={`${translate('fields.unit')}:`}
+                                color={colors.text}
+                              />
+                              <CustomText text={item.unit} color={colors.text} />
+                            </View>
+
+                            <View style={styles.data}>
+                              <CustomText
+                                text={`${translate('fields.quantity')}:`}
+                                color={colors.text}
+                              />
+                              <CustomText text={item.quantity} color={colors.text} />
+                            </View>
+
+                            <View style={styles.data}>
+                              <CustomText
+                                text={`${translate('fields.total')}:`}
+                                color={colors.text}
+                              />
+                              <CustomText text={item.total} color={colors.text} />
+                            </View>
+                          </View>
+                        </View>
+                      </Animated.View>
+                    ))}
+                </Swipeable>
+
+                {isLastItemInList && (
+                  <Spacer color={colors.primary} size={insets.bottom || DEFAULT_BOTTOM_INSET} />
+                )}
+              </>
+            )
+          }}
           ListEmptyComponent={
             <View style={styles.messageContent}>
               <CustomText text={translate('indicators.noData')} color={colors.text} />
@@ -274,7 +295,6 @@ const allStyles = ({ colors, animations }) => {
       borderRadius: 3
     },
     itemsContainer: {
-      paddingBottom: 10,
       paddingHorizontal: 8,
       paddingTop: 5
     },

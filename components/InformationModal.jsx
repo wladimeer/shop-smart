@@ -3,6 +3,7 @@ import { Modal, View, Text, FlatList } from 'react-native'
 import { useSafeAreaInsets } from 'react-native-safe-area-context'
 import { TouchableOpacity, StyleSheet, Animated } from 'react-native'
 import { impactAsync, ImpactFeedbackStyle } from 'expo-haptics'
+import { DEFAULT_BOTTOM_INSET } from '../constants/config'
 import Octicons from '@expo/vector-icons/Octicons'
 import { Fontisto } from '@expo/vector-icons'
 import { useEffect } from 'react'
@@ -68,27 +69,33 @@ const InformationModal = ({ informationModal, resetInformationModal }) => {
           <>
             <FlatList
               data={items}
-              renderItem={({ item: { title, features } }) => (
-                <>
-                  <View style={styles.sectionContent}>
-                    <Text style={styles.sectionTitle}>{title}</Text>
-                  </View>
+              renderItem={({ item: { title, features }, index }) => {
+                const lastItemRendered = index === items.length - 1
 
-                  <View style={styles.contentContainer}>
-                    {features.map((feature, featureIndex) => (
-                      <View key={featureIndex} style={styles.content}>
-                        <Octicons name="dot-fill" size={20} color={colors.secondary} />
-                        <Text style={styles.contentItem}>{feature}</Text>
-                      </View>
-                    ))}
-                  </View>
-                </>
-              )}
+                return (
+                  <>
+                    <View style={styles.sectionContent}>
+                      <Text style={styles.sectionTitle}>{title}</Text>
+                    </View>
+
+                    <View style={styles.contentContainer}>
+                      {features.map((feature, featureIndex) => (
+                        <View key={featureIndex} style={styles.content}>
+                          <Octicons name="dot-fill" size={20} color={colors.secondary} />
+                          <Text style={styles.contentItem}>{feature}</Text>
+                        </View>
+                      ))}
+                    </View>
+
+                    {lastItemRendered && (
+                      <Spacer color={colors.primary} size={insets.bottom || DEFAULT_BOTTOM_INSET} />
+                    )}
+                  </>
+                )
+              }}
               contentContainerStyle={styles.sectionContainer}
               keyExtractor={(_, itemIndex) => itemIndex}
             />
-
-            <Spacer color={colors.primary} size={insets.bottom || 12} />
           </>
         )}
       </Animated.View>

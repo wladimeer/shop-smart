@@ -145,7 +145,7 @@ const ViewPurchases = ({ navigation }) => {
             return (
               <>
                 <Swipeable
-                  ref={(ref) => (swipeablesRef.current[index] = ref)}
+                  ref={(ref) => swipeablesRef.current.push(ref)}
                   renderRightActions={() =>
                     selectedId !== item.id && (
                       <>

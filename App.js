@@ -12,12 +12,10 @@ import variantFeaturesES from './locales/es/variantFeatures.json'
 import { VIEW_PURCHASES_SCREEN_KEY } from './constants/screens'
 import { VARIANT_FEATURES_MODAL_KEY } from './constants/modals'
 import { NEW_PURCHASE_SCREEN_KEY } from './constants/screens'
-import productsListES from './locales/es/productsList.json'
 import { DEFAULT_LANGUAGE_CODE } from './constants/locales'
 import { PRINCIPAL_SCREEN_KEY } from './constants/screens'
 import newPurchaseES from './locales/es/newPurchase.json'
 import { LanguageProvider } from './contexts/Language'
-import { PRODUCTS_LIST_KEY } from './constants/datas'
 import * as SplashScreen from 'expo-splash-screen'
 import { I18nextProvider } from 'react-i18next'
 import { useFonts } from 'expo-font'
@@ -36,8 +34,7 @@ i18n.init({
       [NEW_PURCHASE_SCREEN_KEY]: newPurchaseES,
       [VIEW_PURCHASES_SCREEN_KEY]: viewPurchasesES,
       [VARIANT_FEATURES_MODAL_KEY]: variantFeaturesES,
-      [SCREENS_HEADER_KEY]: screensHeaderES,
-      [PRODUCTS_LIST_KEY]: productsListES
+      [SCREENS_HEADER_KEY]: screensHeaderES
     }
   },
   fallbackLng: DEFAULT_LANGUAGE_CODE,

@@ -13,7 +13,6 @@ import { NEW_PURCHASE_SCREEN_KEY } from '../../constants/screens'
 import ScreenContainer from '../../components/ScreenContainer'
 import { getTotal, convertItem } from '../../utils/purchase'
 import { setElementsList } from '../../services/purchase'
-import { PRODUCTS_LIST_KEY } from '../../constants/datas'
 import { removeDiacritics } from '../../utils/purchase'
 import useActionModal from '../../hooks/useActionModal'
 import ActionModal from '../../components/ActionModal'
@@ -28,7 +27,6 @@ import * as Yup from 'yup'
 const NewPurchase = ({ navigation, route: { params = {} } }) => {
   const { elementsList = [] } = params
   const [translate] = useTranslation(NEW_PURCHASE_SCREEN_KEY)
-  const [productsListTranslate] = useTranslation(PRODUCTS_LIST_KEY)
   const { actionModal, setActionModal, resetActionModal } = useActionModal()
   const [focusedItemIndex, setFocusedItemIndex] = useState(null)
   const [filteredOptions, setFilteredOptions] = useState([])
@@ -111,7 +109,7 @@ const NewPurchase = ({ navigation, route: { params = {} } }) => {
   }
 
   const handleLoadOptions = () => {
-    const list = productsListTranslate('list', { returnObjects: true })
+    const list = translate('data.products', { returnObjects: true })
     setOptions(list)
   }
 

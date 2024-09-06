@@ -1,6 +1,7 @@
 import 'react-native-gesture-handler'
 import principalES from './locales/es/principal.json'
 import { SCREENS_HEADER_KEY } from './constants/headers'
+import appSettingsES from './locales/es/appSettings.json'
 import { VALID_LANGUAGE_CODES } from './constants/locales'
 import { SPANISH_LANGUAGE_CODE } from './constants/locales'
 import viewPurchasesES from './locales/es/viewPurchases.json'
@@ -11,6 +12,7 @@ import Animated, { useAnimatedStyle } from 'react-native-reanimated'
 import variantFeaturesES from './locales/es/variantFeatures.json'
 import { VIEW_PURCHASES_SCREEN_KEY } from './constants/screens'
 import { VARIANT_FEATURES_MODAL_KEY } from './constants/modals'
+import { APP_SETTINGS_SCREEN_KEY } from './constants/screens'
 import { NEW_PURCHASE_SCREEN_KEY } from './constants/screens'
 import { DEFAULT_LANGUAGE_CODE } from './constants/locales'
 import { PRINCIPAL_SCREEN_KEY } from './constants/screens'
@@ -34,6 +36,7 @@ i18n.init({
       [NEW_PURCHASE_SCREEN_KEY]: newPurchaseES,
       [VIEW_PURCHASES_SCREEN_KEY]: viewPurchasesES,
       [VARIANT_FEATURES_MODAL_KEY]: variantFeaturesES,
+      [APP_SETTINGS_SCREEN_KEY]: appSettingsES,
       [SCREENS_HEADER_KEY]: screensHeaderES
     }
   },

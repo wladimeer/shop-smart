@@ -2,6 +2,7 @@
   "title": "Principal",
   "buttons": {
     "newPurchase": "Nueva Compra",
-    "viewPurchases": "Ver Compras"
+    "viewPurchases": "Ver Compras",
+    "appSettings": "Configuración"
   }
 }

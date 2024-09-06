@@ -8,48 +8,47 @@ const LanguageContext = createContext()
 
 const LanguageProvider = ({ children }) => {
   const [_, { changeLanguage }] = useTranslation()
-  const [languageData, setLanguageData] = useState(null)
+  const [languageCode, setLanguageCode] = useState(null)
   const [loading, setLoading] = useState(true)
 
-  const updateLanguageData = async (languageData = null) => {
-    let definedLanguage = DEFAULT_LANGUAGE_CODE
+  const updateLanguageCode = async (languageCode = null) => {
+    let definedCode = DEFAULT_LANGUAGE_CODE
 
-    if (languageData !== null && VALID_LANGUAGE_CODES.includes(languageData)) {
-      definedLanguage = languageData
+    if (VALID_LANGUAGE_CODES.includes(languageCode)) {
+      definedCode = languageCode
     }
 
-    await AsyncStorage.setItem(LANGUAGE_KEY, definedLanguage)
-    setLanguageData(definedLanguage)
-    changeLanguage(definedLanguage)
+    await AsyncStorage.setItem(LANGUAGE_KEY, definedCode)
+    setLanguageCode(definedCode)
+    changeLanguage(definedCode)
   }
 
   useEffect(() => {
-    const loadLanguage = async () => {
+    const loadLanguageCode = async () => {
       const exist = await AsyncStorage.getItem(LANGUAGE_KEY)
 
       if (exist != null) {
-        const languageData = await AsyncStorage.getItem(LANGUAGE_KEY)
-        updateLanguageData(languageData)
+        const languageCode = await AsyncStorage.getItem(LANGUAGE_KEY)
+        updateLanguageCode(languageCode)
       } else {
-        updateLanguageData()
+        updateLanguageCode()
       }
 
       setLoading(false)
     }
 
-    loadLanguage()
+    loadLanguageCode()
   }, [])
 
   return (
-    <LanguageContext.Provider value={{ languageData, updateLanguageData }}>
-      {!loading && children}
+    <LanguageContext.Provider value={{ languageCode, updateLanguageCode }}>
+      {!loading && languageCode && children}
     </LanguageContext.Provider>
   )
 }
 
 const useLanguage = () => {
-  const { languageData, updateLanguageData } = useContext(LanguageContext)
-  return { languageData, updateLanguageData }
+  return useContext(LanguageContext)
 }
 
 export { LanguageProvider, useLanguage }

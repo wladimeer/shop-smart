@@ -3,7 +3,8 @@
   "screens": {
     "titles": {
       "newPurchaseScreen": "Nueva Compra",
-      "viewPurchasesScreen": "Ver Compras"
+      "viewPurchasesScreen": "Ver Compras",
+      "appSettingsScreen": "Configuración"
     }
   },
   "buttons": {

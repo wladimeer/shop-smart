@@ -1,10 +1,12 @@
 import NewPurchase from './screens/private/NewPurchase'
 import { SCREENS_HEADER_KEY } from './constants/headers'
 import ViewPurchases from './screens/private/ViewPurchases'
+import { APP_SETTINGS_SCREEN_KEY } from './constants/screens'
 import { VIEW_PURCHASES_SCREEN_KEY, NEW_PURCHASE_SCREEN_KEY } from './constants/screens'
 import { createNativeStackNavigator } from '@react-navigation/native-stack'
 import { NavigationContainer } from '@react-navigation/native'
 import { PRINCIPAL_SCREEN_KEY } from './constants/screens'
+import AppSettings from './screens/private/AppSettings'
 import Principal from './screens/public/Principal'
 import { useTranslation } from 'react-i18next'
 import originalTheme from './themes/original'
@@ -40,6 +42,10 @@ const AppRouter = () => {
     [VIEW_PURCHASES_SCREEN_KEY]: {
       title: translate(`screens.titles.${VIEW_PURCHASES_SCREEN_KEY}`),
       ...options
+    },
+    [APP_SETTINGS_SCREEN_KEY]: {
+      title: translate(`screens.titles.${APP_SETTINGS_SCREEN_KEY}`),
+      ...options
     }
   }
 
@@ -60,6 +66,11 @@ const AppRouter = () => {
           name={VIEW_PURCHASES_SCREEN_KEY}
           options={screenOptions[VIEW_PURCHASES_SCREEN_KEY]}
           component={ViewPurchases}
+        />
+        <Stack.Screen
+          name={APP_SETTINGS_SCREEN_KEY}
+          options={screenOptions[APP_SETTINGS_SCREEN_KEY]}
+          component={AppSettings}
         />
       </Stack.Navigator>
     </NavigationContainer>

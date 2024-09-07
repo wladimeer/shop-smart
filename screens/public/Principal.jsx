@@ -6,7 +6,9 @@ import { NEW_PURCHASE_SCREEN_KEY } from '../../constants/screens'
 import { APP_SETTINGS_SCREEN_KEY } from '../../constants/screens'
 import ScreenContainer from '../../components/ScreenContainer'
 import background from '../../assets/principal-background.jpg'
+import MaterialIcons from '@expo/vector-icons/MaterialIcons'
 import CustomButton from '../../components/CustomButton'
+import Ionicons from '@expo/vector-icons/Ionicons'
 import { useTranslation } from 'react-i18next'
 
 const Principal = ({ navigation }) => {
@@ -23,15 +25,23 @@ const Principal = ({ navigation }) => {
           <CustomButton
             text={translate('buttons.newPurchase')}
             handlePress={() => handleNavigation(NEW_PURCHASE_SCREEN_KEY)}
-          />
+          >
+            <MaterialIcons name="add-shopping-cart" size={24} color="white" />
+          </CustomButton>
+
           <CustomButton
             text={translate('buttons.viewPurchases')}
             handlePress={() => handleNavigation(VIEW_PURCHASES_SCREEN_KEY)}
-          />
+          >
+            <MaterialIcons name="shopping-cart-checkout" size={24} color="white" />
+          </CustomButton>
+
           <CustomButton
             text={translate('buttons.appSettings')}
             handlePress={() => handleNavigation(APP_SETTINGS_SCREEN_KEY)}
-          />
+          >
+            <Ionicons name="settings-outline" size={24} color="white" />
+          </CustomButton>
         </ElementGroup>
       </ScreenContainer>
 

@@ -1,0 +1,34 @@
+{
+  "title": "View Purchases",
+  "fields": {
+    "name": "Name",
+    "unit": "Unit Price",
+    "quantity": "Unit(s)",
+    "total": "Product Total"
+  },
+  "modals": {
+    "reuseList": {
+      "title": "Are you sure?",
+      "message": "Do you want to reuse this product list? You will be able to modify the values of each product in \"New Purchase\"",
+      "buttons": {
+        "confirm": "Yes, of course",
+        "cancel": "Not for now"
+      }
+    },
+    "removeList": {
+      "title": "Are you sure?",
+      "message": "Do you want to delete this product list? You will not be able to view or reuse it",
+      "buttons": {
+        "confirm": "Yes, I'm sure",
+        "cancel": "I'm not sure"
+      }
+    }
+  },
+  "indicators": {
+    "total": "Total",
+    "time": {
+      "today": "today"
+    },
+    "noData": "No data. Go to \"New Purchase\" and add some products :)"
+  }
+}

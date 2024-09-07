@@ -20,9 +20,9 @@ const AppSettings = ({ navigation }) => {
   const [translate] = useTranslation(APP_SETTINGS_SCREEN_KEY)
   const [currentLanguage, setCurrentLanguage] = useState({})
   const [filteredOptions, setFilteredOptions] = useState([])
+  const { languageCode, updateLanguageCode } = useLanguage()
   const [languageList, setLanguageList] = useState([])
   const [loading, setLoading] = useState(true)
-  const { languageCode } = useLanguage()
   const { colors } = useTheme()
 
   const fadeAnimation = new Animated.Value(0)
@@ -52,8 +52,14 @@ const AppSettings = ({ navigation }) => {
 
   const handleOptionPress = (field, code) => {
     if (field === LANGUAGE_FIELD) {
-      console.log(field, code)
+      updateLanguageCode(code)
     }
+  }
+
+  const handleChangeLanguage = () => {
+    setCurrentLanguage({})
+    setFilteredOptions([])
+    handleLoadSettings()
   }
 
   const handleLoadSettings = async () => {
@@ -69,6 +75,7 @@ const AppSettings = ({ navigation }) => {
     }
   }
 
+  useEffect(handleChangeLanguage, [languageCode])
   useEffect(toggleExpand, [filteredOptions])
 
   useEffect(() => {
@@ -84,7 +91,7 @@ const AppSettings = ({ navigation }) => {
       ) : (
         <ScrollView style={styles.container}>
           <Formik initialValues={initialValues}>
-            {({ setFieldValue, values }) => {
+            {({ setFieldValue, resetForm, values }) => {
               const handleUpdateItem = (fieldKey, value) => {
                 if (fieldKey === LANGUAGE_FIELD) {
                   if (value.length > 0) {
@@ -107,6 +114,8 @@ const AppSettings = ({ navigation }) => {
 
                 setFieldValue(fieldKey, value)
               }
+
+              useEffect(resetForm, [languageCode])
 
               return (
                 <View style={styles.configContainer}>

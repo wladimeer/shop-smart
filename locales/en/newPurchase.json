@@ -1,0 +1,3327 @@
+{
+  "title": "New Purchase",
+  "fields": {
+    "name": "Name",
+    "unit": "Unit Price",
+    "quantity": "Unit(s)",
+    "total": "Total Product"
+  },
+  "buttons": {
+    "increase": "More",
+    "decrease": "Less"
+  },
+  "placeholders": {
+    "name": "Enter the product name",
+    "unit": "0",
+    "quantity": "0",
+    "total": "0"
+  },
+  "modals": {
+    "saveList": {
+      "title": "What do you say?",
+      "message": "Do you want to save this product list? You can view the list in \"View Purchases\"",
+      "buttons": {
+        "confirm": "Yes, of course",
+        "cancel": "No, thanks"
+      }
+    },
+    "verifyForm": {
+      "title": "Important",
+      "message": "Verify that all products have the values entered",
+      "buttons": {
+        "confirm": "I understand"
+      }
+    }
+  },
+  "form": {
+    "required": {
+      "name": "Name is required",
+      "unit": "Unit price is required",
+      "quantity": "Quantity is required"
+    }
+  },
+  "indicators": {
+    "total": "Total",
+    "noData": "No data, register some products :)"
+  },
+  "data": {
+    "products": [
+      {
+        "name": "Sunflower Oil",
+        "units": {
+          "1": {
+            "full": "Liters",
+            "abbr": "L"
+          },
+          "0.5": {
+            "full": "Milliliters",
+            "abbr": "mL"
+          }
+        }
+      },
+      {
+        "name": "Olive Oil",
+        "units": {
+          "1": {
+            "full": "Liters",
+            "abbr": "L"
+          },
+          "0.5": {
+            "full": "Milliliters",
+            "abbr": "mL"
+          }
+        }
+      },
+      {
+        "name": "Black Olives",
+        "units": {
+          "1": {
+            "full": "Kilograms",
+            "abbr": "kg"
+          },
+          "0.5": {
+            "full": "Grams",
+            "abbr": "g"
+          }
+        }
+      },
+      {
+        "name": "Green Olives",
+        "units": {
+          "1": {
+            "full": "Kilograms",
+            "abbr": "kg"
+          },
+          "0.5": {
+            "full": "Grams",
+            "abbr": "g"
+          }
+        }
+      },
+      {
+        "name": "Caesar Dressing",
+        "units": {
+          "1": {
+            "full": "Liters",
+            "abbr": "L"
+          },
+          "0.5": {
+            "full": "Milliliters",
+            "abbr": "mL"
+          }
+        }
+      },
+      {
+        "name": "Ranch Dressing",
+        "units": {
+          "1": {
+            "full": "Liters",
+            "abbr": "L"
+          },
+          "0.5": {
+            "full": "Milliliters",
+            "abbr": "mL"
+          }
+        }
+      },
+      {
+        "name": "Sparkling Water",
+        "units": {
+          "1": {
+            "full": "Liters",
+            "abbr": "L"
+          },
+          "0.5": {
+            "full": "Milliliters",
+            "abbr": "mL"
+          }
+        }
+      },
+      {
+        "name": "Mineral Water",
+        "units": {
+          "1": {
+            "full": "Liters",
+            "abbr": "L"
+          },
+          "0.5": {
+            "full": "Milliliters",
+            "abbr": "mL"
+          }
+        }
+      },
+      {
+        "name": "Garlic Powder",
+        "units": {
+          "1": {
+            "full": "Kilograms",
+            "abbr": "kg"
+          },
+          "0.5": {
+            "full": "Grams",
+            "abbr": "g"
+          }
+        }
+      },
+      {
+        "name": "Dried Basil",
+        "units": {
+          "1": {
+            "full": "Kilograms",
+            "abbr": "kg"
+          },
+          "0.5": {
+            "full": "Grams",
+            "abbr": "g"
+          }
+        }
+      },
+      {
+        "name": "Canned Clams",
+        "units": {
+          "1": {
+            "full": "Kilograms",
+            "abbr": "kg"
+          },
+          "0.5": {
+            "full": "Grams",
+            "abbr": "g"
+          }
+        }
+      },
+      {
+        "name": "Almonds",
+        "units": {
+          "1": {
+            "full": "Kilograms",
+            "abbr": "kg"
+          },
+          "0.5": {
+            "full": "Grams",
+            "abbr": "g"
+          }
+        }
+      },
+      {
+        "name": "Anchovies in Oil",
+        "units": {
+          "1": {
+            "full": "Kilograms",
+            "abbr": "kg"
+          },
+          "0.5": {
+            "full": "Grams",
+            "abbr": "g"
+          }
+        }
+      },
+      {
+        "name": "Eel in Brine",
+        "units": {
+          "1": {
+            "full": "Kilograms",
+            "abbr": "kg"
+          },
+          "0.5": {
+            "full": "Grams",
+            "abbr": "g"
+          }
+        }
+      },
+      {
+        "name": "Eggplant Antipasto",
+        "units": {
+          "1": {
+            "full": "Kilograms",
+            "abbr": "kg"
+          },
+          "0.5": {
+            "full": "Grams",
+            "abbr": "g"
+          }
+        }
+      },
+      {
+        "name": "Mushroom Antipasto",
+        "units": {
+          "1": {
+            "full": "Kilograms",
+            "abbr": "kg"
+          },
+          "0.5": {
+            "full": "Grams",
+            "abbr": "g"
+          }
+        }
+      },
+      {
+        "name": "Pepper Antipasto",
+        "units": {
+          "1": {
+            "full": "Kilograms",
+            "abbr": "kg"
+          },
+          "0.5": {
+            "full": "Grams",
+            "abbr": "g"
+          }
+        }
+      },
+      {
+        "name": "Aniseed",
+        "units": {
+          "1": {
+            "full": "Kilograms",
+            "abbr": "kg"
+          },
+          "0.5": {
+            "full": "Grams",
+            "abbr": "g"
+          }
+        }
+      },
+      {
+        "name": "Star Anise",
+        "units": {
+          "1": {
+            "full": "Kilograms",
+            "abbr": "kg"
+          },
+          "0.5": {
+            "full": "Grams",
+            "abbr": "g"
+          }
+        }
+      },
+      {
+        "name": "White Rice",
+        "units": {
+          "1": {
+            "full": "Kilograms",
+            "abbr": "kg"
+          },
+          "0.5": {
+            "full": "Grams",
+            "abbr": "g"
+          }
+        }
+      },
+      {
+        "name": "Brown Rice",
+        "units": {
+          "1": {
+            "full": "Kilograms",
+            "abbr": "kg"
+          },
+          "0.5": {
+            "full": "Grams",
+            "abbr": "g"
+          }
+        }
+      },
+      {
+        "name": "Frozen Blueberries",
+        "units": {
+          "1": {
+            "full": "Kilograms",
+            "abbr": "kg"
+          },
+          "0.5": {
+            "full": "Grams",
+            "abbr": "g"
+          }
+        }
+      },
+      {
+        "name": "Dried Blueberries",
+        "units": {
+          "1": {
+            "full": "Kilograms",
+            "abbr": "kg"
+          },
+          "0.5": {
+            "full": "Grams",
+            "abbr": "g"
+          }
+        }
+      },
+      {
+        "name": "Tuna in Oil",
+        "units": {
+          "1": {
+            "full": "Kilograms",
+            "abbr": "kg"
+          },
+          "0.5": {
+            "full": "Grams",
+            "abbr": "g"
+          }
+        }
+      },
+      {
+        "name": "Hazelnuts",
+        "units": {
+          "1": {
+            "full": "Kilograms",
+            "abbr": "kg"
+          },
+          "0.5": {
+            "full": "Grams",
+            "abbr": "g"
+          }
+        }
+      },
+      {
+        "name": "Oats",
+        "units": {
+          "1": {
+            "full": "Kilograms",
+            "abbr": "kg"
+          },
+          "0.5": {
+            "full": "Grams",
+            "abbr": "g"
+          }
+        }
+      },
+      {
+        "name": "White Sugar",
+        "units": {
+          "1": {
+            "full": "Kilograms",
+            "abbr": "kg"
+          },
+          "0.5": {
+            "full": "Grams",
+            "abbr": "g"
+          }
+        }
+      },
+      {
+        "name": "Powdered Sugar",
+        "units": {
+          "1": {
+            "full": "Kilograms",
+            "abbr": "kg"
+          },
+          "0.5": {
+            "full": "Grams",
+            "abbr": "g"
+          }
+        }
+      },
+      {
+        "name": "Brown Sugar",
+        "units": {
+          "1": {
+            "full": "Kilograms",
+            "abbr": "kg"
+          },
+          "0.5": {
+            "full": "Grams",
+            "abbr": "g"
+          }
+        }
+      },
+      {
+        "name": "Frozen Cod",
+        "units": {
+          "1": {
+            "full": "Kilograms",
+            "abbr": "kg"
+          },
+          "0.5": {
+            "full": "Grams",
+            "abbr": "g"
+          }
+        }
+      },
+      {
+        "name": "Desalted Cod",
+        "units": {
+          "1": {
+            "full": "Kilograms",
+            "abbr": "kg"
+          },
+          "0.5": {
+            "full": "Grams",
+            "abbr": "g"
+          }
+        }
+      },
+      {
+        "name": "Baguette",
+        "units": {
+          "1": {
+            "full": "Kilograms",
+            "abbr": "kg"
+          },
+          "0.5": {
+            "full": "Grams",
+            "abbr": "g"
+          }
+        }
+      },
+      {
+        "name": "Sweet Potato",
+        "units": {
+          "1": {
+            "full": "Kilograms",
+            "abbr": "kg"
+          },
+          "0.5": {
+            "full": "Grams",
+            "abbr": "g"
+          }
+        }
+      },
+      {
+        "name": "Almond Drink",
+        "units": {
+          "1": {
+            "full": "Liters",
+            "abbr": "L"
+          },
+          "0.5": {
+            "full": "Milliliters",
+            "abbr": "mL"
+          }
+        }
+      },
+      {
+        "name": "Rice Drink",
+        "units": {
+          "1": {
+            "full": "Liters",
+            "abbr": "L"
+          },
+          "0.5": {
+            "full": "Milliliters",
+            "abbr": "mL"
+          }
+        }
+      },
+      {
+        "name": "Oat Drink",
+        "units": {
+          "1": {
+            "full": "Liters",
+            "abbr": "L"
+          },
+          "0.5": {
+            "full": "Milliliters",
+            "abbr": "mL"
+          }
+        }
+      },
+      {
+        "name": "Soy Drink",
+        "units": {
+          "1": {
+            "full": "Liters",
+            "abbr": "L"
+          },
+          "0.5": {
+            "full": "Milliliters",
+            "abbr": "mL"
+          }
+        }
+      },
+      {
+        "name": "Energy Drink",
+        "units": {
+          "1": {
+            "full": "Liters",
+            "abbr": "L"
+          },
+          "0.5": {
+            "full": "Milliliters",
+            "abbr": "mL"
+          }
+        }
+      },
+      {
+        "name": "Sports Drink",
+        "units": {
+          "1": {
+            "full": "Liters",
+            "abbr": "L"
+          },
+          "0.5": {
+            "full": "Milliliters",
+            "abbr": "mL"
+          }
+        }
+      },
+      {
+        "name": "Bacon",
+        "units": {
+          "1": {
+            "full": "Kilograms",
+            "abbr": "kg"
+          },
+          "0.5": {
+            "full": "Grams",
+            "abbr": "g"
+          }
+        }
+      },
+      {
+        "name": "Canned Clams",
+        "units": {
+          "1": {
+            "full": "Kilograms",
+            "abbr": "kg"
+          },
+          "0.5": {
+            "full": "Grams",
+            "abbr": "g"
+          }
+        }
+      },
+      {
+        "name": "Fresh Eggplants",
+        "units": {
+          "1": {
+            "full": "Kilograms",
+            "abbr": "kg"
+          },
+          "0.5": {
+            "full": "Grams",
+            "abbr": "g"
+          }
+        }
+      },
+      {
+        "name": "Bream",
+        "units": {
+          "1": {
+            "full": "Kilograms",
+            "abbr": "kg"
+          },
+          "0.5": {
+            "full": "Grams",
+            "abbr": "g"
+          }
+        }
+      },
+      {
+        "name": "Beetroot",
+        "units": {
+          "1": {
+            "full": "Kilograms",
+            "abbr": "kg"
+          },
+          "0.5": {
+            "full": "Grams",
+            "abbr": "g"
+          }
+        }
+      },
+      {
+        "name": "Baking Soda",
+        "units": {
+          "1": {
+            "full": "Kilograms",
+            "abbr": "kg"
+          },
+          "0.5": {
+            "full": "Grams",
+            "abbr": "g"
+          }
+        }
+      },
+      {
+        "name": "Biscuits",
+        "units": {
+          "1": {
+            "full": "Kilograms",
+            "abbr": "kg"
+          },
+          "0.5": {
+            "full": "Grams",
+            "abbr": "g"
+          }
+        }
+      },
+      {
+        "name": "Chocolate Cake",
+        "units": {
+          "1": {
+            "full": "Kilograms",
+            "abbr": "kg"
+          },
+          "0.5": {
+            "full": "Grams",
+            "abbr": "g"
+          }
+        }
+      },
+      {
+        "name": "Vanilla Cake",
+        "units": {
+          "1": {
+            "full": "Kilograms",
+            "abbr": "kg"
+          },
+          "0.5": {
+            "full": "Grams",
+            "abbr": "g"
+          }
+        }
+      },
+      {
+        "name": "Corn Snacks",
+        "units": {
+          "1": {
+            "full": "Kilograms",
+            "abbr": "kg"
+          },
+          "0.5": {
+            "full": "Grams",
+            "abbr": "g"
+          }
+        }
+      },
+      {
+        "name": "Anchovies",
+        "units": {
+          "1": {
+            "full": "Kilograms",
+            "abbr": "kg"
+          },
+          "0.5": {
+            "full": "Grams",
+            "abbr": "g"
+          }
+        }
+      },
+      {
+        "name": "Broccoli",
+        "units": {
+          "1": {
+            "full": "Kilograms",
+            "abbr": "kg"
+          },
+          "0.5": {
+            "full": "Grams",
+            "abbr": "g"
+          }
+        }
+      },
+      {
+        "name": "Alfalfa Sprouts",
+        "units": {
+          "1": {
+            "full": "Kilograms",
+            "abbr": "kg"
+          },
+          "0.5": {
+            "full": "Grams",
+            "abbr": "g"
+          }
+        }
+      },
+      {
+        "name": "Soybean Sprouts",
+        "units": {
+          "1": {
+            "full": "Kilograms",
+            "abbr": "kg"
+          },
+          "0.5": {
+            "full": "Grams",
+            "abbr": "g"
+          }
+        }
+      },
+      {
+        "name": "Cocoa Powder",
+        "units": {
+          "1": {
+            "full": "Kilograms",
+            "abbr": "kg"
+          },
+          "0.5": {
+            "full": "Grams",
+            "abbr": "g"
+          }
+        }
+      },
+      {
+        "name": "Cappuccino Coffee",
+        "units": {
+          "1": {
+            "full": "Kilograms",
+            "abbr": "kg"
+          },
+          "0.5": {
+            "full": "Grams",
+            "abbr": "g"
+          }
+        }
+      },
+      {
+        "name": "Decaffeinated Coffee",
+        "units": {
+          "1": {
+            "full": "Kilograms",
+            "abbr": "kg"
+          },
+          "0.5": {
+            "full": "Grams",
+            "abbr": "g"
+          }
+        }
+      },
+      {
+        "name": "Instant Coffee",
+        "units": {
+          "1": {
+            "full": "Kilograms",
+            "abbr": "kg"
+          },
+          "0.5": {
+            "full": "Grams",
+            "abbr": "g"
+          }
+        }
+      },
+      {
+        "name": "Ground Coffee",
+        "units": {
+          "1": {
+            "full": "Kilograms",
+            "abbr": "kg"
+          },
+          "0.5": {
+            "full": "Grams",
+            "abbr": "g"
+          }
+        }
+      },
+      {
+        "name": "Roasted Coffee",
+        "units": {
+          "1": {
+            "full": "Kilograms",
+            "abbr": "kg"
+          },
+          "0.5": {
+            "full": "Grams",
+            "abbr": "g"
+          }
+        }
+      },
+      {
+        "name": "Zucchini",
+        "units": {
+          "1": {
+            "full": "Kilograms",
+            "abbr": "kg"
+          },
+          "0.5": {
+            "full": "Grams",
+            "abbr": "g"
+          }
+        }
+      },
+      {
+        "name": "Pumpkin",
+        "units": {
+          "1": {
+            "full": "Kilograms",
+            "abbr": "kg"
+          },
+          "0.5": {
+            "full": "Grams",
+            "abbr": "g"
+          }
+        }
+      },
+      {
+        "name": "Chicken Broth",
+        "units": {
+          "1": {
+            "full": "Kilograms",
+            "abbr": "kg"
+          },
+          "0.5": {
+            "full": "Grams",
+            "abbr": "g"
+          }
+        }
+      },
+      {
+        "name": "Beef Broth",
+        "units": {
+          "1": {
+            "full": "Kilograms",
+            "abbr": "kg"
+          },
+          "0.5": {
+            "full": "Grams",
+            "abbr": "g"
+          }
+        }
+      },
+      {
+        "name": "Vegetable Broth",
+        "units": {
+          "1": {
+            "full": "Kilograms",
+            "abbr": "kg"
+          },
+          "0.5": {
+            "full": "Grams",
+            "abbr": "g"
+          }
+        }
+      },
+      {
+        "name": "Frozen Shrimp",
+        "units": {
+          "1": {
+            "full": "Kilograms",
+            "abbr": "kg"
+          },
+          "0.5": {
+            "full": "Grams",
+            "abbr": "g"
+          }
+        }
+      },
+      {
+        "name": "Fresh Shrimp",
+        "units": {
+          "1": {
+            "full": "Kilograms",
+            "abbr": "kg"
+          },
+          "0.5": {
+            "full": "Grams",
+            "abbr": "g"
+          }
+        }
+      },
+      {
+        "name": "Ground Cinnamon",
+        "units": {
+          "1": {
+            "full": "Kilograms",
+            "abbr": "kg"
+          },
+          "0.5": {
+            "full": "Grams",
+            "abbr": "g"
+          }
+        }
+      },
+      {
+        "name": "Canned Crab",
+        "units": {
+          "1": {
+            "full": "Kilograms",
+            "abbr": "kg"
+          },
+          "0.5": {
+            "full": "Grams",
+            "abbr": "g"
+          }
+        }
+      },
+      {
+        "name": "Barley",
+        "units": {
+          "1": {
+            "full": "Kilograms",
+            "abbr": "kg"
+          },
+          "0.5": {
+            "full": "Grams",
+            "abbr": "g"
+          }
+        }
+      },
+      {
+        "name": "Fresh Onions",
+        "units": {
+          "1": {
+            "full": "Kilograms",
+            "abbr": "kg"
+          },
+          "0.5": {
+            "full": "Grams",
+            "abbr": "g"
+          }
+        }
+      },
+      {
+        "name": "Fresh Chives",
+        "units": {
+          "1": {
+            "full": "Kilograms",
+            "abbr": "kg"
+          },
+          "0.5": {
+            "full": "Grams",
+            "abbr": "g"
+          }
+        }
+      },
+      {
+        "name": "Oat Cereal",
+        "units": {
+          "1": {
+            "full": "Kilograms",
+            "abbr": "kg"
+          },
+          "0.5": {
+            "full": "Grams",
+            "abbr": "g"
+          }
+        }
+      },
+      {
+        "name": "Corn Cereal",
+        "units": {
+          "1": {
+            "full": "Kilograms",
+            "abbr": "kg"
+          },
+          "0.5": {
+            "full": "Grams",
+            "abbr": "g"
+          }
+        }
+      },
+      {
+        "name": "Multigrain Cereal",
+        "units": {
+          "1": {
+            "full": "Kilograms",
+            "abbr": "kg"
+          },
+          "0.5": {
+            "full": "Grams",
+            "abbr": "g"
+          }
+        }
+      },
+      {
+        "name": "Candied Cherries",
+        "units": {
+          "1": {
+            "full": "Kilograms",
+            "abbr": "kg"
+          },
+          "0.5": {
+            "full": "Grams",
+            "abbr": "g"
+          }
+        }
+      },
+      {
+        "name": "Fresh Cherries",
+        "units": {
+          "1": {
+            "full": "Kilograms",
+            "abbr": "kg"
+          },
+          "0.5": {
+            "full": "Grams",
+            "abbr": "g"
+          }
+        }
+      },
+      {
+        "name": "Beer",
+        "units": {
+          "1": {
+            "full": "Liters",
+            "abbr": "L"
+          },
+          "0.5": {
+            "full": "Milliliters",
+            "abbr": "mL"
+          }
+        }
+      },
+      {
+        "name": "Craft Beer",
+        "units": {
+          "1": {
+            "full": "Liters",
+            "abbr": "L"
+          },
+          "0.5": {
+            "full": "Milliliters",
+            "abbr": "mL"
+          }
+        }
+      },
+      {
+        "name": "Non-Alcoholic Beer",
+        "units": {
+          "1": {
+            "full": "Liters",
+            "abbr": "L"
+          },
+          "0.5": {
+            "full": "Milliliters",
+            "abbr": "mL"
+          }
+        }
+      },
+      {
+        "name": "Fresh Shallots",
+        "units": {
+          "1": {
+            "full": "Kilograms",
+            "abbr": "kg"
+          },
+          "0.5": {
+            "full": "Grams",
+            "abbr": "g"
+          }
+        }
+      },
+      {
+        "name": "Canned Mushrooms",
+        "units": {
+          "1": {
+            "full": "Kilograms",
+            "abbr": "kg"
+          },
+          "0.5": {
+            "full": "Grams",
+            "abbr": "g"
+          }
+        }
+      },
+      {
+        "name": "Shampoo",
+        "units": {
+          "1": {
+            "full": "Liters",
+            "abbr": "L"
+          },
+          "0.5": {
+            "full": "Milliliters",
+            "abbr": "mL"
+          }
+        }
+      },
+      {
+        "name": "Bitter Chocolate",
+        "units": {
+          "1": {
+            "full": "Kilograms",
+            "abbr": "kg"
+          },
+          "0.5": {
+            "full": "Grams",
+            "abbr": "g"
+          }
+        }
+      },
+      {
+        "name": "Milk Chocolate",
+        "units": {
+          "1": {
+            "full": "Kilograms",
+            "abbr": "kg"
+          },
+          "0.5": {
+            "full": "Grams",
+            "abbr": "g"
+          }
+        }
+      },
+      {
+        "name": "Cocoa Powder",
+        "units": {
+          "1": {
+            "full": "Kilograms",
+            "abbr": "kg"
+          },
+          "0.5": {
+            "full": "Grams",
+            "abbr": "g"
+          }
+        }
+      },
+      {
+        "name": "Chorizo",
+        "units": {
+          "1": {
+            "full": "Kilograms",
+            "abbr": "kg"
+          },
+          "0.5": {
+            "full": "Grams",
+            "abbr": "g"
+          }
+        }
+      },
+      {
+        "name": "Tiger Nuts",
+        "units": {
+          "1": {
+            "full": "Kilograms",
+            "abbr": "kg"
+          },
+          "0.5": {
+            "full": "Grams",
+            "abbr": "g"
+          }
+        }
+      },
+      {
+        "name": "Frozen Langoustines",
+        "units": {
+          "1": {
+            "full": "Kilograms",
+            "abbr": "kg"
+          },
+          "0.5": {
+            "full": "Grams",
+            "abbr": "g"
+          }
+        }
+      },
+      {
+        "name": "Fresh Cilantro",
+        "units": {
+          "1": {
+            "full": "Kilograms",
+            "abbr": "kg"
+          },
+          "0.5": {
+            "full": "Grams",
+            "abbr": "g"
+          }
+        }
+      },
+      {
+        "name": "Dried Plums",
+        "units": {
+          "1": {
+            "full": "Kilograms",
+            "abbr": "kg"
+          },
+          "0.5": {
+            "full": "Grams",
+            "abbr": "g"
+          }
+        }
+      },
+      {
+        "name": "Bleach",
+        "units": {
+          "1": {
+            "full": "Liters",
+            "abbr": "L"
+          },
+          "0.5": {
+            "full": "Milliliters",
+            "abbr": "mL"
+          }
+        }
+      },
+      {
+        "name": "Shredded Coconut",
+        "units": {
+          "1": {
+            "full": "Kilograms",
+            "abbr": "kg"
+          },
+          "0.5": {
+            "full": "Grams",
+            "abbr": "g"
+          }
+        }
+      },
+      {
+        "name": "Cauliflower",
+        "units": {
+          "1": {
+            "full": "Kilograms",
+            "abbr": "kg"
+          },
+          "0.5": {
+            "full": "Grams",
+            "abbr": "g"
+          }
+        }
+      },
+      {
+        "name": "Tomato Paste",
+        "units": {
+          "1": {
+            "full": "Kilograms",
+            "abbr": "kg"
+          },
+          "0.5": {
+            "full": "Grams",
+            "abbr": "g"
+          }
+        }
+      },
+      {
+        "name": "Peanut Butter",
+        "units": {
+          "1": {
+            "full": "Kilograms",
+            "abbr": "kg"
+          },
+          "0.5": {
+            "full": "Grams",
+            "abbr": "g"
+          }
+        }
+      },
+      {
+        "name": "Mushroom Cream",
+        "units": {
+          "1": {
+            "full": "Liters",
+            "abbr": "L"
+          },
+          "0.5": {
+            "full": "Milliliters",
+            "abbr": "mL"
+          }
+        }
+      },
+      {
+        "name": "Asparagus Cream",
+        "units": {
+          "1": {
+            "full": "Liters",
+            "abbr": "L"
+          },
+          "0.5": {
+            "full": "Milliliters",
+            "abbr": "mL"
+          }
+        }
+      },
+      {
+        "name": "Cream",
+        "units": {
+          "1": {
+            "full": "Liters",
+            "abbr": "L"
+          },
+          "0.5": {
+            "full": "Milliliters",
+            "abbr": "mL"
+          }
+        }
+      },
+      {
+        "name": "Cream Cheese",
+        "units": {
+          "1": {
+            "full": "Kilograms",
+            "abbr": "kg"
+          },
+          "0.5": {
+            "full": "Grams",
+            "abbr": "g"
+          }
+        }
+      },
+      {
+        "name": "Toothpaste",
+        "units": {
+          "1": {
+            "full": "Liters",
+            "abbr": "L"
+          },
+          "0.5": {
+            "full": "Milliliters",
+            "abbr": "mL"
+          }
+        }
+      },
+      {
+        "name": "Whipping Cream",
+        "units": {
+          "1": {
+            "full": "Liters",
+            "abbr": "L"
+          },
+          "0.5": {
+            "full": "Milliliters",
+            "abbr": "mL"
+          }
+        }
+      },
+      {
+        "name": "Cat Treats",
+        "units": {
+          "1": {
+            "full": "Kilograms",
+            "abbr": "kg"
+          },
+          "0.5": {
+            "full": "Grams",
+            "abbr": "g"
+          }
+        }
+      },
+      {
+        "name": "Dog Food",
+        "units": {
+          "1": {
+            "full": "Kilograms",
+            "abbr": "kg"
+          },
+          "0.5": {
+            "full": "Grams",
+            "abbr": "g"
+          }
+        }
+      },
+      {
+        "name": "Curry Powder",
+        "units": {
+          "1": {
+            "full": "Kilograms",
+            "abbr": "kg"
+          },
+          "0.5": {
+            "full": "Grams",
+            "abbr": "g"
+          }
+        }
+      },
+      {
+        "name": "Powdered Detergent",
+        "units": {
+          "1": {
+            "full": "Kilograms",
+            "abbr": "kg"
+          },
+          "0.5": {
+            "full": "Grams",
+            "abbr": "g"
+          }
+        }
+      },
+      {
+        "name": "Liquid Detergent",
+        "units": {
+          "1": {
+            "full": "Liters",
+            "abbr": "L"
+          },
+          "0.5": {
+            "full": "Milliliters",
+            "abbr": "mL"
+          }
+        }
+      },
+      {
+        "name": "Dates",
+        "units": {
+          "1": {
+            "full": "Kilograms",
+            "abbr": "kg"
+          },
+          "0.5": {
+            "full": "Grams",
+            "abbr": "g"
+          }
+        }
+      },
+      {
+        "name": "Liquid Sweetener",
+        "units": {
+          "1": {
+            "full": "Liters",
+            "abbr": "L"
+          },
+          "0.5": {
+            "full": "Milliliters",
+            "abbr": "mL"
+          }
+        }
+      },
+      {
+        "name": "Mouthwash",
+        "units": {
+          "1": {
+            "full": "Liters",
+            "abbr": "L"
+          },
+          "0.5": {
+            "full": "Milliliters",
+            "abbr": "mL"
+          }
+        }
+      },
+      {
+        "name": "Mixed Spices",
+        "units": {
+          "1": {
+            "full": "Kilograms",
+            "abbr": "kg"
+          },
+          "0.5": {
+            "full": "Grams",
+            "abbr": "g"
+          }
+        }
+      },
+      {
+        "name": "Frozen Spinach",
+        "units": {
+          "1": {
+            "full": "Kilograms",
+            "abbr": "kg"
+          },
+          "0.5": {
+            "full": "Grams",
+            "abbr": "g"
+          }
+        }
+      },
+      {
+        "name": "Noodles",
+        "units": {
+          "1": {
+            "full": "Kilograms",
+            "abbr": "kg"
+          },
+          "0.5": {
+            "full": "Grams",
+            "abbr": "g"
+          }
+        }
+      },
+      {
+        "name": "Tuna Fillet",
+        "units": {
+          "1": {
+            "full": "Kilograms",
+            "abbr": "kg"
+          },
+          "0.5": {
+            "full": "Grams",
+            "abbr": "g"
+          }
+        }
+      },
+      {
+        "name": "Salmon Fillet",
+        "units": {
+          "1": {
+            "full": "Kilograms",
+            "abbr": "kg"
+          },
+          "0.5": {
+            "full": "Grams",
+            "abbr": "g"
+          }
+        }
+      },
+      {
+        "name": "Flan",
+        "units": {
+          "1": {
+            "full": "Liters",
+            "abbr": "L"
+          },
+          "0.5": {
+            "full": "Milliliters",
+            "abbr": "mL"
+          }
+        }
+      },
+      {
+        "name": "Frozen Strawberries",
+        "units": {
+          "1": {
+            "full": "Kilograms",
+            "abbr": "kg"
+          },
+          "0.5": {
+            "full": "Grams",
+            "abbr": "g"
+          }
+        }
+      },
+      {
+        "name": "Canned Beans",
+        "units": {
+          "1": {
+            "full": "Kilograms",
+            "abbr": "kg"
+          },
+          "0.5": {
+            "full": "Grams",
+            "abbr": "g"
+          }
+        }
+      },
+      {
+        "name": "Black Beans",
+        "units": {
+          "1": {
+            "full": "Kilograms",
+            "abbr": "kg"
+          },
+          "0.5": {
+            "full": "Grams",
+            "abbr": "g"
+          }
+        }
+      },
+      {
+        "name": "Pinto Beans",
+        "units": {
+          "1": {
+            "full": "Kilograms",
+            "abbr": "kg"
+          },
+          "0.5": {
+            "full": "Grams",
+            "abbr": "g"
+          }
+        }
+      },
+      {
+        "name": "Red Beans",
+        "units": {
+          "1": {
+            "full": "Kilograms",
+            "abbr": "kg"
+          },
+          "0.5": {
+            "full": "Grams",
+            "abbr": "g"
+          }
+        }
+      },
+      {
+        "name": "Oat Cookies",
+        "units": {
+          "1": {
+            "full": "Kilograms",
+            "abbr": "kg"
+          },
+          "0.5": {
+            "full": "Grams",
+            "abbr": "g"
+          }
+        }
+      },
+      {
+        "name": "Chocolate Cookies",
+        "units": {
+          "1": {
+            "full": "Kilograms",
+            "abbr": "kg"
+          },
+          "0.5": {
+            "full": "Grams",
+            "abbr": "g"
+          }
+        }
+      },
+      {
+        "name": "Salty Crackers",
+        "units": {
+          "1": {
+            "full": "Kilograms",
+            "abbr": "kg"
+          },
+          "0.5": {
+            "full": "Grams",
+            "abbr": "g"
+          }
+        }
+      },
+      {
+        "name": "Chickpeas",
+        "units": {
+          "1": {
+            "full": "Kilograms",
+            "abbr": "kg"
+          },
+          "0.5": {
+            "full": "Grams",
+            "abbr": "g"
+          }
+        }
+      },
+      {
+        "name": "Wheat Germ",
+        "units": {
+          "1": {
+            "full": "Kilograms",
+            "abbr": "kg"
+          },
+          "0.5": {
+            "full": "Grams",
+            "abbr": "g"
+          }
+        }
+      },
+      {
+        "name": "Ghee",
+        "units": {
+          "1": {
+            "full": "Liters",
+            "abbr": "L"
+          },
+          "0.5": {
+            "full": "Milliliters",
+            "abbr": "mL"
+          }
+        }
+      },
+      {
+        "name": "Granola",
+        "units": {
+          "1": {
+            "full": "Kilograms",
+            "abbr": "kg"
+          },
+          "0.5": {
+            "full": "Grams",
+            "abbr": "g"
+          }
+        }
+      },
+      {
+        "name": "Peas",
+        "units": {
+          "1": {
+            "full": "Kilograms",
+            "abbr": "kg"
+          },
+          "0.5": {
+            "full": "Grams",
+            "abbr": "g"
+          }
+        }
+      },
+      {
+        "name": "Broad Beans",
+        "units": {
+          "1": {
+            "full": "Kilograms",
+            "abbr": "kg"
+          },
+          "0.5": {
+            "full": "Grams",
+            "abbr": "g"
+          }
+        }
+      },
+      {
+        "name": "Oat Flour",
+        "units": {
+          "1": {
+            "full": "Kilograms",
+            "abbr": "kg"
+          },
+          "0.5": {
+            "full": "Grams",
+            "abbr": "g"
+          }
+        }
+      },
+      {
+        "name": "Rye Flour",
+        "units": {
+          "1": {
+            "full": "Kilograms",
+            "abbr": "kg"
+          },
+          "0.5": {
+            "full": "Grams",
+            "abbr": "g"
+          }
+        }
+      },
+      {
+        "name": "Coconut Flour",
+        "units": {
+          "1": {
+            "full": "Kilograms",
+            "abbr": "kg"
+          },
+          "0.5": {
+            "full": "Grams",
+            "abbr": "g"
+          }
+        }
+      },
+      {
+        "name": "Spelt flour",
+        "units": {
+          "1": {
+            "full": "Kilograms",
+            "abbr": "kg"
+          },
+          "0.5": {
+            "full": "Grams",
+            "abbr": "g"
+          }
+        }
+      },
+      {
+        "name": "Chickpea flour",
+        "units": {
+          "1": {
+            "full": "Kilograms",
+            "abbr": "kg"
+          },
+          "0.5": {
+            "full": "Grams",
+            "abbr": "g"
+          }
+        }
+      },
+      {
+        "name": "Corn flour",
+        "units": {
+          "1": {
+            "full": "Kilograms",
+            "abbr": "kg"
+          },
+          "0.5": {
+            "full": "Grams",
+            "abbr": "g"
+          }
+        }
+      },
+      {
+        "name": "Precooked corn flour",
+        "units": {
+          "1": {
+            "full": "Kilograms",
+            "abbr": "kg"
+          },
+          "0.5": {
+            "full": "Grams",
+            "abbr": "g"
+          }
+        }
+      },
+      {
+        "name": "Wheat flour",
+        "units": {
+          "1": {
+            "full": "Kilograms",
+            "abbr": "kg"
+          },
+          "0.5": {
+            "full": "Grams",
+            "abbr": "g"
+          }
+        }
+      },
+      {
+        "name": "Whole wheat flour",
+        "units": {
+          "1": {
+            "full": "Kilograms",
+            "abbr": "kg"
+          },
+          "0.5": {
+            "full": "Grams",
+            "abbr": "g"
+          }
+        }
+      },
+      {
+        "name": "Dried figs",
+        "units": {
+          "1": {
+            "full": "Kilograms",
+            "abbr": "kg"
+          },
+          "0.5": {
+            "full": "Grams",
+            "abbr": "g"
+          }
+        }
+      },
+      {
+        "name": "Oat flakes",
+        "units": {
+          "1": {
+            "full": "Kilograms",
+            "abbr": "kg"
+          },
+          "0.5": {
+            "full": "Grams",
+            "abbr": "g"
+          }
+        }
+      },
+      {
+        "name": "Hummus",
+        "units": {
+          "1": {
+            "full": "Kilograms",
+            "abbr": "kg"
+          },
+          "0.5": {
+            "full": "Grams",
+            "abbr": "g"
+          }
+        }
+      },
+      {
+        "name": "Chamomile infusion",
+        "units": {
+          "1": {
+            "full": "Kilograms",
+            "abbr": "kg"
+          },
+          "0.5": {
+            "full": "Grams",
+            "abbr": "g"
+          }
+        }
+      },
+      {
+        "name": "Mint infusion",
+        "units": {
+          "1": {
+            "full": "Kilograms",
+            "abbr": "kg"
+          },
+          "0.5": {
+            "full": "Grams",
+            "abbr": "g"
+          }
+        }
+      },
+      {
+        "name": "Linden infusion",
+        "units": {
+          "1": {
+            "full": "Kilograms",
+            "abbr": "kg"
+          },
+          "0.5": {
+            "full": "Grams",
+            "abbr": "g"
+          }
+        }
+      },
+      {
+        "name": "Bar soap",
+        "units": {
+          "1": {
+            "full": "Kilograms",
+            "abbr": "kg"
+          },
+          "0.5": {
+            "full": "Grams",
+            "abbr": "g"
+          }
+        }
+      },
+      {
+        "name": "Liquid soap",
+        "units": {
+          "1": {
+            "full": "Liters",
+            "abbr": "L"
+          },
+          "0.5": {
+            "full": "Milliliters",
+            "abbr": "mL"
+          }
+        }
+      },
+      {
+        "name": "Ground ginger",
+        "units": {
+          "1": {
+            "full": "Kilograms",
+            "abbr": "kg"
+          },
+          "0.5": {
+            "full": "Grams",
+            "abbr": "g"
+          }
+        }
+      },
+      {
+        "name": "Apple juice",
+        "units": {
+          "1": {
+            "full": "Liters",
+            "abbr": "L"
+          },
+          "0.5": {
+            "full": "Milliliters",
+            "abbr": "mL"
+          }
+        }
+      },
+      {
+        "name": "Orange juice",
+        "units": {
+          "1": {
+            "full": "Liters",
+            "abbr": "L"
+          },
+          "0.5": {
+            "full": "Milliliters",
+            "abbr": "mL"
+          }
+        }
+      },
+      {
+        "name": "Ketchup",
+        "units": {
+          "1": {
+            "full": "Liters",
+            "abbr": "L"
+          },
+          "0.5": {
+            "full": "Milliliters",
+            "abbr": "mL"
+          }
+        }
+      },
+      {
+        "name": "Skim milk",
+        "units": {
+          "1": {
+            "full": "Liters",
+            "abbr": "L"
+          },
+          "0.5": {
+            "full": "Milliliters",
+            "abbr": "mL"
+          }
+        }
+      },
+      {
+        "name": "Whole milk",
+        "units": {
+          "1": {
+            "full": "Liters",
+            "abbr": "L"
+          },
+          "0.5": {
+            "full": "Milliliters",
+            "abbr": "mL"
+          }
+        }
+      },
+      {
+        "name": "Lentils",
+        "units": {
+          "1": {
+            "full": "Kilograms",
+            "abbr": "kg"
+          },
+          "0.5": {
+            "full": "Grams",
+            "abbr": "g"
+          }
+        }
+      },
+      {
+        "name": "Dry yeast",
+        "units": {
+          "1": {
+            "full": "Kilograms",
+            "abbr": "kg"
+          },
+          "0.5": {
+            "full": "Grams",
+            "abbr": "g"
+          }
+        }
+      },
+      {
+        "name": "Chocolate milkshake",
+        "units": {
+          "1": {
+            "full": "Liters",
+            "abbr": "L"
+          },
+          "0.5": {
+            "full": "Milliliters",
+            "abbr": "mL"
+          }
+        }
+      },
+      {
+        "name": "Strawberry milkshake",
+        "units": {
+          "1": {
+            "full": "Liters",
+            "abbr": "L"
+          },
+          "0.5": {
+            "full": "Milliliters",
+            "abbr": "mL"
+          }
+        }
+      },
+      {
+        "name": "Lemonade",
+        "units": {
+          "1": {
+            "full": "Liters",
+            "abbr": "L"
+          },
+          "0.5": {
+            "full": "Milliliters",
+            "abbr": "mL"
+          }
+        }
+      },
+      {
+        "name": "Flaxseed",
+        "units": {
+          "1": {
+            "full": "Kilograms",
+            "abbr": "kg"
+          },
+          "0.5": {
+            "full": "Grams",
+            "abbr": "g"
+          }
+        }
+      },
+      {
+        "name": "Fruit Salad",
+        "units": {
+          "1": {
+            "full": "Kilograms",
+            "abbr": "kg"
+          },
+          "0.5": {
+            "full": "Grams",
+            "abbr": "g"
+          }
+        }
+      },
+      {
+        "name": "Pork Lard",
+        "units": {
+          "1": {
+            "full": "Kilograms",
+            "abbr": "kg"
+          },
+          "0.5": {
+            "full": "Grams",
+            "abbr": "g"
+          }
+        }
+      },
+      {
+        "name": "Vegetable Shortening",
+        "units": {
+          "1": {
+            "full": "Kilograms",
+            "abbr": "kg"
+          },
+          "0.5": {
+            "full": "Grams",
+            "abbr": "g"
+          }
+        }
+      },
+      {
+        "name": "Butter",
+        "units": {
+          "1": {
+            "full": "Kilograms",
+            "abbr": "kg"
+          },
+          "0.5": {
+            "full": "Grams",
+            "abbr": "g"
+          }
+        }
+      },
+      {
+        "name": "Dehydrated Apple",
+        "units": {
+          "1": {
+            "full": "Kilograms",
+            "abbr": "kg"
+          },
+          "0.5": {
+            "full": "Grams",
+            "abbr": "g"
+          }
+        }
+      },
+      {
+        "name": "Mayonnaise",
+        "units": {
+          "1": {
+            "full": "Liters",
+            "abbr": "L"
+          },
+          "0.5": {
+            "full": "Milliliters",
+            "abbr": "mL"
+          }
+        }
+      },
+      {
+        "name": "Peaches in Syrup",
+        "units": {
+          "1": {
+            "full": "Kilograms",
+            "abbr": "kg"
+          },
+          "0.5": {
+            "full": "Grams",
+            "abbr": "g"
+          }
+        }
+      },
+      {
+        "name": "Peach Jam",
+        "units": {
+          "1": {
+            "full": "Kilograms",
+            "abbr": "kg"
+          },
+          "0.5": {
+            "full": "Grams",
+            "abbr": "g"
+          }
+        }
+      },
+      {
+        "name": "Strawberry Jam",
+        "units": {
+          "1": {
+            "full": "Kilograms",
+            "abbr": "kg"
+          },
+          "0.5": {
+            "full": "Grams",
+            "abbr": "g"
+          }
+        }
+      },
+      {
+        "name": "Pancake Mix",
+        "units": {
+          "1": {
+            "full": "Kilograms",
+            "abbr": "kg"
+          },
+          "0.5": {
+            "full": "Grams",
+            "abbr": "g"
+          }
+        }
+      },
+      {
+        "name": "Honey",
+        "units": {
+          "1": {
+            "full": "Liters",
+            "abbr": "L"
+          },
+          "0.5": {
+            "full": "Milliliters",
+            "abbr": "mL"
+          }
+        }
+      },
+      {
+        "name": "Millet",
+        "units": {
+          "1": {
+            "full": "Kilograms",
+            "abbr": "kg"
+          },
+          "0.5": {
+            "full": "Grams",
+            "abbr": "g"
+          }
+        }
+      },
+      {
+        "name": "Mustard",
+        "units": {
+          "1": {
+            "full": "Liters",
+            "abbr": "L"
+          },
+          "0.5": {
+            "full": "Milliliters",
+            "abbr": "mL"
+          }
+        }
+      },
+      {
+        "name": "Cream",
+        "units": {
+          "1": {
+            "full": "Liters",
+            "abbr": "L"
+          },
+          "0.5": {
+            "full": "Milliliters",
+            "abbr": "mL"
+          }
+        }
+      },
+      {
+        "name": "Walnuts",
+        "units": {
+          "1": {
+            "full": "Kilograms",
+            "abbr": "kg"
+          },
+          "0.5": {
+            "full": "Grams",
+            "abbr": "g"
+          }
+        }
+      },
+      {
+        "name": "Dried Oregano",
+        "units": {
+          "1": {
+            "full": "Kilograms",
+            "abbr": "kg"
+          },
+          "0.5": {
+            "full": "Grams",
+            "abbr": "g"
+          }
+        }
+      },
+      {
+        "name": "Popcorn",
+        "units": {
+          "1": {
+            "full": "Kilograms",
+            "abbr": "kg"
+          },
+          "0.5": {
+            "full": "Grams",
+            "abbr": "g"
+          }
+        }
+      },
+      {
+        "name": "Sandwich Bread",
+        "units": {
+          "1": {
+            "full": "Kilograms",
+            "abbr": "kg"
+          },
+          "0.5": {
+            "full": "Grams",
+            "abbr": "g"
+          }
+        }
+      },
+      {
+        "name": "Whole Wheat Bread",
+        "units": {
+          "1": {
+            "full": "Kilograms",
+            "abbr": "kg"
+          },
+          "0.5": {
+            "full": "Grams",
+            "abbr": "g"
+          }
+        }
+      },
+      {
+        "name": "Breadcrumbs",
+        "units": {
+          "1": {
+            "full": "Kilograms",
+            "abbr": "kg"
+          },
+          "0.5": {
+            "full": "Grams",
+            "abbr": "g"
+          }
+        }
+      },
+      {
+        "name": "Potato Chips",
+        "units": {
+          "1": {
+            "full": "Kilograms",
+            "abbr": "kg"
+          },
+          "0.5": {
+            "full": "Grams",
+            "abbr": "g"
+          }
+        }
+      },
+      {
+        "name": "Toilet Paper",
+        "units": {
+          "1": {
+            "full": "Kilograms",
+            "abbr": "kg"
+          },
+          "0.5": {
+            "full": "Grams",
+            "abbr": "g"
+          }
+        }
+      },
+      {
+        "name": "Toothpaste",
+        "units": {
+          "1": {
+            "full": "Liters",
+            "abbr": "L"
+          },
+          "0.5": {
+            "full": "Milliliters",
+            "abbr": "mL"
+          }
+        }
+      },
+      {
+        "name": "Puff Pastry",
+        "units": {
+          "1": {
+            "full": "Kilograms",
+            "abbr": "kg"
+          },
+          "0.5": {
+            "full": "Grams",
+            "abbr": "g"
+          }
+        }
+      },
+      {
+        "name": "Semolina Pasta",
+        "units": {
+          "1": {
+            "full": "Kilograms",
+            "abbr": "kg"
+          },
+          "0.5": {
+            "full": "Grams",
+            "abbr": "g"
+          }
+        }
+      },
+      {
+        "name": "Tomato Paste",
+        "units": {
+          "1": {
+            "full": "Kilograms",
+            "abbr": "kg"
+          },
+          "0.5": {
+            "full": "Grams",
+            "abbr": "g"
+          }
+        }
+      },
+      {
+        "name": "Whole Wheat Pasta",
+        "units": {
+          "1": {
+            "full": "Kilograms",
+            "abbr": "kg"
+          },
+          "0.5": {
+            "full": "Grams",
+            "abbr": "g"
+          }
+        }
+      },
+      {
+        "name": "Soup Pasta",
+        "units": {
+          "1": {
+            "full": "Kilograms",
+            "abbr": "kg"
+          },
+          "0.5": {
+            "full": "Grams",
+            "abbr": "g"
+          }
+        }
+      },
+      {
+        "name": "Pickles",
+        "units": {
+          "1": {
+            "full": "Kilograms",
+            "abbr": "kg"
+          },
+          "0.5": {
+            "full": "Grams",
+            "abbr": "g"
+          }
+        }
+      },
+      {
+        "name": "Fresh Parsley",
+        "units": {
+          "1": {
+            "full": "Kilograms",
+            "abbr": "kg"
+          },
+          "0.5": {
+            "full": "Grams",
+            "abbr": "g"
+          }
+        }
+      },
+      {
+        "name": "Frozen Fish",
+        "units": {
+          "1": {
+            "full": "Kilograms",
+            "abbr": "kg"
+          },
+          "0.5": {
+            "full": "Grams",
+            "abbr": "g"
+          }
+        }
+      },
+      {
+        "name": "White Pepper",
+        "units": {
+          "1": {
+            "full": "Kilograms",
+            "abbr": "kg"
+          },
+          "0.5": {
+            "full": "Grams",
+            "abbr": "g"
+          }
+        }
+      },
+      {
+        "name": "Black Pepper",
+        "units": {
+          "1": {
+            "full": "Kilograms",
+            "abbr": "kg"
+          },
+          "0.5": {
+            "full": "Grams",
+            "abbr": "g"
+          }
+        }
+      },
+      {
+        "name": "Pine Nuts",
+        "units": {
+          "1": {
+            "full": "Kilograms",
+            "abbr": "kg"
+          },
+          "0.5": {
+            "full": "Grams",
+            "abbr": "g"
+          }
+        }
+      },
+      {
+        "name": "Frozen Chicken",
+        "units": {
+          "1": {
+            "full": "Kilograms",
+            "abbr": "kg"
+          },
+          "0.5": {
+            "full": "Grams",
+            "abbr": "g"
+          }
+        }
+      },
+      {
+        "name": "Fresh Chicken",
+        "units": {
+          "1": {
+            "full": "Kilograms",
+            "abbr": "kg"
+          },
+          "0.5": {
+            "full": "Grams",
+            "abbr": "g"
+          }
+        }
+      },
+      {
+        "name": "Cheddar Cheese",
+        "units": {
+          "1": {
+            "full": "Kilograms",
+            "abbr": "kg"
+          },
+          "0.5": {
+            "full": "Grams",
+            "abbr": "g"
+          }
+        }
+      },
+      {
+        "name": "Cream Cheese",
+        "units": {
+          "1": {
+            "full": "Kilograms",
+            "abbr": "kg"
+          },
+          "0.5": {
+            "full": "Grams",
+            "abbr": "g"
+          }
+        }
+      },
+      {
+        "name": "Goat Cheese",
+        "units": {
+          "1": {
+            "full": "Kilograms",
+            "abbr": "kg"
+          },
+          "0.5": {
+            "full": "Grams",
+            "abbr": "g"
+          }
+        }
+      },
+      {
+        "name": "Mozzarella Cheese",
+        "units": {
+          "1": {
+            "full": "Kilograms",
+            "abbr": "kg"
+          },
+          "0.5": {
+            "full": "Grams",
+            "abbr": "g"
+          }
+        }
+      },
+      {
+        "name": "Parmesan Cheese",
+        "units": {
+          "1": {
+            "full": "Kilograms",
+            "abbr": "kg"
+          },
+          "0.5": {
+            "full": "Grams",
+            "abbr": "g"
+          }
+        }
+      },
+      {
+        "name": "Grated Cheese",
+        "units": {
+          "1": {
+            "full": "Kilograms",
+            "abbr": "kg"
+          },
+          "0.5": {
+            "full": "Grams",
+            "abbr": "g"
+          }
+        }
+      },
+      {
+        "name": "Quinoa",
+        "units": {
+          "1": {
+            "full": "Kilograms",
+            "abbr": "kg"
+          },
+          "0.5": {
+            "full": "Grams",
+            "abbr": "g"
+          }
+        }
+      },
+      {
+        "name": "Ravioli",
+        "units": {
+          "1": {
+            "full": "Kilograms",
+            "abbr": "kg"
+          },
+          "0.5": {
+            "full": "Grams",
+            "abbr": "g"
+          }
+        }
+      },
+      {
+        "name": "Cola Soda",
+        "units": {
+          "1": {
+            "full": "Liters",
+            "abbr": "L"
+          },
+          "0.5": {
+            "full": "Milliliters",
+            "abbr": "mL"
+          }
+        }
+      },
+      {
+        "name": "Orange Soda",
+        "units": {
+          "1": {
+            "full": "Liters",
+            "abbr": "L"
+          },
+          "0.5": {
+            "full": "Milliliters",
+            "abbr": "mL"
+          }
+        }
+      },
+      {
+        "name": "Beetroot",
+        "units": {
+          "1": {
+            "full": "Kilograms",
+            "abbr": "kg"
+          },
+          "0.5": {
+            "full": "Grams",
+            "abbr": "g"
+          }
+        }
+      },
+      {
+        "name": "Dried Rosemary",
+        "units": {
+          "1": {
+            "full": "Kilograms",
+            "abbr": "kg"
+          },
+          "0.5": {
+            "full": "Grams",
+            "abbr": "g"
+          }
+        }
+      },
+      {
+        "name": "Radish",
+        "units": {
+          "1": {
+            "full": "Kilograms",
+            "abbr": "kg"
+          },
+          "0.5": {
+            "full": "Grams",
+            "abbr": "g"
+          }
+        }
+      },
+      {
+        "name": "Salt",
+        "units": {
+          "1": {
+            "full": "Kilograms",
+            "abbr": "kg"
+          },
+          "0.5": {
+            "full": "Grams",
+            "abbr": "g"
+          }
+        }
+      },
+      {
+        "name": "Barbecue Sauce",
+        "units": {
+          "1": {
+            "full": "Liters",
+            "abbr": "L"
+          },
+          "0.5": {
+            "full": "Milliliters",
+            "abbr": "mL"
+          }
+        }
+      },
+      {
+        "name": "Bechamel Sauce",
+        "units": {
+          "1": {
+            "full": "Liters",
+            "abbr": "L"
+          },
+          "0.5": {
+            "full": "Milliliters",
+            "abbr": "mL"
+          }
+        }
+      },
+      {
+        "name": "Garlic Sauce",
+        "units": {
+          "1": {
+            "full": "Liters",
+            "abbr": "L"
+          },
+          "0.5": {
+            "full": "Milliliters",
+            "abbr": "mL"
+          }
+        }
+      },
+      {
+        "name": "Mushroom Sauce",
+        "units": {
+          "1": {
+            "full": "Liters",
+            "abbr": "L"
+          },
+          "0.5": {
+            "full": "Milliliters",
+            "abbr": "mL"
+          }
+        }
+      },
+      {
+        "name": "Mango Sauce",
+        "units": {
+          "1": {
+            "full": "Liters",
+            "abbr": "L"
+          },
+          "0.5": {
+            "full": "Milliliters",
+            "abbr": "mL"
+          }
+        }
+      },
+      {
+        "name": "Soy Sauce",
+        "units": {
+          "1": {
+            "full": "Liters",
+            "abbr": "L"
+          },
+          "0.5": {
+            "full": "Milliliters",
+            "abbr": "mL"
+          }
+        }
+      },
+      {
+        "name": "Tomato Sauce",
+        "units": {
+          "1": {
+            "full": "Kilograms",
+            "abbr": "kg"
+          },
+          "0.5": {
+            "full": "Grams",
+            "abbr": "g"
+          }
+        }
+      },
+      {
+        "name": "Worcestershire Sauce",
+        "units": {
+          "1": {
+            "full": "Liters",
+            "abbr": "L"
+          },
+          "0.5": {
+            "full": "Milliliters",
+            "abbr": "mL"
+          }
+        }
+      },
+      {
+        "name": "Sardines in Oil",
+        "units": {
+          "1": {
+            "full": "Kilograms",
+            "abbr": "kg"
+          },
+          "0.5": {
+            "full": "Grams",
+            "abbr": "g"
+          }
+        }
+      },
+      {
+        "name": "Pumpkin Seeds",
+        "units": {
+          "1": {
+            "full": "Kilograms",
+            "abbr": "kg"
+          },
+          "0.5": {
+            "full": "Grams",
+            "abbr": "g"
+          }
+        }
+      },
+      {
+        "name": "Chia Seeds",
+        "units": {
+          "1": {
+            "full": "Kilograms",
+            "abbr": "kg"
+          },
+          "0.5": {
+            "full": "Grams",
+            "abbr": "g"
+          }
+        }
+      },
+      {
+        "name": "Sunflower Seeds",
+        "units": {
+          "1": {
+            "full": "Kilograms",
+            "abbr": "kg"
+          },
+          "0.5": {
+            "full": "Grams",
+            "abbr": "g"
+          }
+        }
+      },
+      {
+        "name": "Agave Syrup",
+        "units": {
+          "1": {
+            "full": "Liters",
+            "abbr": "L"
+          },
+          "0.5": {
+            "full": "Milliliters",
+            "abbr": "mL"
+          }
+        }
+      },
+      {
+        "name": "Maple Syrup",
+        "units": {
+          "1": {
+            "full": "Liters",
+            "abbr": "L"
+          },
+          "0.5": {
+            "full": "Milliliters",
+            "abbr": "mL"
+          }
+        }
+      },
+      {
+        "name": "Corn Syrup",
+        "units": {
+          "1": {
+            "full": "Liters",
+            "abbr": "L"
+          },
+          "0.5": {
+            "full": "Milliliters",
+            "abbr": "mL"
+          }
+        }
+      },
+      {
+        "name": "Instant Soup",
+        "units": {
+          "1": {
+            "full": "Kilograms",
+            "abbr": "kg"
+          },
+          "0.5": {
+            "full": "Grams",
+            "abbr": "g"
+          }
+        }
+      },
+      {
+        "name": "Spaghetti",
+        "units": {
+          "1": {
+            "full": "Kilograms",
+            "abbr": "kg"
+          },
+          "0.5": {
+            "full": "Grams",
+            "abbr": "g"
+          }
+        }
+      },
+      {
+        "name": "Stevia",
+        "units": {
+          "1": {
+            "full": "Kilograms",
+            "abbr": "kg"
+          },
+          "0.5": {
+            "full": "Grams",
+            "abbr": "g"
+          }
+        }
+      },
+      {
+        "name": "Whey",
+        "units": {
+          "1": {
+            "full": "Liters",
+            "abbr": "L"
+          },
+          "0.5": {
+            "full": "Milliliters",
+            "abbr": "mL"
+          }
+        }
+      },
+      {
+        "name": "Sesame",
+        "units": {
+          "1": {
+            "full": "Kilograms",
+            "abbr": "kg"
+          },
+          "0.5": {
+            "full": "Grams",
+            "abbr": "g"
+          }
+        }
+      },
+      {
+        "name": "Noodles",
+        "units": {
+          "1": {
+            "full": "Kilograms",
+            "abbr": "kg"
+          },
+          "0.5": {
+            "full": "Grams",
+            "abbr": "g"
+          }
+        }
+      },
+      {
+        "name": "Tea",
+        "units": {
+          "1": {
+            "full": "Kilograms",
+            "abbr": "kg"
+          },
+          "0.5": {
+            "full": "Grams",
+            "abbr": "g"
+          }
+        }
+      },
+      {
+        "name": "Tempeh",
+        "units": {
+          "1": {
+            "full": "Kilograms",
+            "abbr": "kg"
+          },
+          "0.5": {
+            "full": "Grams",
+            "abbr": "g"
+          }
+        }
+      },
+      {
+        "name": "Tofu",
+        "units": {
+          "1": {
+            "full": "Kilograms",
+            "abbr": "kg"
+          },
+          "0.5": {
+            "full": "Grams",
+            "abbr": "g"
+          }
+        }
+      },
+      {
+        "name": "Fried Tomato",
+        "units": {
+          "1": {
+            "full": "Kilograms",
+            "abbr": "kg"
+          },
+          "0.5": {
+            "full": "Grams",
+            "abbr": "g"
+          }
+        }
+      },
+      {
+        "name": "Crushed tomato",
+        "units": {
+          "1": {
+            "full": "Kilograms",
+            "abbr": "kg"
+          },
+          "0.5": {
+            "full": "Grams",
+            "abbr": "g"
+          }
+        }
+      },
+      {
+        "name": "Buckwheat",
+        "units": {
+          "1": {
+            "full": "Kilograms",
+            "abbr": "kg"
+          },
+          "0.5": {
+            "full": "Grams",
+            "abbr": "g"
+          }
+        }
+      },
+      {
+        "name": "Black tea",
+        "units": {
+          "1": {
+            "full": "Kilograms",
+            "abbr": "kg"
+          },
+          "0.5": {
+            "full": "Grams",
+            "abbr": "g"
+          }
+        }
+      },
+      {
+        "name": "Rooibos tea",
+        "units": {
+          "1": {
+            "full": "Kilograms",
+            "abbr": "kg"
+          },
+          "0.5": {
+            "full": "Grams",
+            "abbr": "g"
+          }
+        }
+      },
+      {
+        "name": "Green tea",
+        "units": {
+          "1": {
+            "full": "Kilograms",
+            "abbr": "kg"
+          },
+          "0.5": {
+            "full": "Grams",
+            "abbr": "g"
+          }
+        }
+      },
+      {
+        "name": "Balsamic vinegar",
+        "units": {
+          "1": {
+            "full": "Liters",
+            "abbr": "L"
+          },
+          "0.5": {
+            "full": "Milliliters",
+            "abbr": "mL"
+          }
+        }
+      },
+      {
+        "name": "White vinegar",
+        "units": {
+          "1": {
+            "full": "Liters",
+            "abbr": "L"
+          },
+          "0.5": {
+            "full": "Milliliters",
+            "abbr": "mL"
+          }
+        }
+      },
+      {
+        "name": "Apple cider vinegar",
+        "units": {
+          "1": {
+            "full": "Liters",
+            "abbr": "L"
+          },
+          "0.5": {
+            "full": "Milliliters",
+            "abbr": "mL"
+          }
+        }
+      },
+      {
+        "name": "White wine",
+        "units": {
+          "1": {
+            "full": "Liters",
+            "abbr": "L"
+          },
+          "0.5": {
+            "full": "Milliliters",
+            "abbr": "mL"
+          }
+        }
+      },
+      {
+        "name": "Red wine",
+        "units": {
+          "1": {
+            "full": "Liters",
+            "abbr": "L"
+          },
+          "0.5": {
+            "full": "Milliliters",
+            "abbr": "mL"
+          }
+        }
+      },
+      {
+        "name": "Fruit yogurt",
+        "units": {
+          "1": {
+            "full": "Liters",
+            "abbr": "L"
+          },
+          "0.5": {
+            "full": "Milliliters",
+            "abbr": "mL"
+          }
+        }
+      },
+      {
+        "name": "Greek yogurt",
+        "units": {
+          "1": {
+            "full": "Kilograms",
+            "abbr": "kg"
+          },
+          "0.5": {
+            "full": "Grams",
+            "abbr": "g"
+          }
+        }
+      },
+      {
+        "name": "Natural yogurt",
+        "units": {
+          "1": {
+            "full": "Liters",
+            "abbr": "L"
+          },
+          "0.5": {
+            "full": "Milliliters",
+            "abbr": "mL"
+          }
+        }
+      },
+      {
+        "name": "Frozen carrots",
+        "units": {
+          "1": {
+            "full": "Kilograms",
+            "abbr": "kg"
+          },
+          "0.5": {
+            "full": "Grams",
+            "abbr": "g"
+          }
+        }
+      },
+      {
+        "name": "Fresh carrots",
+        "units": {
+          "1": {
+            "full": "Kilograms",
+            "abbr": "kg"
+          },
+          "0.5": {
+            "full": "Grams",
+            "abbr": "g"
+          }
+        }
+      },
+      {
+        "name": "Orange juice",
+        "units": {
+          "1": {
+            "full": "Liters",
+            "abbr": "L"
+          },
+          "0.5": {
+            "full": "Milliliters",
+            "abbr": "mL"
+          }
+        }
+      },
+      {
+        "name": "Pineapple juice",
+        "units": {
+          "1": {
+            "full": "Liters",
+            "abbr": "L"
+          },
+          "0.5": {
+            "full": "Milliliters",
+            "abbr": "mL"
+          }
+        }
+      },
+      {
+        "name": "Grapefruit juice",
+        "units": {
+          "1": {
+            "full": "Liters",
+            "abbr": "L"
+          },
+          "0.5": {
+            "full": "Milliliters",
+            "abbr": "mL"
+          }
+        }
+      },
+      {
+        "name": "Grape juice",
+        "units": {
+          "1": {
+            "full": "Liters",
+            "abbr": "L"
+          },
+          "0.5": {
+            "full": "Milliliters",
+            "abbr": "mL"
+          }
+        }
+      }
+    ]
+  }
+}

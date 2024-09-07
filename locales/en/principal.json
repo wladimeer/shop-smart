@@ -1,0 +1,8 @@
+{
+  "title": "Main",
+  "buttons": {
+    "newPurchase": "New Purchase",
+    "viewPurchases": "View Purchases",
+    "appSettings": "Settings"
+  }
+}

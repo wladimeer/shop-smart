@@ -1,0 +1,51 @@
+{
+  "title": "What's Included in This Version?",
+  "free": {
+    "newPurchase": {
+      "title": "Product Registration in a Purchase:",
+      "features": {
+        "feature_1": "This version includes the ability to add products to a shopping list by entering the product name, quantity, and unit price",
+        "feature_2": "The system now automatically calculates and displays the total for each product (quantity * unit price)",
+        "feature_3": "The accumulated total of all added products is displayed at the bottom of the screen",
+        "feature_4": "Allows autocomplete of the product name when typing, showing a list of names that match the first letters"
+      }
+    },
+    "viewPurchases": {
+      "title": "Shopping List Management:",
+      "features": {
+        "feature_1": "This version allows saving the product list of a purchase",
+        "feature_2": "You can now view saved purchases in a history screen, showing the date and total of each purchase",
+        "feature_3": "Each entry in the history includes a button to view the full details of the purchase (product list)",
+        "feature_4": "You can now delete shopping lists from the history by swiping left and selecting the delete option",
+        "feature_5": "This version allows reusing a saved shopping list, loading all products from that list into a new purchase",
+        "feature_6": "When reusing a list, you can now modify prices and quantities before saving the new purchase"
+      }
+    }
+  },
+  "paid": {
+    "newPurchase": {
+      "title": "Product Registration in a Purchase:",
+      "features": {
+        "feature_1": "This version includes the ability to add products to a shopping list by entering the product name, quantity, and unit price",
+        "feature_2": "The system now automatically calculates and displays the total for each product (quantity * unit price)",
+        "feature_3": "The accumulated total of all added products is displayed at the bottom of the screen",
+        "feature_4": "Allows adding products via barcode for faster entry",
+        "feature_5": "Provides automatic recommendations based on previous purchases",
+        "feature_6": "Allows autocomplete of the product name when typing, showing a list of names that match the first letters"
+      }
+    },
+    "viewPurchases": {
+      "title": "Shopping List Management:",
+      "features": {
+        "feature_1": "This version allows saving the product list of a purchase",
+        "feature_2": "You can now view saved purchases in a history screen, showing the date and total of each purchase",
+        "feature_3": "Each entry in the history includes a button to view the full details of the purchase (product list)",
+        "feature_4": "You can now delete shopping lists from the history by swiping left and selecting the delete option",
+        "feature_5": "This version allows reusing a saved shopping list, loading all products from that list into a new purchase",
+        "feature_6": "When reusing a list, you can now modify prices and quantities before saving the new purchase",
+        "feature_7": "Allows exporting shopping lists to PDF and Excel formats",
+        "feature_8": "Includes the ability to share shopping lists with other app users"
+      }
+    }
+  }
+}

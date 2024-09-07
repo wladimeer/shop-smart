@@ -3,6 +3,7 @@ import React, { useEffect, createContext, useState, useContext } from 'react'
 import { DEFAULT_LANGUAGE_CODE, VALID_LANGUAGE_CODES } from '../constants/locales'
 import AsyncStorage from '@react-native-async-storage/async-storage'
 import { LANGUAGE_KEY } from '../constants/storage'
+import moment from 'moment'
 
 const LanguageContext = createContext()
 
@@ -21,6 +22,7 @@ const LanguageProvider = ({ children }) => {
     await AsyncStorage.setItem(LANGUAGE_KEY, definedCode)
     setLanguageCode(definedCode)
     changeLanguage(definedCode)
+    moment.locale(definedCode)
   }
 
   useEffect(() => {

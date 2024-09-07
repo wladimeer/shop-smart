@@ -1,10 +1,6 @@
 import moment from 'moment'
 import { DATE_FORMAT, DATE_TEXT_FORMAT, DATETIME_FORMAT } from '../constants/datas'
-import { DEFAULT_LANGUAGE_CODE } from '../constants/locales'
 import 'moment/min/locales'
-import i18n from 'i18next'
-
-moment.locale(i18n.language ?? DEFAULT_LANGUAGE_CODE)
 
 const getCurrentDatetime = () => {
   return moment().format(DATETIME_FORMAT)

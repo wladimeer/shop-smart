@@ -3,6 +3,7 @@ import { useSafeAreaInsets } from 'react-native-safe-area-context'
 import { DEFAULT_BOTTOM_INSET } from '../constants/config'
 import { useTheme } from '@react-navigation/native'
 import { StatusBar } from 'expo-status-bar'
+import { useEffect, useRef } from 'react'
 
 const ScreenContainer = ({
   children,
@@ -11,7 +12,7 @@ const ScreenContainer = ({
   noSafeArea = false
 }) => {
   const insets = useSafeAreaInsets()
-  const fadeAnimation = new Animated.Value(0)
+  const fadeAnimation = useRef(new Animated.Value(0)).current
   const { colors } = useTheme()
 
   const styles = allStyles({ colors, insets, colorSafeArea })
@@ -25,6 +26,10 @@ const ScreenContainer = ({
 
     Animated.timing(fadeAnimation, config).start()
   }
+
+  useEffect(() => {
+    fadeAnimation.setValue(0)
+  }, [background])
 
   return (
     <View style={styles.container}>

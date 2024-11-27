@@ -68,7 +68,7 @@ const ViewPurchases = ({ navigation }) => {
 
     resetActionModal()
 
-    navigation.push(NEW_PURCHASE_SCREEN_KEY, {
+    navigation.replace(NEW_PURCHASE_SCREEN_KEY, {
       elementsList: item.elements
     })
   }

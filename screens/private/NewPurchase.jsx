@@ -75,7 +75,7 @@ const NewPurchase = ({ navigation, route: { params = {} } }) => {
       if (response) {
         resetActionModal()
         handleSaveItems([])
-        navigation.navigate(VIEW_PURCHASES_SCREEN_KEY)
+        navigation.replace(VIEW_PURCHASES_SCREEN_KEY)
       }
     } catch (error) {
       console.log(error)

@@ -14,4 +14,30 @@ const lightenColor = (hexadecimal, factor) => {
   return `#${newHexadecimal.toString(16).padStart(6, '0').toUpperCase()}`
 }
 
-export { lightenColor }
+const uniqueColorGenerator = () => {
+  const baseColors = [
+    '#4F2E5F',
+    '#60346F',
+    '#724080',
+    '#844C91',
+    '#9556A1',
+    '#A562B1',
+    '#B06EC1',
+    '#C17AD1'
+  ]
+
+  let availableColors = [...baseColors]
+
+  const generateColor = () => {
+    const { length } = availableColors
+
+    if (length === 0) availableColors = [...baseColors]
+
+    const randomIndex = Math.floor(Math.random() * length)
+    return availableColors.splice(randomIndex, 1)[0]
+  }
+
+  return generateColor
+}
+
+export { lightenColor, uniqueColorGenerator }

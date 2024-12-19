@@ -1,0 +1,11 @@
+{
+  "title": "Statistics",
+  "indicators": {
+    "highestQuantity": "Most purchased products",
+    "priceThroughTime": "Price of products over time",
+    "quantityThroughTime": "Quantity of products in time",
+    "monthQuantity": "Total quantity per month",
+    "monthPrice": "Total price per month",
+    "noData": "No data. Go to \"New Purchase\" and add some products :)"
+  }
+}

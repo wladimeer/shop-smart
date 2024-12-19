@@ -4,6 +4,7 @@ import { PRINCIPAL_SCREEN_KEY } from '../../constants/screens'
 import { VIEW_PURCHASES_SCREEN_KEY } from '../../constants/screens'
 import { NEW_PURCHASE_SCREEN_KEY } from '../../constants/screens'
 import { APP_SETTINGS_SCREEN_KEY } from '../../constants/screens'
+import { STATISTICS_SCREEN_KEY } from '../../constants/screens'
 import ScreenContainer from '../../components/ScreenContainer'
 import background from '../../assets/principal-background.jpg'
 import MaterialIcons from '@expo/vector-icons/MaterialIcons'
@@ -34,6 +35,13 @@ const Principal = ({ navigation }) => {
             handlePress={() => handleNavigation(VIEW_PURCHASES_SCREEN_KEY)}
           >
             <MaterialIcons name="shopping-cart-checkout" size={24} color="white" />
+          </CustomButton>
+
+          <CustomButton
+            text={translate('buttons.statistics')}
+            handlePress={() => handleNavigation(STATISTICS_SCREEN_KEY)}
+          >
+            <MaterialIcons name="query-stats" size={24} color="white" />
           </CustomButton>
 
           <CustomButton

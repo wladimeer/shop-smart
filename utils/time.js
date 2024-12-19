@@ -1,9 +1,19 @@
 import moment from 'moment'
-import { DATE_FORMAT, DATE_TEXT_FORMAT, DATETIME_FORMAT } from '../constants/datas'
+import { DATE_FORMAT, DATE_TEXT_FORMAT } from '../constants/datas'
+import { DATETIME_FORMAT, MONTH_NAME_FORMAT } from '../constants/datas'
+import { MONTH_NUMBER_FORMAT } from '../constants/datas'
 import 'moment/min/locales'
 
 const getCurrentDatetime = () => {
   return moment().format(DATETIME_FORMAT)
+}
+
+const getMonthNameFromDatetime = (datetime) => {
+  return moment(datetime, DATETIME_FORMAT).format(MONTH_NAME_FORMAT)
+}
+
+const getMonthNumberFromDatetime = (datetime) => {
+  return moment(datetime, DATETIME_FORMAT).format(MONTH_NUMBER_FORMAT)
 }
 
 const isSameDatetime = (first, second) => {
@@ -45,6 +55,8 @@ const isTodayDatetime = (datetime) => {
 
 export {
   getCurrentDatetime,
+  getMonthNameFromDatetime,
+  getMonthNumberFromDatetime,
   isSameDatetime,
   isBeforeDatetime,
   isAfterDatetime,

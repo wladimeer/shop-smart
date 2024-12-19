@@ -1,6 +1,6 @@
 import 'react-native-gesture-handler'
 import principalES from './locales/es/principal.json'
-import principalEN from './locales/en/principal.json'
+import statisticsES from './locales/es/statistics.json'
 import { SCREENS_HEADER_KEY } from './constants/headers'
 import appSettingsES from './locales/es/appSettings.json'
 import appSettingsEN from './locales/en/appSettings.json'
@@ -18,9 +18,12 @@ import Animated, { useAnimatedStyle } from 'react-native-reanimated'
 import variantFeaturesES from './locales/es/variantFeatures.json'
 import viewPurchasesEN from './locales/en/viewPurchases.json'
 import screensHeaderEN from './locales/en/screensHeader.json'
+import { STATISTICS_SCREEN_KEY } from './constants/screens'
 import newPurchaseES from './locales/es/newPurchase.json'
 import newPurchaseEN from './locales/en/newPurchase.json'
+import statisticsEN from './locales/en/statistics.json'
 import { LanguageProvider } from './contexts/Language'
+import principalEN from './locales/en/principal.json'
 import * as SplashScreen from 'expo-splash-screen'
 import { I18nextProvider } from 'react-i18next'
 import { useFonts } from 'expo-font'
@@ -40,6 +43,7 @@ i18n.init({
       [VIEW_PURCHASES_SCREEN_KEY]: viewPurchasesES,
       [VARIANT_FEATURES_MODAL_KEY]: variantFeaturesES,
       [APP_SETTINGS_SCREEN_KEY]: appSettingsES,
+      [STATISTICS_SCREEN_KEY]: statisticsES,
       [SCREENS_HEADER_KEY]: screensHeaderES
     },
     [ENGLISH_LANGUAGE_CODE]: {
@@ -48,6 +52,7 @@ i18n.init({
       [VIEW_PURCHASES_SCREEN_KEY]: viewPurchasesEN,
       [VARIANT_FEATURES_MODAL_KEY]: variantFeaturesEN,
       [APP_SETTINGS_SCREEN_KEY]: appSettingsEN,
+      [STATISTICS_SCREEN_KEY]: statisticsEN,
       [SCREENS_HEADER_KEY]: screensHeaderEN
     }
   },

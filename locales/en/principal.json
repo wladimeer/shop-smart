@@ -3,6 +3,7 @@
   "buttons": {
     "newPurchase": "New Purchase",
     "viewPurchases": "View Purchases",
+    "statistics": "Statistics",
     "appSettings": "Settings"
   }
 }

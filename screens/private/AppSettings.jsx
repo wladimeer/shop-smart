@@ -119,7 +119,7 @@ const AppSettings = ({ navigation }) => {
 
               return (
                 <View style={styles.configContainer}>
-                  <CustomText text={translate('fields.language')} size={25} />
+                  <CustomText text={translate('fields.language')} size={22} />
 
                   <View style={styles.header}>
                     <View style={styles.headerInput}>

@@ -172,6 +172,7 @@ const Statistics = ({ navigation }) => {
             </View>
 
             <LineChart
+              fromZero={true}
               width={screenWidth - 20}
               data={quantityThroughTime}
               chartConfig={lineChartConfig}
@@ -193,6 +194,7 @@ const Statistics = ({ navigation }) => {
             </View>
 
             <LineChart
+              fromZero={true}
               width={screenWidth - 20}
               data={priceThroughTime}
               chartConfig={lineChartConfig}

@@ -20,6 +20,16 @@
         "feature_5": "This version allows reusing a saved shopping list, loading all products from that list into a new purchase",
         "feature_6": "When reusing a list, you can now modify prices and quantities before saving the new purchase"
       }
+    },
+    "statistics": {
+      "title": "Purchase Statistics:",
+      "features": {
+        "feature_1": "This version includes a view to analyze statistics of your purchases",
+        "feature_2": "Displays a pie chart with the top 5 most purchased products, based on the total quantity bought",
+        "feature_3": "Includes a line chart showing the total quantity of products purchased per month over time",
+        "feature_4": "Presents a line chart detailing the total price of products purchased per month, allowing you to visualize spending trends",
+        "feature_5": "Statistics are updated automatically every time a new purchase is saved, reflecting real-time data"
+      }
     }
   },
   "paid": {
@@ -45,6 +55,16 @@
         "feature_6": "When reusing a list, you can now modify prices and quantities before saving the new purchase",
         "feature_7": "Allows exporting shopping lists to PDF and Excel formats",
         "feature_8": "Includes the ability to share shopping lists with other app users"
+      }
+    },
+    "statistics": {
+      "title": "Purchase Statistics:",
+      "features": {
+        "feature_1": "This version includes a view to analyze statistics of your purchases",
+        "feature_2": "Displays a pie chart with the top 5 most purchased products, based on the total quantity bought",
+        "feature_3": "Includes a line chart showing the total quantity of products purchased per month over time",
+        "feature_4": "Presents a line chart detailing the total price of products purchased per month, allowing you to visualize spending trends",
+        "feature_5": "Statistics are updated automatically every time a new purchase is saved, reflecting real-time data"
       }
     }
   }

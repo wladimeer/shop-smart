@@ -16,7 +16,7 @@ const VariantFeatures = () => {
   const styles = allStyles()
 
   const handleInformationModal = () => {
-    const featuresSections = ['newPurchase', 'viewPurchases']
+    const featuresSections = ['newPurchase', 'viewPurchases', 'statistics']
 
     const items = featuresSections.map((section) => ({
       title: translate(`${appVariant}.${section}.title`),

@@ -20,6 +20,16 @@
         "feature_5": "Esta versión permite reutilizar una lista de compras guardada, cargando todos los productos de esa lista en una nueva compra",
         "feature_6": "Al reutilizar una lista, ahora puedes modificar los precios y cantidades antes de guardar la nueva compra"
       }
+    },
+    "statistics": {
+      "title": "Estadísticas de Compras:",
+      "features": {
+        "feature_1": "Esta versión incluye una vista para analizar estadísticas de tus compras realizadas",
+        "feature_2": "Muestra un gráfico de torta con los 5 productos más comprados, basado en la cantidad total adquirida",
+        "feature_3": "Incluye un gráfico de líneas que muestra la cantidad total de productos comprados por mes a lo largo del tiempo",
+        "feature_4": "Presenta un gráfico de líneas que detalla el precio total de los productos comprados por mes, permitiendo visualizar tendencias de gasto",
+        "feature_5": "Las estadísticas se actualizan automáticamente cada vez que se guarda una nueva compra, reflejando datos en tiempo real"
+      }
     }
   },
   "paid": {
@@ -45,6 +55,16 @@
         "feature_6": "Al reutilizar una lista, ahora puedes modificar los precios y cantidades antes de guardar la nueva compra",
         "feature_7": "Permite exportar las listas de compras a formatos PDF y Excel",
         "feature_8": "Incluye la posibilidad de compartir listas de compras con otros usuarios de la aplicación"
+      }
+    },
+    "statistics": {
+      "title": "Estadísticas de Compras:",
+      "features": {
+        "feature_1": "Esta versión incluye una vista para analizar estadísticas de tus compras realizadas",
+        "feature_2": "Muestra un gráfico de torta con los 5 productos más comprados, basado en la cantidad total adquirida",
+        "feature_3": "Incluye un gráfico de líneas que muestra la cantidad total de productos comprados por mes a lo largo del tiempo",
+        "feature_4": "Presenta un gráfico de líneas que detalla el precio total de los productos comprados por mes, permitiendo visualizar tendencias de gasto",
+        "feature_5": "Las estadísticas se actualizan automáticamente cada vez que se guarda una nueva compra, reflejando datos en tiempo real"
       }
     }
   }

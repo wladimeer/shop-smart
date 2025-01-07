@@ -1,8 +1,8 @@
 import ElementGroup from '../../components/ElementGroup'
 import VariantFeatures from '../../components/VariantFeatures'
 import { PRINCIPAL_SCREEN_KEY } from '../../constants/screens'
+import { NEW_REGISTER_SCREEN_KEY } from '../../constants/screens'
 import { VIEW_PURCHASES_SCREEN_KEY } from '../../constants/screens'
-import { NEW_PURCHASE_SCREEN_KEY } from '../../constants/screens'
 import { APP_SETTINGS_SCREEN_KEY } from '../../constants/screens'
 import { STATISTICS_SCREEN_KEY } from '../../constants/screens'
 import ScreenContainer from '../../components/ScreenContainer'
@@ -24,10 +24,10 @@ const Principal = ({ navigation }) => {
       <ScreenContainer background={background}>
         <ElementGroup>
           <CustomButton
-            text={translate('buttons.newPurchase')}
-            handlePress={() => handleNavigation(NEW_PURCHASE_SCREEN_KEY)}
+            text={translate('buttons.newRegister')}
+            handlePress={() => handleNavigation(NEW_REGISTER_SCREEN_KEY)}
           >
-            <MaterialIcons name="add-shopping-cart" size={24} color="white" />
+            <MaterialIcons name="add-circle-outline" size={24} color="white" />
           </CustomButton>
 
           <CustomButton

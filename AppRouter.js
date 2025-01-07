@@ -1,8 +1,9 @@
 import Statistics from './screens/private/Statistics'
+import NewRegister from './screens/private/NewRegister'
 import NewPurchase from './screens/private/NewPurchase'
 import { SCREENS_HEADER_KEY } from './constants/headers'
 import ViewPurchases from './screens/private/ViewPurchases'
-import { APP_SETTINGS_SCREEN_KEY } from './constants/screens'
+import { APP_SETTINGS_SCREEN_KEY, NEW_REGISTER_SCREEN_KEY } from './constants/screens'
 import { VIEW_PURCHASES_SCREEN_KEY, NEW_PURCHASE_SCREEN_KEY } from './constants/screens'
 import { PRINCIPAL_SCREEN_KEY, STATISTICS_SCREEN_KEY } from './constants/screens'
 import { createNativeStackNavigator } from '@react-navigation/native-stack'
@@ -36,6 +37,10 @@ const AppRouter = () => {
     [PRINCIPAL_SCREEN_KEY]: {
       headerShown: false
     },
+    [NEW_REGISTER_SCREEN_KEY]: {
+      title: translate(`screens.titles.${NEW_REGISTER_SCREEN_KEY}`),
+      ...options
+    },
     [NEW_PURCHASE_SCREEN_KEY]: {
       title: translate(`screens.titles.${NEW_PURCHASE_SCREEN_KEY}`),
       ...options
@@ -61,6 +66,11 @@ const AppRouter = () => {
           name={PRINCIPAL_SCREEN_KEY}
           options={screenOptions[PRINCIPAL_SCREEN_KEY]}
           component={Principal}
+        />
+        <Stack.Screen
+          name={NEW_REGISTER_SCREEN_KEY}
+          options={screenOptions[NEW_REGISTER_SCREEN_KEY]}
+          component={NewRegister}
         />
         <Stack.Screen
           name={NEW_PURCHASE_SCREEN_KEY}

@@ -1,8 +1,26 @@
 import { Pressable, Text, StyleSheet } from 'react-native'
+import { lightenColor } from '../utils/color'
 
-const CustomButton = ({ text, children, handlePress }) => {
+const CustomButton = ({
+  text,
+  children,
+  handlePress,
+  backgroundColor = '#154360',
+  borderRadius = 22,
+  width = 382
+}) => {
   return (
-    <Pressable style={styles.container} onPress={handlePress}>
+    <Pressable
+      style={({ pressed }) => [
+        styles.container,
+        {
+          backgroundColor: pressed ? lightenColor(backgroundColor, 0.1) : backgroundColor,
+          borderRadius,
+          width
+        }
+      ]}
+      onPress={handlePress}
+    >
       <Text style={styles.label}>{text}</Text>
       {children && children}
     </Pressable>
@@ -11,12 +29,9 @@ const CustomButton = ({ text, children, handlePress }) => {
 
 const styles = StyleSheet.create({
   container: {
-    width: 382,
     alignItems: 'center',
-    backgroundColor: '#154360',
     justifyContent: 'center',
     flexDirection: 'row',
-    borderRadius: 22,
     display: 'flex',
     height: 72,
     gap: 12

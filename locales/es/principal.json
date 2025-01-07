@@ -1,7 +1,7 @@
 {
   "title": "Principal",
   "buttons": {
-    "newPurchase": "Nueva Compra",
+    "newRegister": "Nuevo Registro",
     "viewPurchases": "Ver Compras",
     "statistics": "Estadísticas",
     "appSettings": "Configuración"

@@ -2,6 +2,7 @@
   "title": "ShopSmart",
   "screens": {
     "titles": {
+      "newRegisterScreen": "Nuevo Registro",
       "newPurchaseScreen": "Nueva Compra",
       "viewPurchasesScreen": "Ver Compras",
       "statisticsScreen": "Estadísticas",

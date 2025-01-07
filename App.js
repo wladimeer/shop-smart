@@ -12,13 +12,15 @@ import { useSharedValue, withTiming } from 'react-native-reanimated'
 import { SPANISH_LANGUAGE_CODE, ENGLISH_LANGUAGE_CODE } from './constants/locales'
 import { VIEW_PURCHASES_SCREEN_KEY, PRINCIPAL_SCREEN_KEY } from './constants/screens'
 import { NEW_PURCHASE_SCREEN_KEY, APP_SETTINGS_SCREEN_KEY } from './constants/screens'
+import { STATISTICS_SCREEN_KEY, NEW_REGISTER_SCREEN_KEY } from './constants/screens'
 import { DEFAULT_LANGUAGE_CODE, VALID_LANGUAGE_CODES } from './constants/locales'
 import { GestureHandlerRootView } from 'react-native-gesture-handler'
 import Animated, { useAnimatedStyle } from 'react-native-reanimated'
 import variantFeaturesES from './locales/es/variantFeatures.json'
 import viewPurchasesEN from './locales/en/viewPurchases.json'
 import screensHeaderEN from './locales/en/screensHeader.json'
-import { STATISTICS_SCREEN_KEY } from './constants/screens'
+import newRegisterES from './locales/es/newRegister.json'
+import newRegisterEN from './locales/en/newRegister.json'
 import newPurchaseES from './locales/es/newPurchase.json'
 import newPurchaseEN from './locales/en/newPurchase.json'
 import statisticsEN from './locales/en/statistics.json'
@@ -39,6 +41,7 @@ i18n.init({
   resources: {
     [SPANISH_LANGUAGE_CODE]: {
       [PRINCIPAL_SCREEN_KEY]: principalES,
+      [NEW_REGISTER_SCREEN_KEY]: newRegisterES,
       [NEW_PURCHASE_SCREEN_KEY]: newPurchaseES,
       [VIEW_PURCHASES_SCREEN_KEY]: viewPurchasesES,
       [VARIANT_FEATURES_MODAL_KEY]: variantFeaturesES,
@@ -48,6 +51,7 @@ i18n.init({
     },
     [ENGLISH_LANGUAGE_CODE]: {
       [PRINCIPAL_SCREEN_KEY]: principalEN,
+      [NEW_REGISTER_SCREEN_KEY]: newRegisterEN,
       [NEW_PURCHASE_SCREEN_KEY]: newPurchaseEN,
       [VIEW_PURCHASES_SCREEN_KEY]: viewPurchasesEN,
       [VARIANT_FEATURES_MODAL_KEY]: variantFeaturesEN,

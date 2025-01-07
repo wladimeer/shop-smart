@@ -1,7 +1,7 @@
 {
   "title": "Main",
   "buttons": {
-    "newPurchase": "New Purchase",
+    "newRegister": "New Register",
     "viewPurchases": "View Purchases",
     "statistics": "Statistics",
     "appSettings": "Settings"

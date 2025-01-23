@@ -45,7 +45,7 @@ const ActionModal = ({ actionModal, resetActionModal }) => {
     resetActionModal()
   }
 
-  useEffect(handleVisibilityChange, [actionModal.visible])
+  useEffect(handleVisibilityChange, [actionModal])
 
   return (
     <Modal

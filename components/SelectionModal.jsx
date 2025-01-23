@@ -45,7 +45,7 @@ const SelectionModal = ({ selectionModal, resetSelectionModal }) => {
     resetSelectionModal()
   }
 
-  useEffect(handleVisibilityChange, [selectionModal.visible])
+  useEffect(handleVisibilityChange, [selectionModal])
 
   return (
     <Modal

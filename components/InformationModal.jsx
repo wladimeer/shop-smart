@@ -49,7 +49,7 @@ const InformationModal = ({ informationModal, resetInformationModal }) => {
     resetInformationModal()
   }
 
-  useEffect(handleVisibilityChange, [visible])
+  useEffect(handleVisibilityChange, [informationModal])
 
   return (
     <Modal transparent={true} onRequestClose={handleClose} animationType="fade" visible={visible}>

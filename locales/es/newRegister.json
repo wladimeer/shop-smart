@@ -1,6 +1,7 @@
 {
   "title": "Nuevo Registro",
   "buttons": {
-    "newPurchase": "Nueva Compra"
+    "newPurchase": "Nueva Compra",
+    "newBill": "Nueva Cuenta"
   }
 }

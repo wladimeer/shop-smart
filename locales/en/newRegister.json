@@ -1,6 +1,7 @@
 {
   "title": "New Register",
   "buttons": {
-    "newPurchase": "New Purchase"
+    "newPurchase": "New Purchase",
+    "newBill": "New Bill"
   }
 }

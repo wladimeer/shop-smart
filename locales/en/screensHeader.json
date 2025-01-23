@@ -5,6 +5,7 @@
       "newRegisterScreen": "New Register",
       "newPurchaseScreen": "New Purchase",
       "viewPurchasesScreen": "View Purchases",
+      "newBillScreen": "New Bill",
       "statisticsScreen": "Statistics",
       "appSettingsScreen": "Settings"
     }

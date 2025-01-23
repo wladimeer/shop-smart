@@ -1,0 +1,63 @@
+{
+  "title": "New Bill",
+  "fields": {
+    "name": "Name",
+    "amount": "Amount",
+    "status": "Status"
+  },
+  "placeholders": {
+    "name": "Enter the bill name",
+    "amount": "Enter the bill amount",
+    "status": "Click here to select status"
+  },
+  "modals": {
+    "saveList": {
+      "title": "What do you say?",
+      "message": "Do you want to save this bill list? You can view the list in \"View Bills\"",
+      "buttons": {
+        "confirm": "Yes, of course",
+        "cancel": "No, thanks"
+      }
+    },
+    "verifyForm": {
+      "title": "Important",
+      "message": "Verify that all bills have the values entered",
+      "buttons": {
+        "confirm": "I understand"
+      }
+    },
+    "selectStatus": {
+      "title": "What is the status of the account?",
+      "buttons": {
+        "cancel": "Close"
+      }
+    }
+  },
+  "form": {
+    "required": {
+      "name": "Name is required",
+      "amount": "Amount is required",
+      "status": "Status is required"
+    }
+  },
+  "indicators": {
+    "total": "Total",
+    "noData": "No data, register some bills :)"
+  },
+  "data": {
+    "bills": [
+      { "id": 0, "name": "Water" },
+      { "id": 1, "name": "Electricity" },
+      { "id": 2, "name": "Internet" },
+      { "id": 3, "name": "Phone" },
+      { "id": 4, "name": "Gas" },
+      { "id": 5, "name": "Rent" },
+      { "id": 6, "name": "Car Insurance" },
+      { "id": 7, "name": "Home Maintenance" }
+    ],
+    "states": [
+      { "id": 0, "name": "Paid" },
+      { "id": 1, "name": "Pending" }
+    ]
+  }
+}

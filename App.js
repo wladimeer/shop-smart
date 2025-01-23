@@ -19,6 +19,7 @@ import Animated, { useAnimatedStyle } from 'react-native-reanimated'
 import variantFeaturesES from './locales/es/variantFeatures.json'
 import viewPurchasesEN from './locales/en/viewPurchases.json'
 import screensHeaderEN from './locales/en/screensHeader.json'
+import { NEW_BILL_SCREEN_KEY } from './constants/screens'
 import newRegisterES from './locales/es/newRegister.json'
 import newRegisterEN from './locales/en/newRegister.json'
 import newPurchaseES from './locales/es/newPurchase.json'
@@ -27,6 +28,8 @@ import statisticsEN from './locales/en/statistics.json'
 import { LanguageProvider } from './contexts/Language'
 import principalEN from './locales/en/principal.json'
 import * as SplashScreen from 'expo-splash-screen'
+import newBillES from './locales/es/newBill.json'
+import newBillEN from './locales/en/newBill.json'
 import { I18nextProvider } from 'react-i18next'
 import { useFonts } from 'expo-font'
 import AppRouter from './AppRouter'
@@ -44,6 +47,7 @@ i18n.init({
       [NEW_REGISTER_SCREEN_KEY]: newRegisterES,
       [NEW_PURCHASE_SCREEN_KEY]: newPurchaseES,
       [VIEW_PURCHASES_SCREEN_KEY]: viewPurchasesES,
+      [NEW_BILL_SCREEN_KEY]: newBillES,
       [VARIANT_FEATURES_MODAL_KEY]: variantFeaturesES,
       [APP_SETTINGS_SCREEN_KEY]: appSettingsES,
       [STATISTICS_SCREEN_KEY]: statisticsES,
@@ -54,6 +58,7 @@ i18n.init({
       [NEW_REGISTER_SCREEN_KEY]: newRegisterEN,
       [NEW_PURCHASE_SCREEN_KEY]: newPurchaseEN,
       [VIEW_PURCHASES_SCREEN_KEY]: viewPurchasesEN,
+      [NEW_BILL_SCREEN_KEY]: newBillEN,
       [VARIANT_FEATURES_MODAL_KEY]: variantFeaturesEN,
       [APP_SETTINGS_SCREEN_KEY]: appSettingsEN,
       [STATISTICS_SCREEN_KEY]: statisticsEN,

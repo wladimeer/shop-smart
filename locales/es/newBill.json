@@ -1,0 +1,63 @@
+{
+  "title": "Nueva Cuenta",
+  "fields": {
+    "name": "Nombre",
+    "amount": "Monto",
+    "status": "Estado"
+  },
+  "placeholders": {
+    "name": "Ingresa el nombre de la cuenta",
+    "amount": "Ingresa el monto de la cuenta",
+    "status": "Clic aquí para seleccionar el estado"
+  },
+  "modals": {
+    "saveList": {
+      "title": "¿Qué dices?",
+      "message": "¿Quieres guardar este listado de cuentas? Podrás ver el listado en \"Ver Cuentas\"",
+      "buttons": {
+        "confirm": "Sí, claro",
+        "cancel": "No, gracias"
+      }
+    },
+    "verifyForm": {
+      "title": "Importante",
+      "message": "Verifica que todas las cuentas tengan los valores ingresados",
+      "buttons": {
+        "confirm": "Lo entiendo"
+      }
+    },
+    "selectStatus": {
+      "title": "¿Cual es el estado de la cuenta?",
+      "buttons": {
+        "cancel": "Cerrar"
+      }
+    }
+  },
+  "form": {
+    "required": {
+      "name": "El nombre es requerido",
+      "amount": "El monto es requerido",
+      "status": "El estado es requerido"
+    }
+  },
+  "indicators": {
+    "total": "Total",
+    "noData": "No hay datos, registra algunas cuentas :)"
+  },
+  "data": {
+    "bills": [
+      { "id": 0, "name": "Agua" },
+      { "id": 1, "name": "Luz" },
+      { "id": 2, "name": "Internet" },
+      { "id": 3, "name": "Teléfono" },
+      { "id": 4, "name": "Gas" },
+      { "id": 5, "name": "Alquiler" },
+      { "id": 6, "name": "Seguro de auto" },
+      { "id": 7, "name": "Mantenimiento del hogar" }
+    ],
+    "states": [
+      { "id": 0, "name": "Pagado" },
+      { "id": 1, "name": "Pendiente" }
+    ]
+  }
+}

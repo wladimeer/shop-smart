@@ -4,6 +4,7 @@ import ScreenContainer from '../../components/ScreenContainer'
 import { NEW_REGISTER_SCREEN_KEY } from '../../constants/screens'
 import { NEW_PURCHASE_SCREEN_KEY } from '../../constants/screens'
 import background from '../../assets/principal-background.jpg'
+import { NEW_BILL_SCREEN_KEY } from '../../constants/screens'
 import { StyleSheet, ScrollView, View } from 'react-native'
 import { useTheme } from '@react-navigation/native'
 import { useTranslation } from 'react-i18next'
@@ -28,6 +29,14 @@ const NewRegister = ({ navigation }) => {
             {...styles.button}
           >
             <MaterialIcons name="add-shopping-cart" size={24} color="white" />
+          </CustomButton>
+
+          <CustomButton
+            text={translate('buttons.newBill')}
+            handlePress={() => handleNavigation(NEW_BILL_SCREEN_KEY)}
+            {...styles.button}
+          >
+            <MaterialIcons name="playlist-add" size={24} color="white" />
           </CustomButton>
         </View>
       </ScrollView>

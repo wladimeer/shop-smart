@@ -27,7 +27,7 @@
     },
     "verifyForm": {
       "title": "Importante",
-      "message": "Verifica que todos los productos tienen los valores ingresados",
+      "message": "Verifica que todos los productos tengan los valores ingresados",
       "buttons": {
         "confirm": "Lo entiendo"
       }

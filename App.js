@@ -15,7 +15,7 @@ import { NEW_PURCHASE_SCREEN_KEY, APP_SETTINGS_SCREEN_KEY } from './constants/sc
 import { STATISTICS_SCREEN_KEY, NEW_REGISTER_SCREEN_KEY } from './constants/screens'
 import { DEFAULT_LANGUAGE_CODE, VALID_LANGUAGE_CODES } from './constants/locales'
 import { GestureHandlerRootView } from 'react-native-gesture-handler'
-import Animated, { useAnimatedStyle } from 'react-native-reanimated'
+import Reanimated, { useAnimatedStyle } from 'react-native-reanimated'
 import variantFeaturesES from './locales/es/variantFeatures.json'
 import viewPurchasesEN from './locales/en/viewPurchases.json'
 import screensHeaderEN from './locales/en/screensHeader.json'
@@ -97,9 +97,9 @@ const App = () => {
     <I18nextProvider i18n={i18n}>
       <LanguageProvider>
         <GestureHandlerRootView>
-          <Animated.View style={[{ flex: 1 }, animatedStyle]}>
+          <Reanimated.View style={[{ flex: 1 }, animatedStyle]}>
             <AppRouter />
-          </Animated.View>
+          </Reanimated.View>
         </GestureHandlerRootView>
       </LanguageProvider>
     </I18nextProvider>

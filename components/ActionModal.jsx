@@ -1,91 +1,62 @@
 import CustomPressable from './CustomPressable'
-import { impactAsync, ImpactFeedbackStyle } from 'expo-haptics'
-import { Modal, View, StyleSheet, Animated } from 'react-native'
+import { Modal, View, StyleSheet } from 'react-native'
+import useFadeScaleAnimations from '../hooks/useFadeScaleAnimations'
+import Reanimated, { useAnimatedStyle } from 'react-native-reanimated'
 import { useTheme } from '@react-navigation/native'
 import CustomText from './CustomText'
-import { useEffect } from 'react'
 
 const ActionModal = ({ actionModal, resetActionModal }) => {
   const { colors } = useTheme()
 
-  const scaleWidth = new Animated.Value(0)
-  const fadeAnimation = new Animated.Value(0)
-  const scaleHeight = new Animated.Value(0)
+  const { visible, title, message, cancel, confirm, action } = actionModal
 
-  const animations = { scaleWidth, fadeAnimation, scaleHeight }
+  const animations = useFadeScaleAnimations(visible)
 
-  const styles = allStyles({ colors, animations })
+  const animatedStyle = useAnimatedStyle(() => ({
+    opacity: animations.fadeOpacity.value,
+    transform: [{ scaleX: animations.scaleWidth.value }, { scaleY: animations.scaleHeight.value }]
+  }))
 
-  const handleVisibilityChange = () => {
-    const { visible } = actionModal
-    const toValue = visible ? 1 : 0
-
-    if (visible) impactAsync(ImpactFeedbackStyle.Soft)
-
-    const configFade = {
-      toValue: toValue,
-      useNativeDriver: true,
-      duration: Boolean(toValue) ? 500 : 1000
-    }
-
-    Animated.timing(fadeAnimation, configFade).start()
-
-    const configScale = {
-      toValue: toValue,
-      useNativeDriver: true,
-      bounciness: 5,
-      speed: Boolean(toValue) ? 35 : 100
-    }
-
-    Animated.spring(scaleWidth, configScale).start()
-    Animated.spring(scaleHeight, configScale).start()
-  }
+  const styles = allStyles({ colors })
 
   const handleClose = () => {
     resetActionModal()
   }
 
-  useEffect(handleVisibilityChange, [actionModal])
-
   return (
-    <Modal
-      transparent={true}
-      onRequestClose={handleClose}
-      visible={actionModal.visible}
-      animationType="fade"
-    >
+    <Modal transparent={true} onRequestClose={handleClose} animationType="fade" visible={visible}>
       <View style={styles.background} />
 
-      <Animated.View style={styles.container}>
+      <Reanimated.View style={[styles.container, animatedStyle]}>
         <View style={styles.content}>
-          <CustomText text={actionModal.title} size={22} />
-          <CustomText text={actionModal.message} size={18} />
+          <CustomText text={title} size={22} />
+          <CustomText text={message} size={18} />
 
           <View style={styles.actions}>
-            {actionModal.cancel && (
+            {cancel && (
               <CustomPressable
-                text={actionModal.cancel}
+                text={cancel}
                 handlePress={handleClose}
                 backgroundColor={colors.septenary}
                 variant="bordered"
               />
             )}
 
-            {actionModal.confirm && (
+            {confirm && (
               <CustomPressable
-                text={actionModal.confirm}
-                handlePress={actionModal.action}
+                text={confirm}
+                handlePress={action}
                 backgroundColor={colors.senary}
               />
             )}
           </View>
         </View>
-      </Animated.View>
+      </Reanimated.View>
     </Modal>
   )
 }
 
-const allStyles = ({ colors, animations }) => {
+const allStyles = ({ colors }) => {
   const styles = StyleSheet.create({
     background: {
       flex: 1,
@@ -96,12 +67,7 @@ const allStyles = ({ colors, animations }) => {
     container: {
       flex: 1,
       alignItems: 'center',
-      justifyContent: 'center',
-      opacity: animations.fadeAnimation.interpolate({
-        inputRange: [0.5, 1],
-        outputRange: [0.5, 1]
-      }),
-      transform: [{ scaleX: animations.scaleWidth }, { scaleY: animations.scaleHeight }]
+      justifyContent: 'center'
     },
     content: {
       maxWidth: 350,

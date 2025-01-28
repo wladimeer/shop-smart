@@ -1,61 +1,38 @@
 import { useTheme } from '@react-navigation/native'
 import { Modal, View, Text, FlatList } from 'react-native'
+import { TouchableOpacity, StyleSheet } from 'react-native'
 import { useSafeAreaInsets } from 'react-native-safe-area-context'
-import { TouchableOpacity, StyleSheet, Animated } from 'react-native'
-import { impactAsync, ImpactFeedbackStyle } from 'expo-haptics'
+import Reanimated, { useAnimatedStyle } from 'react-native-reanimated'
+import useFadeScaleAnimations from '../hooks/useFadeScaleAnimations'
 import { DEFAULT_BOTTOM_INSET } from '../constants/config'
 import Octicons from '@expo/vector-icons/Octicons'
 import { Fontisto } from '@expo/vector-icons'
-import { useEffect } from 'react'
 import Spacer from './Spacer'
 
 const InformationModal = ({ informationModal, resetInformationModal }) => {
-  const insets = useSafeAreaInsets()
   const { colors } = useTheme()
-
-  const fadeAnimation = new Animated.Value(0)
-  const scaleHeight = new Animated.Value(0.2)
-
-  const animations = { fadeAnimation, scaleHeight }
-
-  const styles = allStyles({ colors, insets, animations })
+  const insets = useSafeAreaInsets()
 
   const { visible, title, items } = informationModal
 
-  const handleVisibilityChange = () => {
-    const toValue = visible ? 1 : 0
+  const animations = useFadeScaleAnimations(visible, false)
 
-    if (visible) impactAsync(ImpactFeedbackStyle.Heavy)
+  const animatedStyle = useAnimatedStyle(() => ({
+    opacity: animations.fadeOpacity.value,
+    transform: [{ scaleX: animations.scaleWidth.value }, { scaleY: animations.scaleHeight.value }]
+  }))
 
-    const configFade = {
-      toValue: toValue,
-      useNativeDriver: true,
-      duration: Boolean(toValue) ? 500 : 1000
-    }
-
-    Animated.timing(fadeAnimation, configFade).start()
-
-    const configScale = {
-      toValue: toValue,
-      useNativeDriver: true,
-      bounciness: 5,
-      speed: Boolean(toValue) ? 65 : 100
-    }
-
-    Animated.spring(scaleHeight, configScale).start()
-  }
+  const styles = allStyles({ colors, insets })
 
   const handleClose = () => {
     resetInformationModal()
   }
 
-  useEffect(handleVisibilityChange, [informationModal])
-
   return (
     <Modal transparent={true} onRequestClose={handleClose} animationType="fade" visible={visible}>
       <View style={styles.background} />
 
-      <Animated.View style={styles.container}>
+      <Reanimated.View style={[styles.container, animatedStyle]}>
         <View style={styles.header}>
           <Text style={styles.headerTitle}>{title}</Text>
           <TouchableOpacity onPress={handleClose}>
@@ -70,7 +47,8 @@ const InformationModal = ({ informationModal, resetInformationModal }) => {
             <FlatList
               data={items}
               renderItem={({ item: { title, features }, index }) => {
-                const lastItemRendered = index === items.length - 1
+                const isLastItem = index === items.length - 1
+                const size = insets.bottom || DEFAULT_BOTTOM_INSET
 
                 return (
                   <>
@@ -87,9 +65,7 @@ const InformationModal = ({ informationModal, resetInformationModal }) => {
                       ))}
                     </View>
 
-                    {lastItemRendered && (
-                      <Spacer color={colors.primary} size={insets.bottom || DEFAULT_BOTTOM_INSET} />
-                    )}
+                    {isLastItem && <Spacer color={colors.primary} size={size} />}
                   </>
                 )
               }}
@@ -98,12 +74,12 @@ const InformationModal = ({ informationModal, resetInformationModal }) => {
             />
           </>
         )}
-      </Animated.View>
+      </Reanimated.View>
     </Modal>
   )
 }
 
-const allStyles = ({ colors, insets, animations }) => {
+const allStyles = ({ colors, insets }) => {
   const styles = StyleSheet.create({
     background: {
       ...StyleSheet.absoluteFillObject,
@@ -114,11 +90,6 @@ const allStyles = ({ colors, insets, animations }) => {
       flex: 1,
       padding: 15,
       paddingTop: insets.top,
-      opacity: animations.fadeAnimation.interpolate({
-        inputRange: [0.5, 1],
-        outputRange: [0.5, 1]
-      }),
-      transform: [{ scaleY: animations.scaleHeight }],
       backgroundColor: colors.tertiary,
       paddingBottom: 0
     },

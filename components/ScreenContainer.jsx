@@ -1,9 +1,10 @@
-import { StyleSheet, View, Animated } from 'react-native'
-import { useSafeAreaInsets } from 'react-native-safe-area-context'
+import { StyleSheet, View } from 'react-native'
 import { DEFAULT_BOTTOM_INSET } from '../constants/config'
+import { useSafeAreaInsets } from 'react-native-safe-area-context'
+import Reanimated, { useAnimatedStyle } from 'react-native-reanimated'
+import { useSharedValue, withTiming } from 'react-native-reanimated'
 import { useTheme } from '@react-navigation/native'
 import { StatusBar } from 'expo-status-bar'
-import { useEffect, useRef } from 'react'
 
 const ScreenContainer = ({
   children,
@@ -11,25 +12,20 @@ const ScreenContainer = ({
   colorSafeArea = null,
   noSafeArea = false
 }) => {
-  const insets = useSafeAreaInsets()
-  const fadeAnimation = useRef(new Animated.Value(0)).current
   const { colors } = useTheme()
+  const insets = useSafeAreaInsets()
+
+  const opacity = useSharedValue(0)
+
+  const animatedStyle = useAnimatedStyle(() => ({
+    opacity: opacity.value
+  }))
 
   const styles = allStyles({ colors, insets, colorSafeArea })
 
   const handleLoadImage = () => {
-    const config = {
-      toValue: 1,
-      useNativeDriver: true,
-      duration: 500
-    }
-
-    Animated.timing(fadeAnimation, config).start()
+    opacity.value = withTiming(1, { duration: 500 })
   }
-
-  useEffect(() => {
-    fadeAnimation.setValue(0)
-  }, [background])
 
   return (
     <View style={styles.container}>
@@ -37,10 +33,10 @@ const ScreenContainer = ({
 
       <View style={styles.background} />
 
-      <Animated.Image
-        source={background && background}
-        style={{ ...styles.background, opacity: fadeAnimation }}
-        onLoad={handleLoadImage}
+      <Reanimated.Image
+        source={background || undefined}
+        style={[styles.background, animatedStyle]}
+        onLoadEnd={handleLoadImage}
         resizeMode="cover"
         blurRadius={3}
       />

@@ -3,11 +3,13 @@ import { useTranslation } from 'react-i18next'
 import { LANGUAGE_FIELD } from '../../constants/forms'
 import background from '../../assets/principal-background.jpg'
 import { useSafeAreaInsets } from 'react-native-safe-area-context'
+import Reanimated, { useAnimatedStyle } from 'react-native-reanimated'
 import { View, StyleSheet, ActivityIndicator, ScrollView } from 'react-native'
-import { TouchableOpacity, TextInput, Animated } from 'react-native'
+import useFadeExpandAnimation from '../../hooks/useFadeExpandAnimation'
 import { APP_SETTINGS_SCREEN_KEY } from '../../constants/screens'
 import ScreenContainer from '../../components/ScreenContainer'
 import { DEFAULT_BOTTOM_INSET } from '../../constants/config'
+import { TouchableOpacity, TextInput } from 'react-native'
 import { useLanguage } from '../../contexts/Language'
 import CustomText from '../../components/CustomText'
 import AntDesign from '@expo/vector-icons/AntDesign'
@@ -25,30 +27,14 @@ const AppSettings = ({ navigation }) => {
   const [loading, setLoading] = useState(true)
   const { colors } = useTheme()
 
-  const fadeAnimation = new Animated.Value(0)
-  const expandHeight = new Animated.Value(0)
+  const animations = useFadeExpandAnimation(filteredOptions.length > 0, 100)
 
-  const animations = { fadeAnimation, expandHeight }
+  const animatedStyle = useAnimatedStyle(() => ({
+    opacity: animations.fadeOpacity.value,
+    height: animations.expandHeight.value
+  }))
 
-  const styles = allStyles({ colors, animations })
-
-  const toggleExpand = () => {
-    const configFade = {
-      toValue: filteredOptions.length > 0 ? 1 : 0,
-      useNativeDriver: false,
-      duration: 500
-    }
-
-    Animated.timing(fadeAnimation, configFade).start()
-
-    const configExpand = {
-      toValue: filteredOptions.length > 0 ? 166 : 0,
-      useNativeDriver: false,
-      duration: 150
-    }
-
-    Animated.spring(expandHeight, configExpand).start()
-  }
+  const styles = allStyles({ colors })
 
   const handleOptionPress = (field, code) => {
     if (field === LANGUAGE_FIELD) {
@@ -76,7 +62,6 @@ const AppSettings = ({ navigation }) => {
   }
 
   useEffect(handleChangeLanguage, [languageCode])
-  useEffect(toggleExpand, [filteredOptions])
 
   useEffect(() => {
     handleLoadSettings()
@@ -134,15 +119,17 @@ const AppSettings = ({ navigation }) => {
 
                     <Spacer />
 
-                    <Animated.View style={styles.dynamicContent}>
+                    {filteredOptions.length === 0 ? (
                       <View style={styles.content}>
-                        {filteredOptions.length === 0 ? (
-                          <View style={styles.defaultOption}>
-                            <CustomText text={currentLanguage.name} color={colors.text} />
-                            <AntDesign name="check" size={24} color={colors.nonary} />
-                          </View>
-                        ) : (
-                          filteredOptions.map(({ name, code }, index) => (
+                        <View style={styles.defaultOption}>
+                          <CustomText text={currentLanguage.name} color={colors.text} />
+                          <AntDesign name="check" size={24} color={colors.nonary} />
+                        </View>
+                      </View>
+                    ) : (
+                      <Reanimated.View style={[animatedStyle]}>
+                        <View style={styles.content}>
+                          {filteredOptions.map(({ name, code }, index) => (
                             <TouchableOpacity
                               onPress={() => handleOptionPress(LANGUAGE_FIELD, code)}
                               style={styles.option}
@@ -150,10 +137,10 @@ const AppSettings = ({ navigation }) => {
                             >
                               <CustomText text={name} color={colors.text} align="left" />
                             </TouchableOpacity>
-                          ))
-                        )}
-                      </View>
-                    </Animated.View>
+                          ))}
+                        </View>
+                      </Reanimated.View>
+                    )}
                   </View>
                 </View>
               )
@@ -167,7 +154,7 @@ const AppSettings = ({ navigation }) => {
   )
 }
 
-const allStyles = ({ colors, animations }) => {
+const allStyles = ({ colors }) => {
   const styles = StyleSheet.create({
     container: {
       flex: 1,
@@ -193,9 +180,6 @@ const allStyles = ({ colors, animations }) => {
       fontFamily: 'RSC-Regular',
       textAlign: 'left',
       padding: 5
-    },
-    dynamicContent: {
-      height: animations.heightAnimation
     },
     content: {
       padding: 5,

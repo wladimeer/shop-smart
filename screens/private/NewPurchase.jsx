@@ -7,6 +7,8 @@ import { TouchableOpacity, TextInput, Platform } from 'react-native'
 import { ActivityIndicator, KeyboardAvoidingView } from 'react-native'
 import { setCartElements, getCartElements } from '../../services/purchase'
 import CustomHighlightButton from '../../components/CustomHighlightButton'
+import Reanimated, { useAnimatedStyle } from 'react-native-reanimated'
+import { useSharedValue, withTiming } from 'react-native-reanimated'
 import { VIEW_PURCHASES_SCREEN_KEY } from '../../constants/screens'
 import { UNIT_LIMIT, QUANTITY_TIMIT } from '../../constants/datas'
 import { NEW_PURCHASE_SCREEN_KEY } from '../../constants/screens'
@@ -21,7 +23,6 @@ import { useTheme } from '@react-navigation/native'
 import { useTranslation } from 'react-i18next'
 import Spacer from '../../components/Spacer'
 import { Formik, FieldArray } from 'formik'
-import { Animated } from 'react-native'
 import * as Yup from 'yup'
 
 const NewPurchase = ({ navigation, route: { params = {} } }) => {
@@ -36,11 +37,13 @@ const NewPurchase = ({ navigation, route: { params = {} } }) => {
   const scrollViewRef = useRef(null)
   const { colors } = useTheme()
 
-  const heightAnimation = useRef(new Animated.Value(166)).current
+  const expandHeight = useSharedValue(166)
 
-  const animations = { heightAnimation }
+  const animatedStyle = useAnimatedStyle(() => ({
+    height: expandHeight.value
+  }))
 
-  const styles = allStyles({ colors, animations })
+  const styles = allStyles({ colors })
 
   const validationSchema = Yup.object().shape({
     items: Yup.array().of(
@@ -116,14 +119,10 @@ const NewPurchase = ({ navigation, route: { params = {} } }) => {
   const handleOnLayout = ({ nativeEvent: { layout } }) => {
     const { height } = layout
 
-    if (height !== heightAnimation._value) {
-      const configAnimation = {
-        toValue: height,
-        useNativeDriver: false,
+    if (height !== expandHeight.value) {
+      expandHeight.value = withTiming(height, {
         duration: 150
-      }
-
-      Animated.timing(heightAnimation, configAnimation).start()
+      })
     }
   }
 
@@ -307,7 +306,7 @@ const NewPurchase = ({ navigation, route: { params = {} } }) => {
                                   <Spacer />
 
                                   {showOptions ? (
-                                    <Animated.View style={styles.dynamicContent}>
+                                    <Reanimated.View style={[animatedStyle]}>
                                       <View
                                         style={styles.optionsContainer}
                                         onLayout={isFocused && handleOnLayout}
@@ -326,7 +325,7 @@ const NewPurchase = ({ navigation, route: { params = {} } }) => {
                                           </TouchableOpacity>
                                         ))}
                                       </View>
-                                    </Animated.View>
+                                    </Reanimated.View>
                                   ) : (
                                     <View style={styles.bodyContainer}>
                                       <View style={styles.body}>
@@ -468,7 +467,7 @@ const NewPurchase = ({ navigation, route: { params = {} } }) => {
   )
 }
 
-const allStyles = ({ colors, animations }) => {
+const allStyles = ({ colors }) => {
   const styles = StyleSheet.create({
     container: {
       flex: 1,
@@ -497,9 +496,6 @@ const allStyles = ({ colors, animations }) => {
     headerButton: {
       backgroundColor: colors.primary,
       padding: 5
-    },
-    dynamicContent: {
-      height: animations.heightAnimation
     },
     optionsContainer: {
       padding: 5,

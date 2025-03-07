@@ -8,7 +8,7 @@ import CustomText from './CustomText'
 const SelectionModal = ({ selectionModal, resetSelectionModal }) => {
   const { colors } = useTheme()
 
-  const { visible, title, options, cancel } = selectionModal
+  const { visible, title, options, cancel, action } = selectionModal
 
   const animations = useFadeScaleAnimations(visible)
 
@@ -48,7 +48,7 @@ const SelectionModal = ({ selectionModal, resetSelectionModal }) => {
             {cancel && (
               <CustomPressable
                 text={cancel}
-                handlePress={handleClose}
+                handlePress={action ?? handleClose}
                 backgroundColor={colors.septenary}
                 variant="bordered"
               />

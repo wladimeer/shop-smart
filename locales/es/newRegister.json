@@ -1,7 +1,15 @@
 {
   "title": "Nuevo Registro",
+  "modals": {
+    "selectOption": {
+      "title": "¿Qué es lo que quieres registrar?",
+      "buttons": {
+        "cancel": "Volver"
+      }
+    }
+  },
   "buttons": {
-    "newPurchase": "De Compra",
-    "newBill": "De Cuenta"
+    "newPurchase": "Compras",
+    "newBill": "Cuentas"
   }
 }

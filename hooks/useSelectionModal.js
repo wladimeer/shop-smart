@@ -4,7 +4,8 @@ const useSelectionModal = () => {
   const initialState = {
     visible: false,
     title: '',
-    options: {}
+    options: {},
+    action: null
   }
 
   const reducer = (state, { type, payload }) => {
@@ -12,6 +13,7 @@ const useSelectionModal = () => {
       SET_VISIBLE: { ...state, visible: payload },
       SET_TITLE: { ...state, title: payload },
       SET_OPTIONS: { ...state, options: payload },
+      SET_ACTION: { ...state, action: payload },
       SET_CANCEL: { ...state, cancel: payload },
       SET_RESET: initialState
     }
@@ -21,10 +23,11 @@ const useSelectionModal = () => {
 
   const [selectionModal, dispatch] = useReducer(reducer, initialState)
 
-  const setSelectionModal = ({ visible, title, options, cancel }) => {
+  const setSelectionModal = ({ visible, title, options, action, cancel }) => {
     dispatch({ type: 'SET_VISIBLE', payload: visible })
     dispatch({ type: 'SET_TITLE', payload: title })
     dispatch({ type: 'SET_OPTIONS', payload: options })
+    dispatch({ type: 'SET_ACTION', payload: action })
     dispatch({ type: 'SET_CANCEL', payload: cancel })
   }
 

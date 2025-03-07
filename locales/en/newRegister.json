@@ -1,7 +1,15 @@
 {
   "title": "New Register",
+  "modals": {
+    "selectOption": {
+      "title": "What do you want to record?",
+      "buttons": {
+        "cancel": "Back"
+      }
+    }
+  },
   "buttons": {
-    "newPurchase": "Purchase",
-    "newBill": "Bill"
+    "newPurchase": "Purchases",
+    "newBill": "Bills"
   }
 }

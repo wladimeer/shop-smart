@@ -10,7 +10,7 @@ import CustomHighlightButton from '../../components/CustomHighlightButton'
 import Reanimated, { useAnimatedStyle } from 'react-native-reanimated'
 import { useSharedValue, withTiming } from 'react-native-reanimated'
 import { VIEW_PURCHASES_SCREEN_KEY } from '../../constants/screens'
-import { UNIT_LIMIT, QUANTITY_TIMIT } from '../../constants/datas'
+import { UNIT_LIMIT, QUANTITY_LIMIT } from '../../constants/datas'
 import { NEW_PURCHASE_SCREEN_KEY } from '../../constants/screens'
 import ScreenContainer from '../../components/ScreenContainer'
 import { getTotal, convertItem } from '../../utils/purchase'
@@ -191,7 +191,7 @@ const NewPurchase = ({ navigation, route: { params = {} } }) => {
             item.total = item.quantity * item.unit
           }
 
-          if (key === 'quantity' && value <= QUANTITY_TIMIT) {
+          if (key === 'quantity' && value <= QUANTITY_LIMIT) {
             item[key] = value
             item.total = item.quantity * item.unit
           }
@@ -207,7 +207,7 @@ const NewPurchase = ({ navigation, route: { params = {} } }) => {
         const handleIncreaseQuantity = (index) => {
           const item = values.items[index]
 
-          if (item.quantity < QUANTITY_TIMIT) {
+          if (item.quantity < QUANTITY_LIMIT) {
             item.quantity++
             item.total = item.quantity * item.unit
 

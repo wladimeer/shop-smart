@@ -1,10 +1,10 @@
-const PRINCIPAL_SCREEN_KEY = 'principalScreen'
-const NEW_REGISTER_SCREEN_KEY = 'newRegisterScreen'
-const NEW_PURCHASE_SCREEN_KEY = 'newPurchaseScreen'
-const VIEW_PURCHASES_SCREEN_KEY = 'viewPurchasesScreen'
-const NEW_BILL_SCREEN_KEY = 'newBillScreen'
-const APP_SETTINGS_SCREEN_KEY = 'appSettingsScreen'
-const STATISTICS_SCREEN_KEY = 'statisticsScreen'
+const PRINCIPAL_SCREEN_KEY: string = 'principalScreen'
+const NEW_REGISTER_SCREEN_KEY: string = 'newRegisterScreen'
+const NEW_PURCHASE_SCREEN_KEY: string = 'newPurchaseScreen'
+const VIEW_PURCHASES_SCREEN_KEY: string = 'viewPurchasesScreen'
+const NEW_BILL_SCREEN_KEY: string = 'newBillScreen'
+const APP_SETTINGS_SCREEN_KEY: string = 'appSettingsScreen'
+const STATISTICS_SCREEN_KEY: string = 'statisticsScreen'
 
 const SCREEN_KEYS = [
   PRINCIPAL_SCREEN_KEY,
@@ -14,7 +14,7 @@ const SCREEN_KEYS = [
   NEW_BILL_SCREEN_KEY,
   APP_SETTINGS_SCREEN_KEY,
   STATISTICS_SCREEN_KEY
-]
+] as const
 
 export {
   PRINCIPAL_SCREEN_KEY,

@@ -1,6 +1,8 @@
+import 'ts-node/register'
 import { APP_VARIANT } from './constants/config'
+import { ExpoConfig } from 'expo/config'
 
-const config = {
+const config: ExpoConfig = {
   name: 'ShopSmart',
   slug: 'shop-smart',
   version: '1.0.0',

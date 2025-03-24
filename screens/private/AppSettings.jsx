@@ -1,25 +1,25 @@
 import { useEffect, useState } from 'react'
 import { useTranslation } from 'react-i18next'
-import { LANGUAGE_FIELD } from '../../constants/forms'
+import { SCREEN_KEYS } from '../../constants/screens'
 import background from '../../assets/principal-background.jpg'
 import { useSafeAreaInsets } from 'react-native-safe-area-context'
 import Reanimated, { useAnimatedStyle } from 'react-native-reanimated'
 import { View, StyleSheet, ActivityIndicator, ScrollView } from 'react-native'
 import useFadeExpandAnimation from '../../hooks/useFadeExpandAnimation'
-import { APP_SETTINGS_SCREEN_KEY } from '../../constants/screens'
 import ScreenContainer from '../../components/ScreenContainer'
-import { DEFAULT_BOTTOM_INSET } from '../../constants/config'
 import { TouchableOpacity, TextInput } from 'react-native'
+import { DEFAULT_INSETS } from '../../constants/config'
 import { useLanguage } from '../../contexts/Language'
 import CustomText from '../../components/CustomText'
 import AntDesign from '@expo/vector-icons/AntDesign'
 import { useTheme } from '@react-navigation/native'
+import { FIELDS } from '../../constants/forms'
 import Spacer from '../../components/Spacer'
 import { Formik } from 'formik'
 
 const AppSettings = ({ navigation }) => {
   const insets = useSafeAreaInsets()
-  const [translate] = useTranslation(APP_SETTINGS_SCREEN_KEY)
+  const [translate] = useTranslation(SCREEN_KEYS.APP_SETTINGS)
   const [currentLanguage, setCurrentLanguage] = useState({})
   const [filteredOptions, setFilteredOptions] = useState([])
   const { languageCode, updateLanguageCode } = useLanguage()
@@ -27,7 +27,10 @@ const AppSettings = ({ navigation }) => {
   const [loading, setLoading] = useState(true)
   const { colors } = useTheme()
 
-  const animations = useFadeExpandAnimation(filteredOptions.length > 0, 100)
+  const animations = useFadeExpandAnimation({
+    isVisible: filteredOptions.length > 0,
+    expandedHeight: 100
+  })
 
   const animatedStyle = useAnimatedStyle(() => ({
     opacity: animations.fadeOpacity.value,
@@ -37,7 +40,7 @@ const AppSettings = ({ navigation }) => {
   const styles = allStyles({ colors })
 
   const handleOptionPress = (field, code) => {
-    if (field === LANGUAGE_FIELD) {
+    if (field === FIELDS.LANGUAGE) {
       updateLanguageCode(code)
     }
   }
@@ -78,7 +81,7 @@ const AppSettings = ({ navigation }) => {
           <Formik initialValues={initialValues}>
             {({ setFieldValue, resetForm, values }) => {
               const handleUpdateItem = (fieldKey, value) => {
-                if (fieldKey === LANGUAGE_FIELD) {
+                if (fieldKey === FIELDS.LANGUAGE) {
                   if (value.length > 0) {
                     const filtered = languageList.filter((option) => {
                       const { name } = option
@@ -109,7 +112,7 @@ const AppSettings = ({ navigation }) => {
                   <View style={styles.header}>
                     <View style={styles.headerInput}>
                       <TextInput
-                        onChangeText={(value) => handleUpdateItem(LANGUAGE_FIELD, value)}
+                        onChangeText={(value) => handleUpdateItem(FIELDS.LANGUAGE, value)}
                         placeholder={translate('placeholders.language')}
                         placeholderTextColor={colors.placeholder}
                         value={values.language}
@@ -131,7 +134,7 @@ const AppSettings = ({ navigation }) => {
                         <View style={styles.content}>
                           {filteredOptions.map(({ name, code }, index) => (
                             <TouchableOpacity
-                              onPress={() => handleOptionPress(LANGUAGE_FIELD, code)}
+                              onPress={() => handleOptionPress(FIELDS.LANGUAGE, code)}
                               style={styles.option}
                               key={index}
                             >
@@ -147,7 +150,7 @@ const AppSettings = ({ navigation }) => {
             }}
           </Formik>
 
-          <Spacer color={colors.primary} size={insets.bottom || DEFAULT_BOTTOM_INSET} />
+          <Spacer color={colors.primary} size={insets.bottom || DEFAULT_INSETS.BOTTOM} />
         </ScrollView>
       )}
     </ScreenContainer>

@@ -9,15 +9,14 @@ import { setCartElements, getCartElements } from '../../services/purchase'
 import CustomHighlightButton from '../../components/CustomHighlightButton'
 import Reanimated, { useAnimatedStyle } from 'react-native-reanimated'
 import { useSharedValue, withTiming } from 'react-native-reanimated'
-import { VIEW_PURCHASES_SCREEN_KEY } from '../../constants/screens'
-import { UNIT_LIMIT, QUANTITY_LIMIT } from '../../constants/datas'
-import { NEW_PURCHASE_SCREEN_KEY } from '../../constants/screens'
 import ScreenContainer from '../../components/ScreenContainer'
 import { getTotal, convertItem } from '../../utils/purchase'
 import { setElementsList } from '../../services/purchase'
 import { removeDiacritics } from '../../utils/purchase'
 import useActionModal from '../../hooks/useActionModal'
 import ActionModal from '../../components/ActionModal'
+import { SCREEN_KEYS } from '../../constants/screens'
+import { LIMIT_VALUES } from '../../constants/datas'
 import { useEffect, useRef, useState } from 'react'
 import { useTheme } from '@react-navigation/native'
 import { useTranslation } from 'react-i18next'
@@ -27,7 +26,7 @@ import * as Yup from 'yup'
 
 const NewPurchase = ({ navigation, route: { params = {} } }) => {
   const { elementsList = [] } = params
-  const [translate] = useTranslation(NEW_PURCHASE_SCREEN_KEY)
+  const [translate] = useTranslation(SCREEN_KEYS.NEW_PURCHASE)
   const { actionModal, setActionModal, resetActionModal } = useActionModal()
   const [focusedItemIndex, setFocusedItemIndex] = useState(null)
   const [filteredOptions, setFilteredOptions] = useState([])
@@ -78,7 +77,7 @@ const NewPurchase = ({ navigation, route: { params = {} } }) => {
       if (response) {
         resetActionModal()
         handleSaveItems([])
-        navigation.replace(VIEW_PURCHASES_SCREEN_KEY)
+        navigation.replace(SCREEN_KEYS.VIEW_PURCHASES)
       }
     } catch (error) {
       console.log(error)
@@ -186,12 +185,12 @@ const NewPurchase = ({ navigation, route: { params = {} } }) => {
             }
           }
 
-          if (key === 'unit' && value <= UNIT_LIMIT) {
+          if (key === 'unit' && value <= LIMIT_VALUES.UNIT) {
             item[key] = value
             item.total = item.quantity * item.unit
           }
 
-          if (key === 'quantity' && value <= QUANTITY_LIMIT) {
+          if (key === 'quantity' && value <= LIMIT_VALUES.QUANTITY) {
             item[key] = value
             item.total = item.quantity * item.unit
           }
@@ -207,7 +206,7 @@ const NewPurchase = ({ navigation, route: { params = {} } }) => {
         const handleIncreaseQuantity = (index) => {
           const item = values.items[index]
 
-          if (item.quantity < QUANTITY_LIMIT) {
+          if (item.quantity < LIMIT_VALUES.QUANTITY) {
             item.quantity++
             item.total = item.quantity * item.unit
 

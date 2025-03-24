@@ -1,3 +1,7 @@
-const LANGUAGE_FIELD: string = 'language'
+import type { FieldKey, Field } from 'types/field.types'
 
-export { LANGUAGE_FIELD }
+const FIELDS: Record<FieldKey, Field> = {
+  LANGUAGE: 'language'
+}
+
+export { FIELDS }

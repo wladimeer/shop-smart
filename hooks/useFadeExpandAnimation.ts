@@ -1,9 +1,10 @@
 import { useSharedValue, withTiming } from 'react-native-reanimated'
+import type { FadeExpandAnimations } from 'interfaces/animations.interfaces'
 import { useEffect } from 'react'
 
-const useFadeExpandAnimation = (isVisible, expandedHeight = 166) => {
-  const fadeOpacity = useSharedValue(0)
-  const expandHeight = useSharedValue(0)
+const useFadeExpandAnimation = ({ isVisible, expandedHeight = 166 }: FadeExpandAnimations) => {
+  const fadeOpacity = useSharedValue<number>(0)
+  const expandHeight = useSharedValue<number>(0)
 
   const handleVisibilityChange = () => {
     const toValueFade = isVisible ? 1 : 0

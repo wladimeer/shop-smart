@@ -1,3 +1,7 @@
-const SCREENS_HEADER_KEY: string = 'screensHeaders'
+import type { HeaderKey, Header } from 'types/header.types'
 
-export { SCREENS_HEADER_KEY }
+const HEADER_KEYS: Record<HeaderKey, Header> = {
+  SCREEN: 'screensHeaders'
+}
+
+export { HEADER_KEYS }

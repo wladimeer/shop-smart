@@ -1,24 +1,18 @@
 import originalTheme from './themes/original'
+import Statistics from './screens/private/Statistics'
+import useScreenOptions from './hooks/useScreenOptions'
+import NewRegister from './screens/private/NewRegister'
+import type { RootStackParamList } from 'types/navigation.types'
 import { createNativeStackNavigator } from '@react-navigation/native-stack'
 import { NavigationContainer } from '@react-navigation/native'
-import useScreenOptions from './hooks/useScreenOptions'
-
-// Screen components
-import Statistics from './screens/private/Statistics'
-import NewRegister from './screens/private/NewRegister'
 import ViewPurchases from './screens/private/ViewPurchases'
 import NewPurchase from './screens/private/NewPurchase'
 import AppSettings from './screens/private/AppSettings'
 import Principal from './screens/public/Principal'
+import { SCREEN_KEYS } from './constants/screens'
 import NewBill from './screens/private/NewBill'
 
-// Constants
-import { APP_SETTINGS_SCREEN_KEY, NEW_REGISTER_SCREEN_KEY } from './constants/screens'
-import { VIEW_PURCHASES_SCREEN_KEY, NEW_PURCHASE_SCREEN_KEY } from './constants/screens'
-import { PRINCIPAL_SCREEN_KEY, STATISTICS_SCREEN_KEY } from './constants/screens'
-import { NEW_BILL_SCREEN_KEY } from './constants/screens'
-
-const Stack = createNativeStackNavigator()
+const Stack = createNativeStackNavigator<RootStackParamList>()
 
 const AppRouter = () => {
   const screenOptions = useScreenOptions()
@@ -27,38 +21,38 @@ const AppRouter = () => {
     <NavigationContainer theme={originalTheme}>
       <Stack.Navigator>
         <Stack.Screen
-          name={PRINCIPAL_SCREEN_KEY}
-          options={screenOptions[PRINCIPAL_SCREEN_KEY]}
+          name={SCREEN_KEYS.PRINCIPAL}
+          options={screenOptions[SCREEN_KEYS.PRINCIPAL]}
           component={Principal}
         />
         <Stack.Screen
-          name={NEW_REGISTER_SCREEN_KEY}
-          options={screenOptions[NEW_REGISTER_SCREEN_KEY]}
+          name={SCREEN_KEYS.NEW_REGISTER}
+          options={screenOptions[SCREEN_KEYS.NEW_REGISTER]}
           component={NewRegister}
         />
         <Stack.Screen
-          name={NEW_PURCHASE_SCREEN_KEY}
-          options={screenOptions[NEW_PURCHASE_SCREEN_KEY]}
+          name={SCREEN_KEYS.NEW_PURCHASE}
+          options={screenOptions[SCREEN_KEYS.NEW_PURCHASE]}
           component={NewPurchase}
         />
         <Stack.Screen
-          name={VIEW_PURCHASES_SCREEN_KEY}
-          options={screenOptions[VIEW_PURCHASES_SCREEN_KEY]}
+          name={SCREEN_KEYS.VIEW_PURCHASES}
+          options={screenOptions[SCREEN_KEYS.VIEW_PURCHASES]}
           component={ViewPurchases}
         />
         <Stack.Screen
-          name={NEW_BILL_SCREEN_KEY}
-          options={screenOptions[NEW_BILL_SCREEN_KEY]}
+          name={SCREEN_KEYS.NEW_BILL}
+          options={screenOptions[SCREEN_KEYS.NEW_BILL]}
           component={NewBill}
         />
         <Stack.Screen
-          name={STATISTICS_SCREEN_KEY}
-          options={screenOptions[STATISTICS_SCREEN_KEY]}
+          name={SCREEN_KEYS.STATISTICS}
+          options={screenOptions[SCREEN_KEYS.STATISTICS]}
           component={Statistics}
         />
         <Stack.Screen
-          name={APP_SETTINGS_SCREEN_KEY}
-          options={screenOptions[APP_SETTINGS_SCREEN_KEY]}
+          name={SCREEN_KEYS.APP_SETTINGS}
+          options={screenOptions[SCREEN_KEYS.APP_SETTINGS]}
           component={AppSettings}
         />
       </Stack.Navigator>

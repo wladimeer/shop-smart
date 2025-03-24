@@ -1,28 +1,13 @@
-const PRINCIPAL_SCREEN_KEY: string = 'principalScreen'
-const NEW_REGISTER_SCREEN_KEY: string = 'newRegisterScreen'
-const NEW_PURCHASE_SCREEN_KEY: string = 'newPurchaseScreen'
-const VIEW_PURCHASES_SCREEN_KEY: string = 'viewPurchasesScreen'
-const NEW_BILL_SCREEN_KEY: string = 'newBillScreen'
-const APP_SETTINGS_SCREEN_KEY: string = 'appSettingsScreen'
-const STATISTICS_SCREEN_KEY: string = 'statisticsScreen'
+import type { ScreenKey, Screen } from 'types/screen.types'
 
-const SCREEN_KEYS = [
-  PRINCIPAL_SCREEN_KEY,
-  NEW_REGISTER_SCREEN_KEY,
-  NEW_PURCHASE_SCREEN_KEY,
-  VIEW_PURCHASES_SCREEN_KEY,
-  NEW_BILL_SCREEN_KEY,
-  APP_SETTINGS_SCREEN_KEY,
-  STATISTICS_SCREEN_KEY
-] as const
-
-export {
-  PRINCIPAL_SCREEN_KEY,
-  NEW_REGISTER_SCREEN_KEY,
-  NEW_PURCHASE_SCREEN_KEY,
-  VIEW_PURCHASES_SCREEN_KEY,
-  NEW_BILL_SCREEN_KEY,
-  APP_SETTINGS_SCREEN_KEY,
-  STATISTICS_SCREEN_KEY,
-  SCREEN_KEYS
+const SCREEN_KEYS: Record<ScreenKey, Screen> = {
+  PRINCIPAL: 'principalScreen',
+  NEW_REGISTER: 'newRegisterScreen',
+  NEW_PURCHASE: 'newPurchaseScreen',
+  VIEW_PURCHASES: 'viewPurchasesScreen',
+  NEW_BILL: 'newBillScreen',
+  APP_SETTINGS: 'appSettingsScreen',
+  STATISTICS: 'statisticsScreen'
 }
+
+export { SCREEN_KEYS }

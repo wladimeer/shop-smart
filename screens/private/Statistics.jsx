@@ -1,17 +1,17 @@
 import Spacer from '../../components/Spacer'
 import { Dimensions, View } from 'react-native'
 import { useTheme } from '@react-navigation/native'
+import { SCREEN_KEYS } from '../../constants/screens'
 import { LineChart, PieChart } from 'react-native-chart-kit'
 import ScreenContainer from '../../components/ScreenContainer'
 import background from '../../assets/principal-background.jpg'
 import { useSafeAreaInsets } from 'react-native-safe-area-context'
 import { ActivityIndicator, ScrollView, StyleSheet } from 'react-native'
-import { STATISTICS_SCREEN_KEY } from '../../constants/screens'
 import { getMonthNumberFromDatetime } from '../../utils/time'
-import { DEFAULT_BOTTOM_INSET } from '../../constants/config'
 import { getMonthNameFromDatetime } from '../../utils/time'
 import { getElementsList } from '../../services/purchase'
 import { uniqueColorGenerator } from '../../utils/color'
+import { DEFAULT_INSETS } from '../../constants/config'
 import CustomText from '../../components/CustomText'
 import { useTranslation } from 'react-i18next'
 import { useEffect, useState } from 'react'
@@ -19,7 +19,7 @@ import { useEffect, useState } from 'react'
 const Statistics = ({ navigation }) => {
   const insets = useSafeAreaInsets()
   const { width: screenWidth } = Dimensions.get('window')
-  const [translate] = useTranslation(STATISTICS_SCREEN_KEY)
+  const [translate] = useTranslation(SCREEN_KEYS.STATISTICS)
   const [highestQuantityItems, setHighestQuantityItems] = useState([])
   const [quantityThroughTime, setQuantityThroughTime] = useState([])
   const [priceThroughTime, setPriceThroughTime] = useState([])
@@ -204,7 +204,7 @@ const Statistics = ({ navigation }) => {
             />
           </View>
 
-          <Spacer color={colors.primary} size={insets.bottom || DEFAULT_BOTTOM_INSET} />
+          <Spacer color={colors.primary} size={insets.bottom || DEFAULT_INSETS.BOTTOM} />
         </ScrollView>
       )}
     </ScreenContainer>

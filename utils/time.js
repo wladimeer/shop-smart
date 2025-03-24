@@ -1,56 +1,54 @@
 import moment from 'moment'
-import { DATE_FORMAT, DATE_TEXT_FORMAT } from '../constants/datas'
-import { DATETIME_FORMAT, MONTH_NAME_FORMAT } from '../constants/datas'
-import { MONTH_NUMBER_FORMAT } from '../constants/datas'
+import { DATE_FORMATS } from '../constants/datas'
 import 'moment/min/locales'
 
 const getCurrentDatetime = () => {
-  return moment().format(DATETIME_FORMAT)
+  return moment().format(DATE_FORMATS.DATETIME)
 }
 
 const getMonthNameFromDatetime = (datetime) => {
-  return moment(datetime, DATETIME_FORMAT).format(MONTH_NAME_FORMAT)
+  return moment(datetime, DATE_FORMATS.DATETIME).format(DATE_FORMATS.MONTH_NAME)
 }
 
 const getMonthNumberFromDatetime = (datetime) => {
-  return moment(datetime, DATETIME_FORMAT).format(MONTH_NUMBER_FORMAT)
+  return moment(datetime, DATE_FORMATS.DATETIME).format(DATE_FORMATS.MONTH_NUMBER)
 }
 
 const isSameDatetime = (first, second) => {
-  const firstDatetime = moment(first, DATETIME_FORMAT)
-  const secondDatetime = moment(second, DATETIME_FORMAT)
+  const firstDatetime = moment(first, DATE_FORMATS.DATETIME)
+  const secondDatetime = moment(second, DATE_FORMATS.DATETIME)
 
   return firstDatetime.isSame(secondDatetime)
 }
 
 const isBeforeDatetime = (first, second) => {
-  const firstDatetime = moment(first, DATETIME_FORMAT)
-  const secondDatetime = moment(second, DATETIME_FORMAT)
+  const firstDatetime = moment(first, DATE_FORMATS.DATETIME)
+  const secondDatetime = moment(second, DATE_FORMATS.DATETIME)
 
   return firstDatetime.isBefore(secondDatetime)
 }
 
 const isAfterDatetime = (first, second) => {
-  const firstDatetime = moment(first, DATETIME_FORMAT)
-  const secondDatetime = moment(second, DATETIME_FORMAT)
+  const firstDatetime = moment(first, DATE_FORMATS.DATETIME)
+  const secondDatetime = moment(second, DATE_FORMATS.DATETIME)
 
   return firstDatetime.isAfter(secondDatetime)
 }
 
 const formatToDate = (datetime) => {
-  return moment(datetime, DATETIME_FORMAT).format(DATE_FORMAT)
+  return moment(datetime, DATE_FORMATS.DATETIME).format(DATE_FORMATS.DATE)
 }
 
 const formatToText = (datetime) => {
-  return moment(datetime, DATETIME_FORMAT).format(DATE_TEXT_FORMAT)
+  return moment(datetime, DATE_FORMATS.DATETIME).format(DATE_FORMATS.DATE_TEXT)
 }
 
 const fromUntilNow = (datetime) => {
-  return moment(datetime, DATETIME_FORMAT).fromNow()
+  return moment(datetime, DATE_FORMATS.DATETIME).fromNow()
 }
 
 const isTodayDatetime = (datetime) => {
-  return moment(datetime, DATETIME_FORMAT).isSame(moment(), 'day')
+  return moment(datetime, DATE_FORMATS.DATETIME).isSame(moment(), 'day')
 }
 
 export {

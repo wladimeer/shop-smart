@@ -1,3 +1,7 @@
-const VARIANT_FEATURES_MODAL_KEY: string = 'variantFeaturesModal'
+import type { ModalKey, Modal } from 'types/modal.types'
 
-export { VARIANT_FEATURES_MODAL_KEY }
+const MODAL_KEYS: Record<ModalKey, Modal> = {
+  VARIANT_FEATURES: 'variantFeaturesModal'
+}
+
+export { MODAL_KEYS }

@@ -14,7 +14,7 @@ import './i18n/config'
 SplashScreen.preventAutoHideAsync()
 
 const App = () => {
-  const opacity = useSharedValue(0.2)
+  const opacity = useSharedValue<number>(0.2)
 
   const [fontsLoaded, fontError] = useFonts({
     'SSC-Regular': require('./fonts/SedanSC-Regular.ttf'),
@@ -24,6 +24,8 @@ const App = () => {
   const animatedStyle = useAnimatedStyle(() => ({
     opacity: opacity.value
   }))
+
+  const style = [{ flex: 1 }, animatedStyle]
 
   useEffect(() => {
     const prepare = async () => {
@@ -41,7 +43,7 @@ const App = () => {
     <I18nextProvider i18n={i18n}>
       <LanguageProvider>
         <GestureHandlerRootView>
-          <Reanimated.View style={[{ flex: 1 }, animatedStyle]}>
+          <Reanimated.View style={style}>
             <AppRouter />
           </Reanimated.View>
         </GestureHandlerRootView>

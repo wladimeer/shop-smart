@@ -1,22 +1,21 @@
 import ElementGroup from '../../components/ElementGroup'
+import type { ScreenProps } from 'types/navigation.types'
 import VariantFeatures from '../../components/VariantFeatures'
-import { PRINCIPAL_SCREEN_KEY } from '../../constants/screens'
-import { NEW_REGISTER_SCREEN_KEY } from '../../constants/screens'
-import { VIEW_PURCHASES_SCREEN_KEY } from '../../constants/screens'
-import { APP_SETTINGS_SCREEN_KEY } from '../../constants/screens'
-import { STATISTICS_SCREEN_KEY } from '../../constants/screens'
 import ScreenContainer from '../../components/ScreenContainer'
 import background from '../../assets/principal-background.jpg'
 import MaterialIcons from '@expo/vector-icons/MaterialIcons'
 import CustomButton from '../../components/CustomButton'
+import type Translation from 'types/translation.type'
+import { SCREEN_KEYS } from '../../constants/screens'
 import Ionicons from '@expo/vector-icons/Ionicons'
+import type { Screen } from 'types/screen.types'
 import { useTranslation } from 'react-i18next'
 
-const Principal = ({ navigation }) => {
-  const [translate] = useTranslation(PRINCIPAL_SCREEN_KEY)
+const Principal = ({ navigation }: ScreenProps<typeof SCREEN_KEYS.PRINCIPAL>) => {
+  const { t }: Translation = useTranslation(SCREEN_KEYS.PRINCIPAL)
 
-  const handleNavigation = (screenKey) => {
-    navigation.navigate(screenKey)
+  const handleNavigation = (screen: Screen) => {
+    navigation.navigate(screen)
   }
 
   return (
@@ -24,29 +23,29 @@ const Principal = ({ navigation }) => {
       <ScreenContainer background={background}>
         <ElementGroup>
           <CustomButton
-            text={translate('buttons.newRegister')}
-            handlePress={() => handleNavigation(NEW_REGISTER_SCREEN_KEY)}
+            text={t('buttons.newRegister')}
+            handlePress={() => handleNavigation(SCREEN_KEYS.NEW_REGISTER)}
           >
             <MaterialIcons name="add-circle-outline" size={24} color="white" />
           </CustomButton>
 
           <CustomButton
-            text={translate('buttons.viewPurchases')}
-            handlePress={() => handleNavigation(VIEW_PURCHASES_SCREEN_KEY)}
+            text={t('buttons.viewPurchases')}
+            handlePress={() => handleNavigation(SCREEN_KEYS.VIEW_PURCHASES)}
           >
             <MaterialIcons name="shopping-cart-checkout" size={24} color="white" />
           </CustomButton>
 
           <CustomButton
-            text={translate('buttons.statistics')}
-            handlePress={() => handleNavigation(STATISTICS_SCREEN_KEY)}
+            text={t('buttons.statistics')}
+            handlePress={() => handleNavigation(SCREEN_KEYS.STATISTICS)}
           >
             <MaterialIcons name="query-stats" size={24} color="white" />
           </CustomButton>
 
           <CustomButton
-            text={translate('buttons.appSettings')}
-            handlePress={() => handleNavigation(APP_SETTINGS_SCREEN_KEY)}
+            text={t('buttons.appSettings')}
+            handlePress={() => handleNavigation(SCREEN_KEYS.APP_SETTINGS)}
           >
             <Ionicons name="settings-outline" size={24} color="white" />
           </CustomButton>

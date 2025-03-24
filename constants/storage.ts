@@ -1,7 +1,11 @@
-const CART_ELEMENTS_KEY: string = 'cartElements'
-const ELEMENTS_LIST_KEY: string = 'elementsList'
-const BILL_ELEMENTS_KEY: string = 'billElements'
-const BILLS_LIST_KEY: string = 'billsList'
-const LANGUAGE_KEY: string = 'language'
+import type { StorageKey, Storage } from 'types/storage.types'
 
-export { CART_ELEMENTS_KEY, ELEMENTS_LIST_KEY, BILL_ELEMENTS_KEY, BILLS_LIST_KEY, LANGUAGE_KEY }
+const STORAGE_KEYS: Record<StorageKey, Storage> = {
+  CART_ELEMENTS: 'cartElements',
+  ELEMENTS_LIST: 'elementsList',
+  BILL_ELEMENTS: 'billElements',
+  BILLS_LIST: 'billsList',
+  LANGUAGE: 'language'
+}
+
+export { STORAGE_KEYS }

@@ -1,14 +1,14 @@
 import InformationModal from './InformationModal'
 import AntDesign from '@expo/vector-icons/AntDesign'
 import { View, StyleSheet, Pressable } from 'react-native'
-import { VARIANT_FEATURES_MODAL_KEY } from '../constants/modals'
 import useInformationModal from '../hooks/useInformationModal'
 import { LinearGradient } from 'expo-linear-gradient'
+import { MODAL_KEYS } from '../constants/modals'
 import { useTranslation } from 'react-i18next'
 import Constants from 'expo-constants'
 
 const VariantFeatures = () => {
-  const [translate] = useTranslation(VARIANT_FEATURES_MODAL_KEY)
+  const [translate] = useTranslation(MODAL_KEYS.VARIANT_FEATURES)
   const { appVariant } = Constants.expoConfig.extra
 
   const { informationModal, setInformationModal, resetInformationModal } = useInformationModal()

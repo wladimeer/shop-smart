@@ -1,5 +1,5 @@
 import { StyleSheet, View } from 'react-native'
-import { DEFAULT_BOTTOM_INSET } from '../constants/config'
+import { DEFAULT_INSETS } from '../constants/config'
 import { useSafeAreaInsets } from 'react-native-safe-area-context'
 import Reanimated, { useAnimatedStyle } from 'react-native-reanimated'
 import { useSharedValue, withTiming } from 'react-native-reanimated'
@@ -64,7 +64,7 @@ const allStyles = ({ colors, insets, colorSafeArea }) => {
       alignItems: 'center'
     },
     safeAreaBottom: {
-      paddingBottom: insets.bottom || DEFAULT_BOTTOM_INSET,
+      paddingBottom: insets.bottom || DEFAULT_INSETS.BOTTOM,
       backgroundColor: colorSafeArea ?? 'transparent'
     }
   })

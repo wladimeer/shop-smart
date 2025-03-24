@@ -10,7 +10,7 @@ const ActionModal = ({ actionModal, resetActionModal }) => {
 
   const { visible, title, message, cancel, confirm, action } = actionModal
 
-  const animations = useFadeScaleAnimations(visible)
+  const animations = useFadeScaleAnimations({ isVisible: visible })
 
   const animatedStyle = useAnimatedStyle(() => ({
     opacity: animations.fadeOpacity.value,

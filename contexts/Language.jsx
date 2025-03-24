@@ -1,8 +1,8 @@
 import { useTranslation } from 'react-i18next'
 import React, { useEffect, createContext, useState, useContext } from 'react'
-import { DEFAULT_LANGUAGE_CODE, VALID_LANGUAGE_CODES } from '../constants/locales'
 import AsyncStorage from '@react-native-async-storage/async-storage'
-import { LANGUAGE_KEY } from '../constants/storage'
+import { LANGUAGE_CODES } from '../constants/locales'
+import { STORAGE_KEYS } from '../constants/storage'
 import moment from 'moment'
 
 const LanguageContext = createContext()
@@ -13,13 +13,13 @@ const LanguageProvider = ({ children }) => {
   const [loading, setLoading] = useState(true)
 
   const updateLanguageCode = async (languageCode = null) => {
-    let definedCode = DEFAULT_LANGUAGE_CODE
+    let definedCode = LANGUAGE_CODES.DEFAULT
 
-    if (VALID_LANGUAGE_CODES.includes(languageCode)) {
+    if ([LANGUAGE_CODES.ENGLISH, LANGUAGE_CODES.SPANISH].includes(languageCode)) {
       definedCode = languageCode
     }
 
-    await AsyncStorage.setItem(LANGUAGE_KEY, definedCode)
+    await AsyncStorage.setItem(STORAGE_KEYS.LANGUAGE, definedCode)
     setLanguageCode(definedCode)
     changeLanguage(definedCode)
     moment.locale(definedCode)
@@ -27,10 +27,10 @@ const LanguageProvider = ({ children }) => {
 
   useEffect(() => {
     const loadLanguageCode = async () => {
-      const exist = await AsyncStorage.getItem(LANGUAGE_KEY)
+      const exist = await AsyncStorage.getItem(STORAGE_KEYS.LANGUAGE)
 
       if (exist != null) {
-        const languageCode = await AsyncStorage.getItem(LANGUAGE_KEY)
+        const languageCode = await AsyncStorage.getItem(STORAGE_KEYS.LANGUAGE)
         updateLanguageCode(languageCode)
       } else {
         updateLanguageCode()

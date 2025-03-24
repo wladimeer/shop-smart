@@ -15,7 +15,7 @@ const InformationModal = ({ informationModal, resetInformationModal }) => {
 
   const { visible, title, items } = informationModal
 
-  const animations = useFadeScaleAnimations(visible, false)
+  const animations = useFadeScaleAnimations({ isVisible: visible, bounciness: false })
 
   const animatedStyle = useAnimatedStyle(() => ({
     opacity: animations.fadeOpacity.value,

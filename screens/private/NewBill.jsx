@@ -12,16 +12,16 @@ import Reanimated, { useAnimatedStyle } from 'react-native-reanimated'
 import { useSharedValue, withTiming } from 'react-native-reanimated'
 // import { VIEW_BILLS_SCREEN_KEY } from '../../constants/screens'
 import ScreenContainer from '../../components/ScreenContainer'
-import { NEW_BILL_SCREEN_KEY } from '../../constants/screens'
 import useSelectionModal from '../../hooks/useSelectionModal'
 import SelectionModal from '../../components/SelectionModal'
 import { removeDiacritics } from '../../utils/purchase'
 import useActionModal from '../../hooks/useActionModal'
 import ActionModal from '../../components/ActionModal'
+import { SCREEN_KEYS } from '../../constants/screens'
+import { LIMIT_VALUES } from '../../constants/datas'
 import { useEffect, useRef, useState } from 'react'
 import { useTheme } from '@react-navigation/native'
 import { setBillsList } from '../../services/bill'
-import { UNIT_LIMIT } from '../../constants/datas'
 import { useTranslation } from 'react-i18next'
 import Spacer from '../../components/Spacer'
 import { Formik, FieldArray } from 'formik'
@@ -29,7 +29,7 @@ import * as Yup from 'yup'
 
 const NewBill = ({ navigation, route: { params = {} } }) => {
   const { elementsList = [] } = params
-  const [translate] = useTranslation(NEW_BILL_SCREEN_KEY)
+  const [translate] = useTranslation(SCREEN_KEYS.NEW_BILL)
   const { selectionModal, setSelectionModal, resetSelectionModal } = useSelectionModal()
   const { actionModal, setActionModal, resetActionModal } = useActionModal()
   const [focusedItemIndex, setFocusedItemIndex] = useState(null)
@@ -196,7 +196,7 @@ const NewBill = ({ navigation, route: { params = {} } }) => {
             }
           }
 
-          if (key === 'amount' && value <= UNIT_LIMIT) {
+          if (key === 'amount' && value <= LIMIT_VALUES.UNIT) {
             item[key] = value
           }
 

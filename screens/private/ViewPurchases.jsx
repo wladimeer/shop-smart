@@ -1,6 +1,7 @@
 import { useTranslation } from 'react-i18next'
 import { formatToCLP } from '../../utils/purchase'
 import { useEffect, useRef, useState } from 'react'
+import { SCREEN_KEYS } from '../../constants/screens'
 import background from '../../assets/principal-background.jpg'
 import { useSafeAreaInsets } from 'react-native-safe-area-context'
 import Swipeable from 'react-native-gesture-handler/ReanimatedSwipeable'
@@ -10,11 +11,9 @@ import { formatToText, formatToDate, fromUntilNow } from '../../utils/time'
 import useFadeExpandAnimation from '../../hooks/useFadeExpandAnimation'
 import Reanimated, { useAnimatedStyle } from 'react-native-reanimated'
 import { MaterialCommunityIcons, Feather } from '@expo/vector-icons'
-import { VIEW_PURCHASES_SCREEN_KEY } from '../../constants/screens'
 import { View, StyleSheet, ActivityIndicator } from 'react-native'
-import { NEW_PURCHASE_SCREEN_KEY } from '../../constants/screens'
 import ScreenContainer from '../../components/ScreenContainer'
-import { DEFAULT_BOTTOM_INSET } from '../../constants/config'
+import { DEFAULT_INSETS } from '../../constants/config'
 import useActionModal from '../../hooks/useActionModal'
 import ActionModal from '../../components/ActionModal'
 import CustomText from '../../components/CustomText'
@@ -24,7 +23,7 @@ import Spacer from '../../components/Spacer'
 
 const ViewPurchases = ({ navigation }) => {
   const insets = useSafeAreaInsets()
-  const [translate] = useTranslation(VIEW_PURCHASES_SCREEN_KEY)
+  const [translate] = useTranslation(SCREEN_KEYS.VIEW_PURCHASES)
   const { actionModal, setActionModal, resetActionModal } = useActionModal()
   const [elementsList, setElementsList] = useState([])
   const [selectedId, setSelectedId] = useState(null)
@@ -32,7 +31,7 @@ const ViewPurchases = ({ navigation }) => {
   const swipeablesRef = useRef([])
   const { colors } = useTheme()
 
-  const animations = useFadeExpandAnimation(!!selectedId)
+  const animations = useFadeExpandAnimation({ isVisible: !!selectedId })
 
   const animatedStyle = useAnimatedStyle(() => ({
     opacity: animations.fadeOpacity.value,
@@ -48,7 +47,7 @@ const ViewPurchases = ({ navigation }) => {
 
     resetActionModal()
 
-    navigation.replace(NEW_PURCHASE_SCREEN_KEY, {
+    navigation.replace(SCREEN_KEYS.NEW_PURCHASE, {
       elementsList: item.elements
     })
   }
@@ -232,7 +231,7 @@ const ViewPurchases = ({ navigation }) => {
 
             if (item.type === 'item') {
               const isLastItem = index === elementsList.length - 1
-              const size = insets.bottom || DEFAULT_BOTTOM_INSET
+              const size = insets.bottom || DEFAULT_INSETS.BOTTOM
 
               return (
                 <>

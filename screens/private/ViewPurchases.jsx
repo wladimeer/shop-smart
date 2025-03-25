@@ -1,5 +1,6 @@
 import { useTranslation } from 'react-i18next'
-import { formatToCLP } from '../../utils/purchase'
+import { COUNTRIES } from '../../constants/locales'
+import { formatCurrency } from '../../utils/purchase'
 import { useEffect, useRef, useState } from 'react'
 import { SCREEN_KEYS } from '../../constants/screens'
 import background from '../../assets/principal-background.jpg'
@@ -147,7 +148,10 @@ const ViewPurchases = ({ navigation }) => {
         <View style={styles.boxContent}>
           <View style={styles.leftSideItem}>
             <CustomText
-              text={`${translate('indicators.total')}: ${formatToCLP(item.total)}`}
+              text={`${translate('indicators.total')}: ${formatCurrency({
+                value: item.total,
+                country: COUNTRIES.CL.code
+              })}`}
               color={colors.text}
               size={22}
             />

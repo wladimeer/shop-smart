@@ -1,5 +1,6 @@
-import { formatToCLP } from '../../utils/purchase'
+import { COUNTRIES } from '../../constants/locales'
 import CustomText from '../../components/CustomText'
+import { formatCurrency } from '../../utils/purchase'
 import { getTotal, getStatus } from '../../utils/bill'
 import { Fontisto, AntDesign } from '@expo/vector-icons'
 import { View, ScrollView, StyleSheet } from 'react-native'
@@ -415,7 +416,10 @@ const NewBill = ({ navigation, route: { params = {} } }) => {
                     />
 
                     <CustomText
-                      text={formatToCLP(getTotal(values.items))}
+                      text={formatCurrency({
+                        value: getTotal(values.items),
+                        country: COUNTRIES.CL.code
+                      })}
                       color={colors.secondary}
                       align="left"
                       size={32}

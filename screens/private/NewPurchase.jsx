@@ -1,5 +1,6 @@
-import { formatToCLP } from '../../utils/purchase'
+import { COUNTRIES } from '../../constants/locales'
 import CustomText from '../../components/CustomText'
+import { formatCurrency } from '../../utils/purchase'
 import { Fontisto, AntDesign } from '@expo/vector-icons'
 import { View, ScrollView, StyleSheet } from 'react-native'
 import background from '../../assets/principal-background.jpg'
@@ -374,7 +375,10 @@ const NewPurchase = ({ navigation, route: { params = {} } }) => {
                                           />
 
                                           <CustomText
-                                            text={formatToCLP(item.total)}
+                                            text={formatCurrency({
+                                              value: item.total,
+                                              country: COUNTRIES.CL.code
+                                            })}
                                             color={colors.text}
                                           />
                                         </View>
@@ -441,7 +445,10 @@ const NewPurchase = ({ navigation, route: { params = {} } }) => {
                     />
 
                     <CustomText
-                      text={formatToCLP(getTotal(values.items))}
+                      text={formatCurrency({
+                        value: getTotal(values.items),
+                        country: COUNTRIES.CL.code
+                      })}
                       color={colors.secondary}
                       align="left"
                       size={32}

@@ -11,4 +11,9 @@ interface Bills extends BaseRecord {
   elements: Bill[]
 }
 
-export { Bill, Bills }
+interface BillStatusInfo {
+  id: number
+  name: string
+}
+
+export { Bill, Bills, BillStatusInfo }

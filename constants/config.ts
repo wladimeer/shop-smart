@@ -12,4 +12,15 @@ const DEFAULT_INSETS: Record<InsetKey, number> = {
   BOTTOM: 32
 }
 
-export { APP_VARIANT, APP_VARIANTS, DEFAULT_INSETS }
+const BASE_COLORS: string[] = [
+  '#4F2E5F',
+  '#60346F',
+  '#724080',
+  '#844C91',
+  '#9556A1',
+  '#A562B1',
+  '#B06EC1',
+  '#C17AD1'
+] as const
+
+export { APP_VARIANT, APP_VARIANTS, DEFAULT_INSETS, BASE_COLORS }

@@ -45,7 +45,7 @@ const setBillsList = (billList: Bill[]): Promise<Bills[]> => {
         total
       }
 
-      const newBillsList = [...structuredClone(billsList), bills] as Bills[]
+      const newBillsList = [...billsList, bills] as Bills[]
 
       await AsyncStorage.setItem(STORAGE_KEYS.BILLS_LIST, JSON.stringify(newBillsList))
       resolve(newBillsList)

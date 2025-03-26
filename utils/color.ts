@@ -17,12 +17,12 @@ const lightenColor = (hexadecimal: string, factor: number): string => {
 }
 
 const uniqueColorGenerator = (): (() => string) => {
-  let availableColors: string[] = structuredClone(BASE_COLORS)
+  let availableColors: string[] = [...BASE_COLORS]
 
   const generateColor = (): string => {
     const { length } = availableColors
 
-    if (length === 0) availableColors = structuredClone(BASE_COLORS)
+    if (length === 0) availableColors = [...BASE_COLORS]
 
     const randomIndex: number = Math.floor(Math.random() * length)
     return availableColors.splice(randomIndex, 1)[0]

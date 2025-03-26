@@ -45,7 +45,7 @@ const setElementsList = (purchaseList: Purchase[]): Promise<Purchases[]> => {
         total
       }
 
-      const newPurchasesList = [...structuredClone(purchasesList), purchases] as Purchases[]
+      const newPurchasesList = [...purchasesList, purchases] as Purchases[]
 
       await AsyncStorage.setItem(STORAGE_KEYS.ELEMENTS_LIST, JSON.stringify(newPurchasesList))
       resolve(newPurchasesList)

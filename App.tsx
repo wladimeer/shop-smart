@@ -1,6 +1,5 @@
 import 'react-native-gesture-handler'
 import { I18nextProvider } from 'react-i18next'
-import { LanguageProvider } from './contexts/Language'
 import { useSharedValue, withTiming } from 'react-native-reanimated'
 import Reanimated, { useAnimatedStyle } from 'react-native-reanimated'
 import { GestureHandlerRootView } from 'react-native-gesture-handler'
@@ -43,13 +42,11 @@ const App = () => {
 
   return (
     <I18nextProvider i18n={i18n}>
-      <LanguageProvider>
-        <GestureHandlerRootView>
-          <Reanimated.View style={style}>
-            <AppRouter />
-          </Reanimated.View>
-        </GestureHandlerRootView>
-      </LanguageProvider>
+      <GestureHandlerRootView>
+        <Reanimated.View style={style}>
+          <AppRouter />
+        </Reanimated.View>
+      </GestureHandlerRootView>
     </I18nextProvider>
   )
 }

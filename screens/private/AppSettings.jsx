@@ -9,10 +9,10 @@ import useFadeExpandAnimation from '../../hooks/useFadeExpandAnimation'
 import ScreenContainer from '../../components/ScreenContainer'
 import { TouchableOpacity, TextInput } from 'react-native'
 import { DEFAULT_INSETS } from '../../constants/config'
-import { useLanguage } from '../../contexts/Language'
 import CustomText from '../../components/CustomText'
 import AntDesign from '@expo/vector-icons/AntDesign'
 import { useTheme } from '@react-navigation/native'
+import { useLanguageStore } from 'store/language'
 import { FIELDS } from '../../constants/forms'
 import Spacer from '../../components/Spacer'
 import { Formik } from 'formik'
@@ -22,9 +22,10 @@ const AppSettings = ({ navigation }) => {
   const [translate] = useTranslation(SCREEN_KEYS.APP_SETTINGS)
   const [currentLanguage, setCurrentLanguage] = useState({})
   const [filteredOptions, setFilteredOptions] = useState([])
-  const { languageCode, updateLanguageCode } = useLanguage()
+  const { language, setLanguage } = useLanguageStore()
   const [languageList, setLanguageList] = useState([])
   const [loading, setLoading] = useState(true)
+  const { i18n } = useTranslation()
   const { colors } = useTheme()
 
   const animations = useFadeExpandAnimation({
@@ -41,7 +42,8 @@ const AppSettings = ({ navigation }) => {
 
   const handleOptionPress = (field, code) => {
     if (field === FIELDS.LANGUAGE) {
-      updateLanguageCode(code)
+      i18n.changeLanguage(code)
+      setLanguage(code)
     }
   }
 
@@ -54,7 +56,7 @@ const AppSettings = ({ navigation }) => {
   const handleLoadSettings = async () => {
     try {
       const languages = translate('data.languages', { returnObjects: true })
-      const currentLanguage = languages.find(({ code }) => code === languageCode)
+      const currentLanguage = languages.find(({ code }) => code === language)
 
       setCurrentLanguage(currentLanguage)
       setLanguageList(languages)
@@ -64,7 +66,7 @@ const AppSettings = ({ navigation }) => {
     }
   }
 
-  useEffect(handleChangeLanguage, [languageCode])
+  useEffect(handleChangeLanguage, [language])
 
   useEffect(() => {
     handleLoadSettings()
@@ -103,7 +105,7 @@ const AppSettings = ({ navigation }) => {
                 setFieldValue(fieldKey, value)
               }
 
-              useEffect(resetForm, [languageCode])
+              useEffect(resetForm, [language])
 
               return (
                 <View style={styles.configContainer}>

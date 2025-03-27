@@ -5,7 +5,6 @@ import appSettingsES from '../locales/es/appSettings.json'
 import screensHeaderES from '../locales/es/screensHeader.json'
 import variantFeaturesES from '../locales/es/variantFeatures.json'
 import viewPurchasesES from '../locales/es/viewPurchases.json'
-import newRegisterES from '../locales/es/newRegister.json'
 import newPurchaseES from '../locales/es/newPurchase.json'
 import statisticsES from '../locales/es/statistics.json'
 
@@ -16,7 +15,6 @@ import appSettingsEN from '../locales/en/appSettings.json'
 import screensHeaderEN from '../locales/en/screensHeader.json'
 import variantFeaturesEN from '../locales/en/variantFeatures.json'
 import viewPurchasesEN from '../locales/en/viewPurchases.json'
-import newRegisterEN from '../locales/en/newRegister.json'
 import newPurchaseEN from '../locales/en/newPurchase.json'
 import statisticsEN from '../locales/en/statistics.json'
 
@@ -27,7 +25,6 @@ const resources = {
   screensHeaderES,
   variantFeaturesES,
   viewPurchasesES,
-  newRegisterES,
   newPurchaseES,
   statisticsES,
   newBillEN,
@@ -36,7 +33,6 @@ const resources = {
   screensHeaderEN,
   variantFeaturesEN,
   viewPurchasesEN,
-  newRegisterEN,
   newPurchaseEN,
   statisticsEN
 } as const

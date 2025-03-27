@@ -4,6 +4,16 @@
     "newRegister": "Nuevo Registro",
     "viewPurchases": "Ver Compras",
     "statistics": "Estadísticas",
-    "appSettings": "Configuración"
+    "appSettings": "Configuración",
+    "newPurchase": "Compras",
+    "newBill": "Cuentas"
+  },
+  "modals": {
+    "selectOption": {
+      "title": "¿Qué es lo que quieres registrar?",
+      "buttons": {
+        "cancel": "Volver"
+      }
+    }
   }
 }

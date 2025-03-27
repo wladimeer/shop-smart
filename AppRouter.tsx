@@ -1,7 +1,6 @@
 import originalTheme from './themes/original'
 import Statistics from './screens/private/Statistics'
 import useScreenOptions from './hooks/useScreenOptions'
-import NewRegister from './screens/private/NewRegister'
 import type { RootStackParamList } from 'types/navigation.types'
 import { createNativeStackNavigator } from '@react-navigation/native-stack'
 import { NavigationContainer } from '@react-navigation/native'
@@ -24,11 +23,6 @@ const AppRouter = () => {
           name={SCREEN_KEYS.PRINCIPAL}
           options={screenOptions[SCREEN_KEYS.PRINCIPAL]}
           component={Principal}
-        />
-        <Stack.Screen
-          name={SCREEN_KEYS.NEW_REGISTER}
-          options={screenOptions[SCREEN_KEYS.NEW_REGISTER]}
-          component={NewRegister}
         />
         <Stack.Screen
           name={SCREEN_KEYS.NEW_PURCHASE}

@@ -28,10 +28,6 @@ const useScreenOptions = (): ScreenOptions => {
     [SCREEN_KEYS.PRINCIPAL]: {
       headerShown: false
     },
-    [SCREEN_KEYS.NEW_REGISTER]: {
-      title: t(`screens.titles.${SCREEN_KEYS.NEW_REGISTER}`),
-      ...options
-    },
     [SCREEN_KEYS.NEW_PURCHASE]: {
       title: t(`screens.titles.${SCREEN_KEYS.NEW_PURCHASE}`),
       ...options

@@ -8,7 +8,6 @@ import appSettingsES from '../locales/es/appSettings.json'
 import screensHeaderES from '../locales/es/screensHeader.json'
 import variantFeaturesES from '../locales/es/variantFeatures.json'
 import viewPurchasesES from '../locales/es/viewPurchases.json'
-import newRegisterES from '../locales/es/newRegister.json'
 import newPurchaseES from '../locales/es/newPurchase.json'
 import statisticsES from '../locales/es/statistics.json'
 
@@ -25,7 +24,6 @@ import appSettingsEN from '../locales/en/appSettings.json'
 import screensHeaderEN from '../locales/en/screensHeader.json'
 import variantFeaturesEN from '../locales/en/variantFeatures.json'
 import viewPurchasesEN from '../locales/en/viewPurchases.json'
-import newRegisterEN from '../locales/en/newRegister.json'
 import newPurchaseEN from '../locales/en/newPurchase.json'
 import statisticsEN from '../locales/en/statistics.json'
 
@@ -35,7 +33,6 @@ i18next.use(initReactI18next).init({
   resources: {
     [LANGUAGE_CODES.SPANISH]: {
       [SCREEN_KEYS.PRINCIPAL]: principalES,
-      [SCREEN_KEYS.NEW_REGISTER]: newRegisterES,
       [SCREEN_KEYS.NEW_PURCHASE]: newPurchaseES,
       [SCREEN_KEYS.VIEW_PURCHASES]: viewPurchasesES,
       [SCREEN_KEYS.NEW_BILL]: newBillES,
@@ -46,7 +43,6 @@ i18next.use(initReactI18next).init({
     },
     [LANGUAGE_CODES.ENGLISH]: {
       [SCREEN_KEYS.PRINCIPAL]: principalEN,
-      [SCREEN_KEYS.NEW_REGISTER]: newRegisterEN,
       [SCREEN_KEYS.NEW_PURCHASE]: newPurchaseEN,
       [SCREEN_KEYS.VIEW_PURCHASES]: viewPurchasesEN,
       [SCREEN_KEYS.NEW_BILL]: newBillEN,

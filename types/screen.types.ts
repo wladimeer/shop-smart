@@ -1,6 +1,5 @@
 type ScreenKey =
   | 'PRINCIPAL'
-  | 'NEW_REGISTER'
   | 'NEW_PURCHASE'
   | 'VIEW_PURCHASES'
   | 'NEW_BILL'
@@ -9,7 +8,6 @@ type ScreenKey =
 
 type Screen =
   | 'principalScreen'
-  | 'newRegisterScreen'
   | 'newPurchaseScreen'
   | 'viewPurchasesScreen'
   | 'newBillScreen'

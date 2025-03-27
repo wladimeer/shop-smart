@@ -2,7 +2,6 @@
   "title": "ShopSmart",
   "screens": {
     "titles": {
-      "newRegisterScreen": "New Register",
       "newPurchaseScreen": "New Purchase",
       "viewPurchasesScreen": "View Purchases",
       "newBillScreen": "New Bill",

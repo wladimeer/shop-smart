@@ -4,6 +4,16 @@
     "newRegister": "New Register",
     "viewPurchases": "View Purchases",
     "statistics": "Statistics",
-    "appSettings": "Settings"
+    "appSettings": "Settings",
+    "newPurchase": "Purchases",
+    "newBill": "Bills"
+  },
+  "modals": {
+    "selectOption": {
+      "title": "What do you want to record?",
+      "buttons": {
+        "cancel": "Back"
+      }
+    }
   }
 }

@@ -3,7 +3,6 @@ import { SCREEN_KEYS } from '../constants/screens'
 
 type RootStackParamList = {
   [SCREEN_KEYS.PRINCIPAL]: undefined
-  [SCREEN_KEYS.NEW_REGISTER]: undefined
   [SCREEN_KEYS.NEW_PURCHASE]: undefined
   [SCREEN_KEYS.VIEW_PURCHASES]: undefined
   [SCREEN_KEYS.NEW_BILL]: undefined

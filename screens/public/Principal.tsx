@@ -1,31 +1,63 @@
+import SelectionModal from 'components/SelectionModal'
 import ElementGroup from '../../components/ElementGroup'
 import type { ScreenProps } from 'types/navigation.types'
 import VariantFeatures from '../../components/VariantFeatures'
 import ScreenContainer from '../../components/ScreenContainer'
 import background from '../../assets/principal-background.jpg'
 import MaterialIcons from '@expo/vector-icons/MaterialIcons'
+import { useFocusEffect } from '@react-navigation/native'
 import CustomButton from '../../components/CustomButton'
+import useSelectionModal from 'hooks/useSelectionModal'
 import type Translation from 'types/translation.type'
 import { SCREEN_KEYS } from '../../constants/screens'
 import Ionicons from '@expo/vector-icons/Ionicons'
 import type { Screen } from 'types/screen.types'
 import { useTranslation } from 'react-i18next'
+import { useCallback } from 'react'
 
-const Principal = ({ navigation }: ScreenProps<typeof SCREEN_KEYS.PRINCIPAL>) => {
+const Principal = ({ navigation }: ScreenProps<Screen>) => {
   const { t }: Translation = useTranslation(SCREEN_KEYS.PRINCIPAL)
+  const { selectionModal, setSelectionModal, resetSelectionModal } = useSelectionModal()
+
+  const handleSelectionModal = () => {
+    const options = [
+      {
+        name: t('buttons.newPurchase'),
+        action: () => handleNavigation(SCREEN_KEYS.NEW_PURCHASE)
+      },
+      {
+        name: t('buttons.newBill'),
+        action: () => handleNavigation(SCREEN_KEYS.NEW_BILL)
+      }
+    ]
+
+    setSelectionModal({
+      visible: true,
+      title: t('modals.selectOption.title'),
+      cancel: t('modals.selectOption.buttons.cancel'),
+      action: resetSelectionModal,
+      options
+    })
+  }
 
   const handleNavigation = (screen: Screen) => {
+    resetSelectionModal()
     navigation.navigate(screen)
   }
+
+  useFocusEffect(
+    useCallback(() => {
+      resetSelectionModal()
+    }, [])
+  )
 
   return (
     <>
       <ScreenContainer background={background}>
+        <SelectionModal {...{ selectionModal, resetSelectionModal }} />
+
         <ElementGroup>
-          <CustomButton
-            text={t('buttons.newRegister')}
-            handlePress={() => handleNavigation(SCREEN_KEYS.NEW_REGISTER)}
-          >
+          <CustomButton text={t('buttons.newRegister')} handlePress={handleSelectionModal}>
             <MaterialIcons name="add-circle-outline" size={24} color="white" />
           </CustomButton>
 

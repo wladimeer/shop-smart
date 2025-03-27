@@ -14,7 +14,7 @@ const getCurrentDatetime = (): string => {
 }
 
 const getMonthNameFromDatetime = (datetime: DateTimeFormat): string => {
-  return dayjs(datetime, DATE_FORMATS.DATETIME).format(DATE_FORMATS.MONTH_NAME)
+  return dayjs(datetime, DATE_FORMATS.DATETIME).format(DATE_FORMATS.MONTH_NAME).toLowerCase()
 }
 
 const getMonthNumberFromDatetime = (datetime: DateTimeFormat): string => {

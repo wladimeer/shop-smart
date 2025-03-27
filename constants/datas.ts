@@ -1,4 +1,5 @@
-import type { DateKey, Date, DateTime, Month } from 'types/date.types'
+import type { DateKey, DateFormat, DateTextFormat, DateTimeFormat } from 'types/date.types'
+import type { MonthNameFormat, MonthNumberFormat } from 'types/date.types'
 import type { LimitKey } from 'types/limit.types'
 
 const LIMIT_VALUES: Record<LimitKey, number> = {
@@ -6,10 +7,13 @@ const LIMIT_VALUES: Record<LimitKey, number> = {
   QUANTITY: 1000
 }
 
-const DATE_FORMATS: Record<DateKey, Date | DateTime | Month> = {
-  DATETIME: 'DD-MM-YYYY HH:mm:ss',
+const DATE_FORMATS: Record<
+  DateKey,
+  DateFormat | DateTextFormat | DateTimeFormat | MonthNameFormat | MonthNumberFormat
+> = {
   DATE: 'DD-MM-YYYY',
   DATE_TEXT: 'LL',
+  DATETIME: 'DD-MM-YYYY HH:mm:ss',
   MONTH_NAME: 'MMMM',
   MONTH_NUMBER: 'MM'
 }

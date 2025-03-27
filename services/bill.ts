@@ -2,6 +2,7 @@ import 'react-native-get-random-values'
 import AsyncStorage from '@react-native-async-storage/async-storage'
 import { getCurrentDatetime, isBeforeDatetime, isAfterDatetime } from '../utils/time'
 import type { Bill, Bills } from 'interfaces/bill-interfaces'
+import type { DateTimeFormat } from 'types/date.types'
 import { STORAGE_KEYS } from '../constants/storage'
 import { v4 as randomId } from 'uuid'
 
@@ -64,8 +65,15 @@ const getBillsList = (): Promise<Bills[]> => {
       if (savedData !== null) billsList = JSON.parse(savedData) as Bills[]
 
       billsList.sort((a, b) => {
-        const isAfter = isAfterDatetime(a.createdAt, b.createdAt)
-        const isBefore = isBeforeDatetime(a.createdAt, b.createdAt)
+        const isAfter = isAfterDatetime(
+          a.createdAt as DateTimeFormat,
+          b.createdAt as DateTimeFormat
+        )
+
+        const isBefore = isBeforeDatetime(
+          a.createdAt as DateTimeFormat,
+          b.createdAt as DateTimeFormat
+        )
 
         return isAfter ? -1 : isBefore ? 1 : 0
       })

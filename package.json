@@ -18,6 +18,7 @@
     "@react-navigation/drawer": "6.6.15",
     "@react-navigation/native": "6.1.17",
     "@react-navigation/native-stack": "6.9.26",
+    "dayjs": "1.11.13",
     "expo": "52.0.26",
     "expo-constants": "17.0.4",
     "expo-haptics": "14.0.1",
@@ -43,6 +44,7 @@
   "devDependencies": {
     "@babel/core": "^7.20.0",
     "@types/react": "^18.3.18",
+    "@types/uuid": "^10.0.0",
     "babel-plugin-module-resolver": "^5.0.2",
     "ts-node": "^10.9.2",
     "typescript": "^5.8.2"

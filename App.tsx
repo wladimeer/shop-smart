@@ -9,6 +9,8 @@ import { useFonts } from 'expo-font'
 import AppRouter from './AppRouter'
 import { useEffect } from 'react'
 import i18n from 'i18next'
+import 'dayjs/locale/es'
+import 'dayjs/locale/en'
 import './i18n/config'
 
 SplashScreen.preventAutoHideAsync()

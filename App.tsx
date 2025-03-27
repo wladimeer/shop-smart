@@ -4,9 +4,11 @@ import { useSharedValue, withTiming } from 'react-native-reanimated'
 import Reanimated, { useAnimatedStyle } from 'react-native-reanimated'
 import { GestureHandlerRootView } from 'react-native-gesture-handler'
 import * as SplashScreen from 'expo-splash-screen'
+import { useLanguageStore } from 'store/language'
 import { useFonts } from 'expo-font'
 import AppRouter from './AppRouter'
 import { useEffect } from 'react'
+import { locale } from 'dayjs'
 import i18n from 'i18next'
 import 'dayjs/locale/es'
 import 'dayjs/locale/en'
@@ -15,6 +17,7 @@ import './i18n/config'
 SplashScreen.preventAutoHideAsync()
 
 const App = () => {
+  const { language } = useLanguageStore()
   const opacity = useSharedValue<number>(0.2)
 
   const [fontsLoaded, fontError] = useFonts({
@@ -27,6 +30,11 @@ const App = () => {
   }))
 
   const style = [{ flex: 1 }, animatedStyle]
+
+  useEffect(() => {
+    i18n.changeLanguage(language)
+    locale(language)
+  }, [language])
 
   useEffect(() => {
     const prepare = async () => {

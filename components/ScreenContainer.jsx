@@ -15,16 +15,16 @@ const ScreenContainer = ({
   const { colors } = useTheme()
   const insets = useSafeAreaInsets()
 
-  const opacity = useSharedValue(0)
+  const fadeOpacity = useSharedValue(0)
 
   const animatedStyle = useAnimatedStyle(() => ({
-    opacity: opacity.value
+    opacity: fadeOpacity.value
   }))
 
   const styles = allStyles({ colors, insets, colorSafeArea })
 
   const handleLoadImage = () => {
-    opacity.value = withTiming(1, { duration: 500 })
+    fadeOpacity.value = withTiming(1, { duration: 500 })
   }
 
   return (

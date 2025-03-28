@@ -18,7 +18,7 @@ SplashScreen.preventAutoHideAsync()
 
 const App = () => {
   const { language } = useLanguageStore()
-  const opacity = useSharedValue<number>(0.2)
+  const fadeOpacity = useSharedValue<number>(0.2)
 
   const [fontsLoaded, fontError] = useFonts({
     'SSC-Regular': require('./fonts/SedanSC-Regular.ttf'),
@@ -26,7 +26,7 @@ const App = () => {
   })
 
   const animatedStyle = useAnimatedStyle(() => ({
-    opacity: opacity.value
+    opacity: fadeOpacity.value
   }))
 
   const style = [{ flex: 1 }, animatedStyle]
@@ -40,7 +40,7 @@ const App = () => {
     const prepare = async () => {
       const config = { duration: 800 }
       await SplashScreen.hideAsync()
-      opacity.value = withTiming(1, config)
+      fadeOpacity.value = withTiming(1, config)
     }
 
     setTimeout(prepare, 1500)

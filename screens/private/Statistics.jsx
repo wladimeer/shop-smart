@@ -26,7 +26,7 @@ const Statistics = ({ navigation }) => {
   const [loading, setLoading] = useState(true)
   const { colors } = useTheme()
 
-  const styles = allStyles({ colors })
+  const styles = allStyles()
 
   const pieChartConfig = {
     color: () => colors.denary
@@ -211,7 +211,7 @@ const Statistics = ({ navigation }) => {
   )
 }
 
-const allStyles = ({ colors, animations }) => {
+const allStyles = () => {
   const styles = StyleSheet.create({
     container: {
       flex: 1,

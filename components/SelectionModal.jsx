@@ -17,7 +17,7 @@ const SelectionModal = ({ selectionModal, resetSelectionModal }) => {
     transform: [{ scaleX: animations.scaleWidth.value }, { scaleY: animations.scaleHeight.value }]
   }))
 
-  const styles = allStyles({ colors, animations })
+  const styles = allStyles({ colors })
 
   const handleClose = () => {
     resetSelectionModal()

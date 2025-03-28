@@ -4,7 +4,7 @@ import type { FadeScaleAnimations } from 'interfaces/animations.interfaces'
 import { impactAsync, ImpactFeedbackStyle } from 'expo-haptics'
 import { useEffect } from 'react'
 
-const useFadeScaleAnimations = ({ isVisible, bounciness = true }: FadeScaleAnimations) => {
+const useFadeScaleAnimations = ({ isVisible = false, bounciness = true }: FadeScaleAnimations) => {
   const scaleWidth = useSharedValue<number>(0)
   const fadeOpacity = useSharedValue<number>(0)
   const scaleHeight = useSharedValue<number>(0)

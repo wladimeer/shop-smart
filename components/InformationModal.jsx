@@ -4,7 +4,7 @@ import { TouchableOpacity, StyleSheet } from 'react-native'
 import { useSafeAreaInsets } from 'react-native-safe-area-context'
 import Reanimated, { useAnimatedStyle } from 'react-native-reanimated'
 import useFadeScaleAnimations from '../hooks/useFadeScaleAnimations'
-import { DEFAULT_BOTTOM_INSET } from '../constants/config'
+import { DEFAULT_INSETS } from '../constants/config'
 import Octicons from '@expo/vector-icons/Octicons'
 import { Fontisto } from '@expo/vector-icons'
 import Spacer from './Spacer'
@@ -48,7 +48,7 @@ const InformationModal = ({ informationModal, resetInformationModal }) => {
               data={items}
               renderItem={({ item: { title, features }, index }) => {
                 const isLastItem = index === items.length - 1
-                const size = insets.bottom || DEFAULT_BOTTOM_INSET
+                const size = insets.bottom || DEFAULT_INSETS.BOTTOM
 
                 return (
                   <>

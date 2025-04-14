@@ -1,5 +1,5 @@
 import CustomPressable from './CustomPressable'
-import { Modal, View, StyleSheet } from 'react-native'
+import { Modal, View, StyleSheet, StatusBar } from 'react-native'
 import Reanimated, { useAnimatedStyle } from 'react-native-reanimated'
 import useFadeScaleAnimations from '../hooks/useFadeScaleAnimations'
 import { useTheme } from '@react-navigation/native'
@@ -26,6 +26,11 @@ const SelectionModal = ({ selectionModal, resetSelectionModal }) => {
   return (
     <Modal transparent={true} onRequestClose={handleClose} animationType="fade" visible={visible}>
       <View style={styles.background} />
+
+      <StatusBar
+        backgroundColor={visible ? colors.quaternary : 'transparent'}
+        barStyle="light-content"
+      />
 
       <Reanimated.View style={[styles.container, animatedStyle]}>
         <View style={styles.content}>

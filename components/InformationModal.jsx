@@ -1,7 +1,7 @@
 import { useTheme } from '@react-navigation/native'
 import { Modal, View, Text, FlatList } from 'react-native'
-import { TouchableOpacity, StyleSheet } from 'react-native'
 import { useSafeAreaInsets } from 'react-native-safe-area-context'
+import { TouchableOpacity, StyleSheet, StatusBar } from 'react-native'
 import Reanimated, { useAnimatedStyle } from 'react-native-reanimated'
 import useFadeScaleAnimations from '../hooks/useFadeScaleAnimations'
 import { DEFAULT_INSETS } from '../constants/config'
@@ -30,7 +30,10 @@ const InformationModal = ({ informationModal, resetInformationModal }) => {
 
   return (
     <Modal transparent={true} onRequestClose={handleClose} animationType="fade" visible={visible}>
-      <View style={styles.background} />
+      <StatusBar
+        backgroundColor={visible ? colors.tertiary : 'transparent'}
+        barStyle="light-content"
+      />
 
       <Reanimated.View style={[styles.container, animatedStyle]}>
         <View style={styles.header}>
@@ -81,11 +84,6 @@ const InformationModal = ({ informationModal, resetInformationModal }) => {
 
 const allStyles = ({ colors, insets }) => {
   const styles = StyleSheet.create({
-    background: {
-      ...StyleSheet.absoluteFillObject,
-      backgroundColor: colors.quaternary,
-      opacity: 0.6
-    },
     container: {
       flex: 1,
       padding: 15,

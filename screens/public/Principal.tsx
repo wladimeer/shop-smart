@@ -3,7 +3,6 @@ import ElementGroup from '../../components/ElementGroup'
 import type { ScreenProps } from 'types/navigation.types'
 import VariantFeatures from '../../components/VariantFeatures'
 import ScreenContainer from '../../components/ScreenContainer'
-import background from '../../assets/principal-background.jpg'
 import MaterialIcons from '@expo/vector-icons/MaterialIcons'
 import { useFocusEffect } from '@react-navigation/native'
 import CustomButton from '../../components/CustomButton'
@@ -53,7 +52,7 @@ const Principal = ({ navigation }: ScreenProps<Screen>) => {
 
   return (
     <>
-      <ScreenContainer background={background}>
+      <ScreenContainer>
         <SelectionModal {...{ selectionModal, resetSelectionModal }} />
 
         <ElementGroup>

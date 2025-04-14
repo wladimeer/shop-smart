@@ -3,7 +3,6 @@ import CustomText from '../../components/CustomText'
 import { formatCurrency } from '../../utils/purchase'
 import { Fontisto, AntDesign } from '@expo/vector-icons'
 import { View, ScrollView, StyleSheet } from 'react-native'
-import background from '../../assets/principal-background.jpg'
 import { TouchableOpacity, TextInput, Platform } from 'react-native'
 import { ActivityIndicator, KeyboardAvoidingView } from 'react-native'
 import { setCartElements, getCartElements } from '../../services/purchase'
@@ -258,7 +257,7 @@ const NewPurchase = ({ navigation, route: { params = {} } }) => {
         }
 
         return (
-          <ScreenContainer background={background} colorSafeArea={colors.tertiary}>
+          <ScreenContainer colorSafeArea={colors.tertiary}>
             <ActionModal {...{ actionModal, resetActionModal }} />
 
             {loading ? (

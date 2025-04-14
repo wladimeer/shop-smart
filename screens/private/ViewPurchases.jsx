@@ -3,7 +3,6 @@ import { COUNTRIES } from '../../constants/locales'
 import { formatCurrency } from '../../utils/purchase'
 import { useEffect, useRef, useState } from 'react'
 import { SCREEN_KEYS } from '../../constants/screens'
-import background from '../../assets/principal-background.jpg'
 import { useSafeAreaInsets } from 'react-native-safe-area-context'
 import Swipeable from 'react-native-gesture-handler/ReanimatedSwipeable'
 import CustomHighlightButton from '../../components/CustomHighlightButton'
@@ -213,7 +212,7 @@ const ViewPurchases = ({ navigation }) => {
   )
 
   return (
-    <ScreenContainer background={background} noSafeArea={true}>
+    <ScreenContainer noSafeArea={true}>
       <ActionModal {...{ actionModal, resetActionModal }} />
 
       {loading ? (

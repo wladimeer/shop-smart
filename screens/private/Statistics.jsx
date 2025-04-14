@@ -4,7 +4,6 @@ import { useTheme } from '@react-navigation/native'
 import { SCREEN_KEYS } from '../../constants/screens'
 import { LineChart, PieChart } from 'react-native-chart-kit'
 import ScreenContainer from '../../components/ScreenContainer'
-import background from '../../assets/principal-background.jpg'
 import { useSafeAreaInsets } from 'react-native-safe-area-context'
 import { ActivityIndicator, ScrollView, StyleSheet } from 'react-native'
 import { getMonthNumberFromDatetime } from '../../utils/time'
@@ -133,7 +132,7 @@ const Statistics = ({ navigation }) => {
   }, [])
 
   return (
-    <ScreenContainer background={background} noSafeArea={true}>
+    <ScreenContainer noSafeArea={true}>
       {loading ? (
         <ActivityIndicator size="large" />
       ) : (

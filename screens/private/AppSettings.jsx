@@ -1,7 +1,6 @@
 import { useEffect, useState } from 'react'
 import { useTranslation } from 'react-i18next'
 import { SCREEN_KEYS } from '../../constants/screens'
-import background from '../../assets/principal-background.jpg'
 import { useSafeAreaInsets } from 'react-native-safe-area-context'
 import Reanimated, { useAnimatedStyle } from 'react-native-reanimated'
 import { View, StyleSheet, ActivityIndicator, ScrollView } from 'react-native'
@@ -75,7 +74,7 @@ const AppSettings = ({ navigation }) => {
   const initialValues = { language: '' }
 
   return (
-    <ScreenContainer background={background} noSafeArea={true}>
+    <ScreenContainer noSafeArea={true}>
       {loading ? (
         <ActivityIndicator size="large" />
       ) : (

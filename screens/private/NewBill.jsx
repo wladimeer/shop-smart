@@ -4,7 +4,6 @@ import { formatCurrency } from '../../utils/purchase'
 import { getTotal, getStatus } from '../../utils/bill'
 import { Fontisto, AntDesign } from '@expo/vector-icons'
 import { View, ScrollView, StyleSheet } from 'react-native'
-import background from '../../assets/principal-background.jpg'
 import { TouchableOpacity, TextInput, Platform } from 'react-native'
 import { ActivityIndicator, KeyboardAvoidingView } from 'react-native'
 import { setBillElements, getBillElements } from '../../services/bill'
@@ -263,7 +262,7 @@ const NewBill = ({ navigation, route: { params = {} } }) => {
         }
 
         return (
-          <ScreenContainer background={background} colorSafeArea={colors.tertiary}>
+          <ScreenContainer colorSafeArea={colors.tertiary}>
             <ActionModal {...{ actionModal, resetActionModal }} />
             <SelectionModal {...{ selectionModal, resetSelectionModal }} />
 

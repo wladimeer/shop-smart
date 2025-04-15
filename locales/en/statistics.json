@@ -6,6 +6,6 @@
     "quantityThroughTime": "Quantity of products in time",
     "monthQuantity": "Total quantity per month",
     "monthPrice": "Total price per month",
-    "noData": "No data. Go to \"New Purchase\" and add some products :)"
+    "noData": "No data. Go to \"New Register\" and add some products or bills :)"
   }
 }

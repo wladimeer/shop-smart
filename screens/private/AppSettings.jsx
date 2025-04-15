@@ -2,9 +2,8 @@ import { useEffect, useState } from 'react'
 import { useTranslation } from 'react-i18next'
 import { SCREEN_KEYS } from '../../constants/screens'
 import { useSafeAreaInsets } from 'react-native-safe-area-context'
-import Reanimated, { useAnimatedStyle } from 'react-native-reanimated'
+import Reanimated, { useAnimatedStyle, useSharedValue, withTiming } from 'react-native-reanimated'
 import { View, StyleSheet, ActivityIndicator, ScrollView } from 'react-native'
-import useFadeExpandAnimation from '../../hooks/useFadeExpandAnimation'
 import ScreenContainer from '../../components/ScreenContainer'
 import { TouchableOpacity, TextInput } from 'react-native'
 import { DEFAULT_INSETS } from '../../constants/config'
@@ -27,14 +26,10 @@ const AppSettings = ({ navigation }) => {
   const { i18n } = useTranslation()
   const { colors } = useTheme()
 
-  const animations = useFadeExpandAnimation({
-    isVisible: filteredOptions.length > 0,
-    expandedHeight: 100
-  })
+  const expandHeight = useSharedValue(100)
 
   const animatedStyle = useAnimatedStyle(() => ({
-    opacity: animations.fadeOpacity.value,
-    height: animations.expandHeight.value
+    height: expandHeight.value
   }))
 
   const styles = allStyles({ colors })
@@ -62,6 +57,16 @@ const AppSettings = ({ navigation }) => {
       setLoading(false)
     } catch (error) {
       console.log(error)
+    }
+  }
+
+  const handleOnLayout = ({ nativeEvent: { layout } }) => {
+    const { height } = layout
+
+    if (height !== expandHeight.value) {
+      expandHeight.value = withTiming(height, {
+        duration: 150
+      })
     }
   }
 
@@ -132,7 +137,7 @@ const AppSettings = ({ navigation }) => {
                       </View>
                     ) : (
                       <Reanimated.View style={[animatedStyle]}>
-                        <View style={styles.content}>
+                        <View style={styles.content} onLayout={handleOnLayout}>
                           {filteredOptions.map(({ name, code }, index) => (
                             <TouchableOpacity
                               onPress={() => handleOptionPress(FIELDS.LANGUAGE, code)}

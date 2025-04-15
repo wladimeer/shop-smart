@@ -1,0 +1,40 @@
+{
+  "title": "Ver Cuentas",
+  "fields": {
+    "name": "Nombre",
+    "amount": "Monto",
+    "status": "Estado",
+    "total": "Total Cuenta"
+  },
+  "modals": {
+    "reuseList": {
+      "title": "¿Estás seguro?",
+      "message": "¿Quieres reutilizar este listado de cuentas? Podrás modificar los valores de cada cuenta en \"Nuevo Registro\" pulsando el botón \"Cuentas\"",
+      "buttons": {
+        "confirm": "Sí, claro",
+        "cancel": "No, por ahora"
+      }
+    },
+    "removeList": {
+      "title": "¿Estás seguro?",
+      "message": "¿Quieres eliminar este listado de cuentas? No podrás ver el listado ni reutilizarlo",
+      "buttons": {
+        "confirm": "Sí, estoy seguro",
+        "cancel": "No lo sé"
+      }
+    }
+  },
+  "indicators": {
+    "total": "Total",
+    "time": {
+      "today": "hoy"
+    },
+    "noData": "No hay datos. Ve a \"Nuevo Registro\" y registra algunas cuentas :)"
+  },
+  "data": {
+    "states": [
+      { "id": 0, "name": "Pagado" },
+      { "id": 1, "name": "Pendiente" }
+    ]
+  }
+}

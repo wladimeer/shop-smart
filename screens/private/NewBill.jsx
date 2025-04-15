@@ -10,7 +10,6 @@ import { setBillElements, getBillElements } from '../../services/bill'
 import CustomHighlightButton from '../../components/CustomHighlightButton'
 import Reanimated, { useAnimatedStyle } from 'react-native-reanimated'
 import { useSharedValue, withTiming } from 'react-native-reanimated'
-// import { VIEW_BILLS_SCREEN_KEY } from '../../constants/screens'
 import ScreenContainer from '../../components/ScreenContainer'
 import useSelectionModal from '../../hooks/useSelectionModal'
 import SelectionModal from '../../components/SelectionModal'
@@ -82,7 +81,7 @@ const NewBill = ({ navigation, route: { params = {} } }) => {
       if (response) {
         resetActionModal()
         handleSaveItems([])
-        // navigation.replace(VIEW_BILLS_SCREEN_KEY)
+        navigation.replace(SCREEN_KEYS.VIEW_BILLS)
       }
     } catch (error) {
       console.log(error)

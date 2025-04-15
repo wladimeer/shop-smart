@@ -4,6 +4,7 @@ import type { ScreenProps } from 'types/navigation.types'
 import VariantFeatures from '../../components/VariantFeatures'
 import ScreenContainer from '../../components/ScreenContainer'
 import MaterialIcons from '@expo/vector-icons/MaterialIcons'
+import FontAwesome from '@expo/vector-icons/FontAwesome'
 import { useFocusEffect } from '@react-navigation/native'
 import CustomButton from '../../components/CustomButton'
 import useSelectionModal from 'hooks/useSelectionModal'
@@ -65,6 +66,13 @@ const Principal = ({ navigation }: ScreenProps<Screen>) => {
             handlePress={() => handleNavigation(SCREEN_KEYS.VIEW_PURCHASES)}
           >
             <MaterialIcons name="shopping-cart-checkout" size={24} color="white" />
+          </CustomButton>
+
+          <CustomButton
+            text={t('buttons.viewBills')}
+            handlePress={() => handleNavigation(SCREEN_KEYS.VIEW_BILLS)}
+          >
+            <FontAwesome name="money" size={24} color="white" />
           </CustomButton>
 
           <CustomButton

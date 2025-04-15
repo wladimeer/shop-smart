@@ -3,6 +3,7 @@
   "buttons": {
     "newRegister": "New Register",
     "viewPurchases": "View Purchases",
+    "viewBills": "View Bills",
     "statistics": "Statistics",
     "appSettings": "Settings",
     "newPurchase": "Purchases",

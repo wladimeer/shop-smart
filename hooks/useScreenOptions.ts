@@ -36,6 +36,10 @@ const useScreenOptions = (): ScreenOptions => {
       title: t(`screens.titles.${SCREEN_KEYS.VIEW_PURCHASES}`),
       ...options
     },
+    [SCREEN_KEYS.VIEW_BILLS]: {
+      title: t(`screens.titles.${SCREEN_KEYS.VIEW_BILLS}`),
+      ...options
+    },
     [SCREEN_KEYS.NEW_BILL]: {
       title: t(`screens.titles.${SCREEN_KEYS.NEW_BILL}`),
       ...options

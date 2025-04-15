@@ -4,6 +4,7 @@
     "titles": {
       "newPurchaseScreen": "Nueva Compra",
       "viewPurchasesScreen": "Ver Compras",
+      "viewBillsScreen": "Ver Cuentas",
       "newBillScreen": "Nueva Cuenta",
       "statisticsScreen": "Estadísticas",
       "appSettingsScreen": "Configuración"

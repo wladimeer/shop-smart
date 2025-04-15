@@ -3,6 +3,7 @@
   "buttons": {
     "newRegister": "Nuevo Registro",
     "viewPurchases": "Ver Compras",
+    "viewBills": "Ver Cuentas",
     "statistics": "Estadísticas",
     "appSettings": "Configuración",
     "newPurchase": "Compras",

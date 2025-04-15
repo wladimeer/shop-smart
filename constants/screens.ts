@@ -4,6 +4,7 @@ const SCREEN_KEYS: Record<ScreenKey, Screen> = {
   PRINCIPAL: 'principalScreen',
   NEW_PURCHASE: 'newPurchaseScreen',
   VIEW_PURCHASES: 'viewPurchasesScreen',
+  VIEW_BILLS: 'viewBillsScreen',
   NEW_BILL: 'newBillScreen',
   APP_SETTINGS: 'appSettingsScreen',
   STATISTICS: 'statisticsScreen'

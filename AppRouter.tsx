@@ -7,6 +7,7 @@ import { NavigationContainer } from '@react-navigation/native'
 import ViewPurchases from './screens/private/ViewPurchases'
 import NewPurchase from './screens/private/NewPurchase'
 import AppSettings from './screens/private/AppSettings'
+import ViewBills from './screens/private/ViewBills'
 import Principal from './screens/public/Principal'
 import { SCREEN_KEYS } from './constants/screens'
 import NewBill from './screens/private/NewBill'
@@ -33,6 +34,11 @@ const AppRouter = () => {
           name={SCREEN_KEYS.VIEW_PURCHASES}
           options={screenOptions[SCREEN_KEYS.VIEW_PURCHASES]}
           component={ViewPurchases}
+        />
+        <Stack.Screen
+          name={SCREEN_KEYS.VIEW_BILLS}
+          options={screenOptions[SCREEN_KEYS.VIEW_BILLS]}
+          component={ViewBills}
         />
         <Stack.Screen
           name={SCREEN_KEYS.NEW_BILL}

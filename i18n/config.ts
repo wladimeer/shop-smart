@@ -10,6 +10,7 @@ import variantFeaturesES from '../locales/es/variantFeatures.json'
 import viewPurchasesES from '../locales/es/viewPurchases.json'
 import newPurchaseES from '../locales/es/newPurchase.json'
 import statisticsES from '../locales/es/statistics.json'
+import viewBillsES from '../locales/es/viewBills.json'
 
 // Constants
 import { HEADER_KEYS } from '../constants/headers'
@@ -26,6 +27,7 @@ import variantFeaturesEN from '../locales/en/variantFeatures.json'
 import viewPurchasesEN from '../locales/en/viewPurchases.json'
 import newPurchaseEN from '../locales/en/newPurchase.json'
 import statisticsEN from '../locales/en/statistics.json'
+import viewBillsEN from '../locales/en/viewBills.json'
 
 i18next.use(initReactI18next).init({
   compatibilityJSON: 'v3',
@@ -35,6 +37,7 @@ i18next.use(initReactI18next).init({
       [SCREEN_KEYS.PRINCIPAL]: principalES,
       [SCREEN_KEYS.NEW_PURCHASE]: newPurchaseES,
       [SCREEN_KEYS.VIEW_PURCHASES]: viewPurchasesES,
+      [SCREEN_KEYS.VIEW_BILLS]: viewBillsES,
       [SCREEN_KEYS.NEW_BILL]: newBillES,
       [MODAL_KEYS.VARIANT_FEATURES]: variantFeaturesES,
       [SCREEN_KEYS.APP_SETTINGS]: appSettingsES,
@@ -45,6 +48,7 @@ i18next.use(initReactI18next).init({
       [SCREEN_KEYS.PRINCIPAL]: principalEN,
       [SCREEN_KEYS.NEW_PURCHASE]: newPurchaseEN,
       [SCREEN_KEYS.VIEW_PURCHASES]: viewPurchasesEN,
+      [SCREEN_KEYS.VIEW_BILLS]: viewBillsEN,
       [SCREEN_KEYS.NEW_BILL]: newBillEN,
       [MODAL_KEYS.VARIANT_FEATURES]: variantFeaturesEN,
       [SCREEN_KEYS.APP_SETTINGS]: appSettingsEN,

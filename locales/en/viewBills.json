@@ -1,0 +1,40 @@
+{
+  "title": "View Bills",
+  "fields": {
+    "name": "Name",
+    "amount": "Amount",
+    "status": "Status",
+    "total": "Bill Total"
+  },
+  "modals": {
+    "reuseList": {
+      "title": "Are you sure?",
+      "message": "Do you want to reuse this list of bills? You’ll be able to modify each bill’s values in \"New Register\" by clicking the \"Bills\" button",
+      "buttons": {
+        "confirm": "Yes, sure",
+        "cancel": "Not now"
+      }
+    },
+    "removeList": {
+      "title": "Are you sure?",
+      "message": "Do you want to delete this list of bills? You won’t be able to view or reuse it",
+      "buttons": {
+        "confirm": "Yes, I'm sure",
+        "cancel": "Not sure"
+      }
+    }
+  },
+  "indicators": {
+    "total": "Total",
+    "time": {
+      "today": "today"
+    },
+    "noData": "No data. Go to \"New Register\" and add some bills :)"
+  },
+  "data": {
+    "states": [
+      { "id": 0, "name": "Paid" },
+      { "id": 1, "name": "Pending" }
+    ]
+  }
+}

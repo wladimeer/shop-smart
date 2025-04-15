@@ -9,7 +9,7 @@
   "modals": {
     "reuseList": {
       "title": "¿Estás seguro?",
-      "message": "¿Quieres reutilizar este listado de productos? Podrás modificar los valores de cada producto en \"Nueva Compra\"",
+      "message": "¿Quieres reutilizar este listado de productos? Podrás modificar los valores de cada producto en \"Nuevo Registro\" pulsando el botón \"Compras\"",
       "buttons": {
         "confirm": "Sí, claro",
         "cancel": "No, por ahora"
@@ -29,6 +29,6 @@
     "time": {
       "today": "hoy"
     },
-    "noData": "No hay datos. Ve a \"Nueva Compra\" y registra algunos productos :)"
+    "noData": "No hay datos. Ve a \"Nuevo Registro\" y registra algunos productos :)"
   }
 }

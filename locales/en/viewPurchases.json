@@ -9,7 +9,7 @@
   "modals": {
     "reuseList": {
       "title": "Are you sure?",
-      "message": "Do you want to reuse this product list? You will be able to modify the values of each product in \"New Purchase\"",
+      "message": "Do you want to reuse this list of products? You’ll be able to modify each product’s values in \"New Register\" by clicking the \"Purchases\" button",
       "buttons": {
         "confirm": "Yes, of course",
         "cancel": "Not for now"
@@ -29,6 +29,6 @@
     "time": {
       "today": "today"
     },
-    "noData": "No data. Go to \"New Purchase\" and add some products :)"
+    "noData": "No data. Go to \"New Register\" and add some products :)"
   }
 }

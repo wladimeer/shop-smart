@@ -7,10 +7,15 @@
     "android": "expo start --android",
     "ios": "expo start --ios",
     "web": "expo start --web",
-    "build-android": "eas build -p android --profile development",
-    "build-ios": "eas build -p ios --profile development",
-    "build-android-free": "eas build -p android --profile free",
-    "build-android-paid": "eas build -p android --profile paid"
+    "build:android-dev": "eas build -p android --profile development",
+    "build:ios-dev": "eas build -p ios --profile development",
+    "build:android-free": "eas build -p android --profile free",
+    "build:ios-free": "eas build -p ios --profile free",
+    "build:android-paid": "eas build -p android --profile paid",
+    "build:ios-paid": "eas build -p ios --profile paid",
+    "update:dev": "eas update --channel development --message",
+    "update:free": "eas update --channel free --message",
+    "update:paid": "eas update --channel paid --message"
   },
   "dependencies": {
     "@expo/vector-icons": "14.0.3",

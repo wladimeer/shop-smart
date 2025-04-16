@@ -8,21 +8,24 @@
       "distribution": "internal",
       "env": {
         "EXPO_PUBLIC_APP_VARIANT": "free"
-      }
+      },
+      "channel": "free"
     },
     "development": {
       "developmentClient": true,
       "distribution": "internal",
       "env": {
         "EXPO_PUBLIC_APP_VARIANT": "development"
-      }
+      },
+      "channel": "development"
     },
     "paid": {
       "developmentClient": false,
       "distribution": "internal",
       "env": {
         "EXPO_PUBLIC_APP_VARIANT": "paid"
-      }
+      },
+      "channel": "paid"
     }
   },
   "submit": {

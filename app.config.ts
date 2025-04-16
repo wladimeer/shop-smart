@@ -34,6 +34,7 @@ const config: ExpoConfig = {
     favicon: './assets/favicon.png'
   },
   plugins: [
+    'expo-updates',
     [
       'expo-font',
       {
@@ -46,6 +47,12 @@ const config: ExpoConfig = {
       projectId: 'ebcd38eb-891a-4c6d-9317-fa2e79f4bd70'
     },
     appVariant: APP_VARIANT
+  },
+  updates: {
+    url: 'https://u.expo.dev/ebcd38eb-891a-4c6d-9317-fa2e79f4bd70'
+  },
+  runtimeVersion: {
+    policy: 'appVersion'
   }
 }
 

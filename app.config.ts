@@ -3,7 +3,7 @@ import { APP_VARIANT } from './constants/config'
 import { ExpoConfig } from 'expo/config'
 
 const config: ExpoConfig = {
-  name: 'ShopSmart',
+  name: 'Nuvli',
   slug: 'shop-smart',
   version: '1.0.0',
   orientation: 'portrait',

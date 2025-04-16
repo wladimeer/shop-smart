@@ -1,6 +1,6 @@
 import React from 'react'
 import { Image, StyleSheet } from 'react-native'
-import background from '../assets/principal-background.jpg'
+import background from '../assets/background.jpg'
 
 const BackgroundImage = () => {
   return <Image source={background} style={styles.background} blurRadius={3} resizeMode="cover" />

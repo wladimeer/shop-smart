@@ -53,7 +53,7 @@ const Principal = ({ navigation }: ScreenProps<Screen>) => {
 
   return (
     <>
-      <ScreenContainer>
+      <ScreenContainer noSafeArea={true}>
         <SelectionModal {...{ selectionModal, resetSelectionModal }} />
 
         <ElementGroup>

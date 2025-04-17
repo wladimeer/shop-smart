@@ -3,23 +3,22 @@ import { I18nextProvider } from 'react-i18next'
 import { useSharedValue, withTiming } from 'react-native-reanimated'
 import Reanimated, { useAnimatedStyle } from 'react-native-reanimated'
 import { GestureHandlerRootView } from 'react-native-gesture-handler'
-import * as SplashScreen from 'expo-splash-screen'
+import SplashScreen from 'components/SplashScreen'
 import { useLanguageStore } from 'store/language'
+import { useEffect, useState } from 'react'
 import * as Updates from 'expo-updates'
 import { useFonts } from 'expo-font'
 import AppRouter from './AppRouter'
-import { useEffect } from 'react'
 import { locale } from 'dayjs'
 import i18n from 'i18next'
 import 'dayjs/locale/es'
 import 'dayjs/locale/en'
 import './i18n/config'
 
-SplashScreen.preventAutoHideAsync()
-
 const App = () => {
   const { language } = useLanguageStore()
-  const fadeOpacity = useSharedValue<number>(0.2)
+  const [isAppReady, setIsAppReady] = useState<boolean>(false)
+  const fadeOpacity = useSharedValue<number>(0.1)
 
   const [fontsLoaded, fontError] = useFonts({
     'SSC-Regular': require('./fonts/SedanSC-Regular.ttf'),
@@ -39,13 +38,18 @@ const App = () => {
 
   useEffect(() => {
     const prepare = async () => {
-      const config = { duration: 800 }
-      await SplashScreen.hideAsync()
-      fadeOpacity.value = withTiming(1, config)
+      setIsAppReady(true)
     }
 
     setTimeout(prepare, 1500)
   }, [])
+
+  useEffect(() => {
+    if (isAppReady) {
+      const config = { duration: 500 }
+      fadeOpacity.value = withTiming(1, config)
+    }
+  }, [isAppReady])
 
   useEffect(() => {
     const checkUpdates = async () => {
@@ -67,7 +71,7 @@ const App = () => {
     checkUpdates()
   }, [])
 
-  if (!fontsLoaded && !fontError) return null
+  if ((!fontsLoaded && !fontError) || !isAppReady) return <SplashScreen />
 
   return (
     <I18nextProvider i18n={i18n}>

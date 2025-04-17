@@ -10,11 +10,6 @@ const config: ExpoConfig = {
   icon: './assets/icon.png',
   backgroundColor: '#000000',
   userInterfaceStyle: 'dark',
-  splash: {
-    image: './assets/splash.png',
-    resizeMode: 'cover',
-    backgroundColor: '#000000'
-  },
   assetBundlePatterns: ['**/*'],
   ios: {
     supportsTablet: true,

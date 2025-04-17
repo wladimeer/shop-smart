@@ -11,7 +11,7 @@ const ScreenContainer = ({ children, colorSafeArea = null, noSafeArea = false })
 
   return (
     <View style={styles.container}>
-      <StatusBar style="light" />
+      <StatusBar backgroundColor="transparent" barStyle="light-content" />
 
       <BackgroundImage />
 

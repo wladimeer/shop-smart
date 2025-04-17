@@ -1,3 +1,3 @@
-type InsetKey = 'BOTTOM'
+type InsetKey = 'TOP' | 'BOTTOM'
 
 export { InsetKey }

@@ -9,7 +9,8 @@ const APP_VARIANTS: Record<VariantKey, Variant> = {
 }
 
 const DEFAULT_INSETS: Record<InsetKey, number> = {
-  BOTTOM: 32
+  TOP: 59,
+  BOTTOM: 34
 }
 
 const BASE_COLORS: string[] = [

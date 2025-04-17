@@ -1,9 +1,9 @@
 import { useTheme } from '@react-navigation/native'
 import { Modal, View, Text, FlatList } from 'react-native'
 import { useSafeAreaInsets } from 'react-native-safe-area-context'
-import { TouchableOpacity, StyleSheet, StatusBar } from 'react-native'
 import Reanimated, { useAnimatedStyle } from 'react-native-reanimated'
 import useFadeScaleAnimations from '../hooks/useFadeScaleAnimations'
+import { TouchableOpacity, StyleSheet } from 'react-native'
 import { DEFAULT_INSETS } from '../constants/config'
 import Octicons from '@expo/vector-icons/Octicons'
 import { Fontisto } from '@expo/vector-icons'
@@ -29,12 +29,13 @@ const InformationModal = ({ informationModal, resetInformationModal }) => {
   }
 
   return (
-    <Modal transparent={true} onRequestClose={handleClose} animationType="fade" visible={visible}>
-      <StatusBar
-        backgroundColor={visible ? colors.tertiary : 'transparent'}
-        barStyle="light-content"
-      />
-
+    <Modal
+      transparent={true}
+      onRequestClose={handleClose}
+      statusBarTranslucent={true}
+      animationType="fade"
+      visible={visible}
+    >
       <Reanimated.View style={[styles.container, animatedStyle]}>
         <View style={styles.header}>
           <Text style={styles.headerTitle}>{title}</Text>
@@ -87,7 +88,7 @@ const allStyles = ({ colors, insets }) => {
     container: {
       flex: 1,
       padding: 15,
-      paddingTop: insets.top,
+      paddingTop: insets.top || DEFAULT_INSETS.TOP,
       backgroundColor: colors.tertiary,
       paddingBottom: 0
     },
